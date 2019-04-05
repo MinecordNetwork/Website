@@ -1,0 +1,14 @@
+{
+    "name": "minecord/website",
+    "description": "Minecord website",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rixafy",
+            "email": "rixafy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
