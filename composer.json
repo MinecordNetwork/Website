@@ -10,5 +10,33 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=7.2.0",
+        "nette/application": "^2.4.4",
+        "nette/bootstrap": "^2.4.3",
+        "nette/database": "^2.4",
+        "nette/di": "^2.4",
+        "nette/finder": "^2.4",
+        "nette/forms": "^2.4",
+        "nette/http": "^2.4",
+        "nette/mail": "^2.4",
+        "nette/robot-loader": "^2.4",
+        "nette/safe-stream": "^2.3",
+        "nette/security": "^2.4",
+        "nette/utils": "^2.4",
+        "latte/latte": "2.4.6@dev",
+        "tracy/tracy": "^2.4",
+        "nettrine/dbal": "^0.2.6",
+        "nettrine/orm": "^0.2.1",
+        "contributte/console": "dev-master",
+        "nettrine/annotations": "^0.3.0",
+        "nettrine/extensions": "^0.4.0@dev",
+        "arachne/security": "^0.4.0@dev",
+        "ramsey/uuid-doctrine": "dev-master",
+        "ramsey/uuid": "3.x-dev",
+        "ext-pdo": "*",
+        "contributte/event-dispatcher": "^0.5.0",
+        "ublaboo/datagrid": "v5.x-dev",
+        "ext-json": "*"
+    }
 }
