@@ -52,6 +52,21 @@ class Admin
 
     public function __construct(AdminData $adminData)
     {
+        $this->edit($adminData);
+    }
+
+    public function getData(): AdminData
+    {
+        $data = new AdminData();
+
+        $data->displayName = $this->display_name;
+        $data->email = $this->email;
+
+        return $data;
+    }
+
+    public function edit(AdminData $adminData): void
+    {
         $this->display_name = $adminData->displayName;
         $this->email = $adminData->email;
     }
