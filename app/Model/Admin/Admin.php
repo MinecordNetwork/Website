@@ -6,6 +6,10 @@ namespace Minecord\Model\Admin;
 
 use DateTime;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="admin")
+ */
 class Admin
 {
     /**
