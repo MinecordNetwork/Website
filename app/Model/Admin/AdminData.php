@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Minecord\Model\Admin;
 
-use DateTime;
-
 class AdminData
 {
     /** @var string */
