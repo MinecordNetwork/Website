@@ -11,5 +11,4 @@ class AdminData
 
     /** @var string */
     public $email;
-
 }
