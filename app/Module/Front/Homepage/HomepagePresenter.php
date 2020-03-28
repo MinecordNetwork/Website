@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Minecord\Module\Front\Homepage;
 
-use Nette\Application\UI\Presenter;
+use Minecord\Module\Front\BaseFrontPresenter;
 
-class HomepagePresenter extends Presenter
+/** 
+ * @property-read HomepageTemplate $template
+ */
+class HomepagePresenter extends BaseFrontPresenter
 {
-    public function beforeRender()
-    {
-        $this->setLayout(__DIR__ . 'Templates/@layout.latte');
-        $this->getTemplate()->setFile(__DIR__ . 'Templates/homepage.latte');
-    }
+
 }

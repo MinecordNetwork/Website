@@ -1,0 +1,48 @@
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	archette.country: Archette\Country\CountryExtension
+	archette.ipAddress: Archette\IpAddress\IpAddressExtension
+	archette.currency: Archette\Currency\CurrencyExtension
+	archette.language: Archette\Language\LanguageExtension
+	translation: Contributte\Translation\DI\TranslationExtension
+	events: Contributte\EventDispatcher\DI\EventDispatcherExtension
+
+
+http:
+	headers:
+		X-Powered-By: PHP 6.0
+
+
+translation:
+	locales:
+		whitelist: [en, cs, sk]
+		default: en
+	dirs:
+		- %appDir%/../translations
+
+
+console:
+	lazy: false
+
+
+application:
+	errorPresenter: Front:Error
+	mapping:
+		*: ['Minecord\Module', '*', '*\*Presenter']
+		Admin: ['Zoptiadmin\Admin', '*', '*\*Presenter']
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	routerFactory: Minecord\Router\RouterFactory
+	router: @routerFactory::create
+
+
+includes:
+    - doctrine.neon
+    - model.neon
+    - console.neon
+    - front.neon

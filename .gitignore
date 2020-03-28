@@ -1,3 +1,7 @@
 /.idea
 /vendor
 /composer.lock
+/temp
+/log
+/app/Config/credentials_dev.neon
+/app/Config/credentials_prod.neon

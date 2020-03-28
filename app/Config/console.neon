@@ -1,0 +1,5 @@
+search:
+	console:
+		in: %appDir%/Module/Console
+		classes:
+			- *Command

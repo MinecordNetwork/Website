@@ -1,0 +1,11 @@
+#!/bin/bash
+cd ~/websites/minecord.net
+mkdir -p www
+rsync -avh --exclude 'log/*' dev/* www --delete
+rm -r www/temp/*
+chmod -R 755 www
+chmod -R 775 www/temp
+chmod -R 775 www/log
+cd www
+composer dump-autoload
+bin/console migrations:migrate

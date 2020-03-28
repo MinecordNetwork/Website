@@ -1,0 +1,34 @@
+{templateType Minecord\Module\Front\BaseFrontTemplate}
+<!DOCTYPE html>
+<html lang="{$locale}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>{ifset title}{include title|stripHtml|trim} | {/ifset}Minecord Network</title>
+    <meta n:ifset="description" name="description" content="{include description|stripHtml|trim}">
+    <meta n:ifset="keywords" name="keywords" content="{include keywords|stripHtml|trim}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
+</head>
+
+<body>
+<div class="ajax-spinner" id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+<div class="site">
+    {snippetArea header}
+        {include 'header.latte'}
+    {/snippetArea}
+
+    <div class="container" n:snippet="flashes">
+        <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
+    </div>
+
+    {include content}
+    
+    {include 'footer.latte'}
+</div>
+{block scripts}
+
+{/block}
+</body>
+</html>

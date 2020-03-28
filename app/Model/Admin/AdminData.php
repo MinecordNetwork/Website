@@ -6,9 +6,7 @@ namespace Minecord\Model\Admin;
 
 class AdminData
 {
-    /** @var string */
-    public $displayName;
-
-    /** @var string */
-    public $email;
+	public string $displayName;
+	public string $email;
+	public string $password;
 }

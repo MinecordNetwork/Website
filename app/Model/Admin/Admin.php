@@ -4,123 +4,129 @@ declare(strict_types=1);
 
 namespace Minecord\Model\Admin;
 
+use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use Nette\Security\Passwords;
+use Ramsey\Uuid\UuidInterface;
+use Rixafy\DoctrineTraits\DateTimeTrait;
+use Rixafy\DoctrineTraits\RemovableTrait;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="admin")
  */
 class Admin
 {
-    /**
-     * @ORM\Column(type="string", length=47)
-     * @var string
-     */
-    private $display_name;
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="uuid_binary", unique=true)
+	 */
+	private UuidInterface $id;
 
-    /**
-     * @ORM\Column(type="string", length=63, unique=true)
-     * @var string
-     */
-    private $email;
+	/** @ORM\Column(type="string", length=127) */
+	private string $displayName;
 
-    /**
-     * @ORM\Column(type="string")
-     * @var string
-     */
-    private $password;
+	/** @ORM\Column(type="string", length=127) */
+	private string $email;
 
-    /**
-     * @ORM\Column(type="string", length=45, unique=true)
-     * @var string
-     */
-    private $first_ip;
+	/** @ORM\Column(type="string", length=255) */
+	private string $password;
 
-    /**
-     * @ORM\Column(type="string", length=45, unique=true)
-     * @var string
-     */
-    private $last_ip;
+	/** @ORM\Column(type="string", length=127, nullable=true) */
+	private ?string $googleId = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @var DateTime
-     */
-    private $first_login_at;
+	/** @ORM\Column(type="string", length=127, nullable=true) */
+	private ?string $facebookId = null;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @var DateTime
-     */
-    private $last_login_at;
+	/** @ORM\Column(type="string", length=127, nullable=true) */
+	private ?string $twitterId = null;
 
-    public function __construct(AdminData $adminData)
-    {
-        $this->edit($adminData);
-    }
+	/** @ORM\Column(type="datetime", nullable=true) */
+	private ?DateTime $lastLoginAt = null;
 
-    public function getData(): AdminData
-    {
-        $data = new AdminData();
+	/** @ORM\Column(type="datetime", nullable=true) */
+	private ?DateTime $firstLoginAt = null;
 
-        $data->displayName = $this->display_name;
-        $data->email = $this->email;
+	use RemovableTrait;
+	use DateTimeTrait;
 
-        return $data;
-    }
+	public function __construct(UuidInterface $id, AdminData $adminData, Passwords $passwords)
+	{
+		$this->id = $id;
+		$this->edit($adminData, $passwords);
+	}
 
-    public function edit(AdminData $adminData): void
-    {
-        $this->display_name = $adminData->displayName;
-        $this->email = $adminData->email;
-    }
+	public function edit(AdminData $adminData, Passwords $passwords = null): void
+	{
+		$this->displayName = $adminData->displayName;
+		$this->email = $adminData->email;
 
-    public function onLogin(): void
-    {
-        $this->last_login_at = new DateTime();
-        $this->last_ip = $_SERVER['REMOTE_ADDR'];
+		if ($adminData->password !== null && $passwords !== null) {
+			$this->changePassword($adminData->password, $passwords);
+		}
+	}
 
-        if ($this->first_ip === null) {
-            $this->first_ip = $this->last_ip;
-        }
+	public function getId(): UuidInterface
+	{
+		return $this->id;
+	}
 
-        if ($this->first_login_at === null) {
-            $this->first_login_at = $this->last_login_at;
-        }
-    }
+	public function getData(): AdminData
+	{
+		$data = new AdminData();
 
-    public function createPassword(string $password, callable $hash): void
-    {
-        $this->password = $hash($password);
-    }
+		$data->displayName = $this->displayName;
+		$data->email = $this->email;
 
-    public function getDisplayName(): string
-    {
-        return $this->display_name;
-    }
+		return $data;
+	}
 
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
+	public function getDisplayName(): string
+	{
+		return $this->displayName;
+	}
 
-    public function getFirstIp(): string
-    {
-        return $this->first_ip;
-    }
+	public function getEmail(): string
+	{
+		return $this->email;
+	}
 
-    public function getLastIp(): string
-    {
-        return $this->last_ip;
-    }
+	public function changePassword(string $plainText, Passwords $passwords): void
+	{
+		$this->password = $passwords->hash($plainText);
+	}
 
-    public function getFirstLoginAt(): DateTime
-    {
-        return $this->first_login_at;
-    }
+	public function checkPassword(string $plainText, Passwords $passwords): bool
+	{
+		return $passwords->verify($plainText, $this->password);
+	}
 
-    public function getLastLoginAt(): DateTime
-    {
-        return $this->last_login_at;
-    }
+	public function onLogin(): void
+	{
+		if ($this->firstLoginAt === null) {
+			$this->firstLoginAt = new DateTime();
+		}
+		$this->lastLoginAt = new DateTime();
+	}
+
+	public function getGoogleId(): string
+	{
+		return $this->googleId;
+	}
+
+	public function getFacebookId(): string
+	{
+		return $this->facebookId;
+	}
+
+	public function getTwitterId(): string
+	{
+		return $this->twitterId;
+	}
+
+	public function getAvatar(int $size = 90): string
+	{
+		return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->getEmail())) . '?d=' . urlencode('https://' . $_SERVER['SERVER_NAME'] . '/css/admin/img/default_avatar.png') . '&s=' . $size;
+	}
 }
