@@ -10,6 +10,7 @@
     <meta n:ifset="description" name="description" content="{include description|stripHtml|trim}">
     <meta n:ifset="keywords" name="keywords" content="{include keywords|stripHtml|trim}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
+    <link rel="stylesheet" href="/css/style.css?deploy={$assetVersion}">
 </head>
 
 <body>
@@ -30,5 +31,6 @@
 {block scripts}
 
 {/block}
+<script src="/js/main.js?deploy={$assetVersion}"></script>
 </body>
 </html>

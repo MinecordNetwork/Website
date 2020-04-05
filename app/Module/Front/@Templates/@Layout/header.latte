@@ -1,2 +1,69 @@
 {templateType Minecord\Module\Front\BaseFrontTemplate}
-Header
+<section class="header">
+    <section class="top d-none d-lg-block">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            {_'header.welcome'}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+    <section class="main d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div class="logo">
+                        <img src="/img/logo.png" alt="Minecord logo"/>
+                        <span>{_'header.title'}</span>
+                    </div>
+                </div>
+                <div class="col-4 text-right">
+                    <div class="logo">
+                        <span>?????????</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+                <a class="navbar-brand d-block d-lg-none" n:href="Homepage:default">
+                    <img class="logo-mobile" src="/img/logo.png" alt="Minecord logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" n:href="Homepage:default">{_'header.menu.blog'}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.store'}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.vote'}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.rules'}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link">{_'header.menu.contact'}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+</section>

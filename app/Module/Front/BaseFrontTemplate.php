@@ -10,4 +10,5 @@ class BaseFrontTemplate
 {
 	public ?Admin $admin;
 	public string $locale;
+	public int $assetVersion;
 }

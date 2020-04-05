@@ -53,6 +53,7 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->getTemplate()->setFile(__DIR__ . '/@Templates/' . Helpers::splitName($this->getName())[1] . '/' . $this->getAction() .'.latte');
 		$this->template->admin = $this->admin;
 		$this->template->locale = $this->language->getIso();
+		$this->template->assetVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
 	}
 
 	public function handleLogout(): void
