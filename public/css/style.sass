@@ -30,8 +30,7 @@ body
 
 main
   background: #fff
-  padding-top: 1.5em
-  padding-bottom: 1.5em
+  padding: 1em 1.5em!important
   position: relative
 
 .header
@@ -69,21 +68,24 @@ main
         font-size: 60px
         text-transform: uppercase
     .buttons
+      display: flex
       align-items: center
-      justify-content: center
+      justify-content: flex-end
       height: 100%
       .btn
-        align-self: flex-end
-        padding: .2em
+        outline: none
         display: block
-        background: #fff
-        border: 1px solid #fff
-        border-radius: 0
-        color: #111
-        margin: .5em
-        &:hover, &:focus, &:active
-          background: #fff
-          color: #111
+        background: #0000006b
+        border-radius: 50px
+        color: #f8f800
+        margin: 0.5em
+        border: 3px dashed #f8f800
+        font-weight: 600
+        text-transform: uppercase
+        &:hover
+          outline: none
+          border-color: #fff
+          color: #fff
 
 .card
   background: transparent
