@@ -29,7 +29,6 @@ body
   background: #F0F3F5
 
 main
-  background: #fff
   padding: 1em 1.5em!important
   position: relative
 
@@ -93,10 +92,11 @@ main
   border-radius: 0
   border: none
   .card-header
+    border-radius: .2em .2em 0 0
     font-size: 1rem
-    border-radius: 0
     color: #111
-    text-transform: uppercase
+    background: #fff
+    font-weight: bold
     border-bottom: none
     h1, h2
       font-size: 1rem
@@ -105,26 +105,21 @@ main
     &.premium
       background: #6d70d2
   .card-body
-    background: #fff
+    background: linear-gradient(to bottom, #f0f3f5 0, #ffffff 45px, #ffffff 100%)
+    border-radius: 0 0 .2em .2em
     &.transparent
       background: #ffffffec
 
 .page
   .card
     .card-header
-      background: #F0F3F5
       text-align: left
-    .card-body
-      border: 1px solid #f0f3f5
 
 .sidebar
   .card
     .card-header
-      background: #f0f3f5
       text-align: center
-      border-bottom: none
-    .card-body
-      border: 1px solid #f0f3f5
+      text-transform: uppercase
 
 .partners
   text-align: center
