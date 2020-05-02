@@ -26,33 +26,37 @@
 
 body
   font-family: Dosis, sans-serif
-  background-size: cover
-  background: #111 url('/img/background.jpg') center top fixed
-  background-size: cover
+  background: #F0F3F5
 
 main
-  margin-bottom: 1.5em
+  background: #fff
+  padding-top: 1.5em
+  padding-bottom: 1.5em
   position: relative
 
 .header
+  background: #111 url("/img/test.png") center top fixed
+  background-size: cover
   .top
-    background-color: rgba(0, 0, 0, .5)
+    background-color: rgba(0, 0, 0, 0.5)
     color: #fff
     padding: .2em
+    border-bottom: 5px solid #fff
     .navbar-custom
       background: transparent
       .nav-link
         font-family: 'PowerStation', sans-serif
         color: #fff
         padding: 0 .8rem
-        font-size: 1.1em
+        font-size: 1.2em
         &.active, &:hover, &:focus, &:active
-          color: #F8F800
+          color: #edef07
     .logo-mobile
       height: 30px
   .main
     background: linear-gradient(rgba(0,0,0,.4), transparent)
     .logo
+      text-decoration: none
       margin: 1.3em
       display: flex
       align-items: center
@@ -64,8 +68,82 @@ main
         color: #fff
         font-size: 60px
         text-transform: uppercase
-  .menu
-    background-color: rgba(0, 0, 0, 0.4)
+    .buttons
+      align-items: center
+      justify-content: center
+      height: 100%
+      .btn
+        align-self: flex-end
+        padding: .2em
+        display: block
+        background: #fff
+        border: 1px solid #fff
+        border-radius: 0
+        color: #111
+        margin: .5em
+        &:hover, &:focus, &:active
+          background: #fff
+          color: #111
+
+.card
+  background: transparent
+  margin-bottom: 1em
+  border-radius: 0
+  border: none
+  .card-header
+    font-size: 1rem
+    border-radius: 0
+    color: #111
+    text-transform: uppercase
+    border-bottom: none
+    h1, h2
+      font-size: 1rem
+    &.discord
+      background: #6275C1
+    &.premium
+      background: #6d70d2
+  .card-body
+    background: #fff
+    &.transparent
+      background: #ffffffec
+
+.page
+  .card
+    .card-header
+      background: #F0F3F5
+      text-align: left
+    .card-body
+      border: 1px solid #f0f3f5
+
+.sidebar
+  .card
+    .card-header
+      background: #f0f3f5
+      text-align: center
+      border-bottom: none
+    .card-body
+      border: 1px solid #f0f3f5
+
+.partners
+  text-align: center
+  .card-body
+    padding: 0 1.25rem
+    .craftlist
+      font-family: 'PowerStation', sans-serif
+      color: #111
+      font-size: 3.5em
+      text-transform: uppercase
+
+.tooltip
+  font-family: 'PowerStation', sans-serif
+  background: #000
+  border-radius: .2rem
+  color: #fff
+  padding: .3em .7em
+  opacity: 1
+  text-shadow: none
+  font-weight: normal
+
 
 @font-face
   font-display: swap

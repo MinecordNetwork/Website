@@ -20,16 +20,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-8">
-                    <div class="logo">
+                    <a n:href="Homepage:default" class="logo">
                         <img src="/img/logo.png" alt="Minecord logo"/>
                         <span>{_'header.title'}</span>
-                    </div>
+                    </a>
                 </div>
-                <div class="col-4 text-right">
-                    <div class="logo">
-                        <span>?????????</span>
+                {*<div class="col-4 text-right">
+                    <div class="buttons">
+                        <a href="#" class="btn btn-play">{_'header.play'}</a>
+                        <a target="_blank" href="{_'header.discordInvite'}" class="btn btn-discord">{_'header.discord'}</a>
                     </div>
-                </div>
+                </div>*}
             </div>
         </div>
     </section>
@@ -59,7 +60,10 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link">{_'header.menu.contact'}</a>
+                            <a id="ip" class="nav-link">{_'header.ip'}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-placement="right" title="{_'header.ipCopy'}" data-toggle="tooltip" href="javascript:void(0)" onclick="copyIpAddress({_'header.ip'}, {_'header.ip'}, {_'header.ipCopied'}, document.getElementById('ip'))" class="nav-link"><i class="fas fa-copy"></i></a>
                         </li>
                     </ul>
                 </div>
