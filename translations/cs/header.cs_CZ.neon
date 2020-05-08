@@ -1,4 +1,4 @@
-ip: "play.minecord.cz"
+ip: "mc.minecord.cz"
 ipCopy: "Zkopírovat IP adresu"
 ipCopied: "IP Zkopírována"
 welcome: "Minihry, Survival, Skyblock, Creative a mnoho dalšího!"
@@ -7,7 +7,6 @@ description: "Minecraft server"
 currentPlayerCount: "Na serveru právě hraje %playerCount% hráčů"
 currentDiscordUserCount: "Na discordu je právě %userCount% lidí"
 discord: "Discord server"
-discordInvite: "https://ds.minecord.cz"
 play: "Začít hrát"
 menu:
     blog: "Blog"
