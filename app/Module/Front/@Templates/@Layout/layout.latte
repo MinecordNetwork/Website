@@ -22,19 +22,17 @@
 
 <body>
 <div class="ajax-spinner" id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-<div class="site">
-    {snippetArea header}
-        {include 'header.latte'}
-    {/snippetArea}
+{snippetArea header}
+    {include 'header.latte'}
+{/snippetArea}
 
-    <div class="container" n:snippet="flashes">
-        <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
-    </div>
-
-    {include content}
-    
-    {include 'footer.latte'}
+<div class="container" n:snippet="flashes">
+    <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
 </div>
+
+{include content}
+
+{include 'footer.latte'}
 {block scripts}
 
 {/block}
@@ -42,10 +40,5 @@
 <script src="/js/popper.min.js?deploy={$assetVersion}"></script>
 <script src="/js/bootstrap.min.js?deploy={$assetVersion}"></script>
 <script src="/js/main.js?deploy={$assetVersion}"></script>
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
 </body>
 </html>

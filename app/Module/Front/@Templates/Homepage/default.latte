@@ -1,13 +1,13 @@
 {templateType Minecord\Module\Front\Homepage\HomepageTemplate}
 {block title}Minecraft Server{/block}
 {block content}
-<main class="container flex-shrink-0">
+<div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
-        <div class="col-8 page">
-            <div class="card">
+        <main class="col-12 col-md-8 page">
+            <section class="card article">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col md-8">
+                        <div class="col-12 col-md-8">
                             <h2>
                                 <a href="#">Murder Mystery BETA released</a>
                             </h2>
@@ -15,12 +15,14 @@
                                 <a href="#">Rixafy, 10.05.2019</a>
                             </small>
                         </div>
-                        <div class="col md-4 text-right">
-                            <img style="width: 50px; border-radius: .3em" src="https://minotar.net/helm/Rixafy/150.png"/>
+                        <div class="col-12 col-md-4 text-right d-none d-md-block">
+                            <a data-placement="top" title="Rixafy" data-toggle="tooltip" href="#">
+                                <img style="width: 50px; border-radius: .3em" src="https://minotar.net/helm/Rixafy/150.png"/>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <img src="https://i.imgur.com/0dLo8sO.png" style="width: 100%"/>
+                <img class="preview" src="https://i.imgur.com/0dLo8sO.png" alt="Murder Mystery BETA released"/>
                 <div class="card-body">
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing
                         elit. Aenean commodo ligula eget dolor. Aenean massa
@@ -41,10 +43,10 @@
                         Aenean imperdiet. Etiam ultricies nisi vel augue.
                         Curabitur ullamcorper ultricies nisi.</p>
                 </div>
-            </div>
-        </div>
-        <div class="col-4 sidebar">
+            </section>
+        </main>
+        <aside class="col-12 col-md-4">
             {include '../@Layout/sidebar.latte'}
-        </div>
+        </aside>
     </div>
-</main>
+</div>

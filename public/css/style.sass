@@ -29,70 +29,19 @@ body
   background: #F0F3F5
 
 main
-  padding: 1em 1.5em!important
-  position: relative
+  .card
+    .card-header
+      text-align: left
+      font-weight: bold
 
 a
   color: #2f67a5
   &:hover, &:focus, &:active
+    text-decoration: none
+  &:hover
     color: #333
 
-.header
-  background: #111 url("/img/test.png") center top fixed
-  background-size: cover
-  .top
-    background-color: rgba(0, 0, 0, 0.5)
-    color: #fff
-    padding: .2em
-    border-bottom: 5px solid #fff
-    .navbar-custom
-      background: transparent
-      .nav-link
-        font-family: 'PowerStation', sans-serif
-        color: #fff
-        padding: 0 .8rem
-        font-size: 1.2em
-        &.active, &:hover, &:focus, &:active
-          color: #edef07
-    .logo-mobile
-      height: 30px
-  .main
-    background: linear-gradient(rgba(0,0,0,.4), transparent)
-    .logo
-      text-decoration: none
-      margin: 1.3em
-      display: flex
-      align-items: center
-      img
-        height: 100px
-        margin-right: 1em
-      span
-        font-family: 'PowerStation', sans-serif
-        color: #fff
-        font-size: 60px
-        text-transform: uppercase
-    .buttons
-      display: flex
-      align-items: center
-      justify-content: flex-end
-      height: 100%
-      .btn
-        outline: none
-        display: block
-        background: #0000006b
-        border-radius: 50px
-        color: #f8f800
-        margin: 0.5em
-        border: 3px dashed #f8f800
-        font-weight: 600
-        text-transform: uppercase
-        &:hover
-          outline: none
-          border-color: #fff
-          color: #fff
-
 .card
-  background: transparent
   margin-bottom: 1em
   border-radius: 0
   border: none
@@ -101,12 +50,12 @@ a
     font-size: 1.1rem
     background: #fff
     color: #111
-    border-bottom: none
+    border: none
     h1, h2
       text-transform: uppercase
       font-size: 1.1rem
       font-weight: bold
-      margin: 0.2em 0 0.2em 0
+      margin: 0.2em 0 0 0
     &.discord
       background: #6275C1
     &.premium
@@ -116,27 +65,12 @@ a
     border-radius: 0 0 .2em .2em
     &.transparent
       background: #ffffffec
-
-.page
-  .card
-    .card-header
-      text-align: left
-      font-weight: bold
-
-.sidebar
-  .card
-    .card-header
-      text-align: center
-      text-transform: uppercase
-
-.discord
-  text-align: center
-  .card-header
-    color: #fff
-    background: #6275c1
+  &.article
+    .preview
+      width: 100%
 
 .tooltip
-  font-family: 'PowerStation', sans-serif
+  font-family: 'PowerStation', impact, serif
   background: #000
   border-radius: .2rem
   color: #fff
@@ -145,11 +79,8 @@ a
   text-shadow: none
   font-weight: normal
 
-@font-face
-  font-display: swap
-  font-family: 'PowerStation'
-  font-style: normal
-  font-weight: 400
-  src: local('PowerStation'), local('PowerStation'), url("/fonts/powerStation.ttf") format('truetype')
-
+@import "header"
+@import "footer"
+@import "sidebar"
 @import "buttons"
+@import "fonts"

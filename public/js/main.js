@@ -12,3 +12,7 @@ async function copyIpAddress(str, strDefault, strCopied, element) {
     await new Promise(resolve => setTimeout(resolve, 2000));
     element.innerHTML = strDefault;
 }
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip() 
+});
