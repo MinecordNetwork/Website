@@ -6,6 +6,7 @@ extensions:
 	archette.language: Archette\Language\LanguageExtension
 	translation: Contributte\Translation\DI\TranslationExtension
 	events: Contributte\EventDispatcher\DI\EventDispatcherExtension
+	thumbnail: Minecord\Bridge\Nette\Thumbnail\ThumbnailExtension
 
 
 http:
@@ -29,7 +30,6 @@ application:
 	errorPresenter: Front:Error
 	mapping:
 		*: ['Minecord\Module', '*', '*\*Presenter']
-		Admin: ['Zoptiadmin\Admin', '*', '*\*Presenter']
 
 
 session:
@@ -46,3 +46,5 @@ includes:
     - model.neon
     - console.neon
     - front.neon
+    - admin.neon
+    - ui.neon

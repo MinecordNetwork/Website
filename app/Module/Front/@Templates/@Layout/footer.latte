@@ -3,16 +3,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-5">
-                <h4>About</h4>
+                <h4>{_'footer.about'}</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                    Aenean massa strong.
-                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                    Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                    {_'footer.aboutContent'}
                 </p>
             </div>
             <div class="col-12 col-md-3">
-                <h4>Social</h4>
+                <h4>{_'footer.social'}</h4>
                 <ul>
                     <li>
                         <a target="_blank" href="{_'sidebar.discordInvite'}">Discord</a>
@@ -26,29 +23,29 @@
                 </ul>
             </div>
             <div class="col-12 col-md-4">
-                <h4>Rules and contact</h4>
+                <h4>{_'footer.rulesAndContact'}</h4>
                 <ul>
                     <li>
-                        <a href="#">Terms of Services</a>
+                        <a n:href="Page:default '03fa1017-a62f-4b79-b205-b977da049a46'">{_'footer.links.termsOfServices'}</a>
                     </li>
                     <li>
-                        <a href="#">Privacy Policy</a>
+                        <a href="#">{_'footer.links.privacyPolicy'}</a>
                     </li>
                     <li>
-                        <a href="#">Help</a>
+                        <a href="#">{_'footer.links.help'}</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">{_'footer.links.contact'}</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row pt-2">
             <div class="col-6">
-                © Minecord.net 2015-{date('Y')}, all rights reserved.
+                © Minecord.net 2018-{date('Y')}, {_'footer.copyright'}.
             </div>
             <div class="col-6 text-right">
-                Join us, we are open-source. <a target="_blank" href="https://github.com/MinecordNetwork">Github</a>
+                {_'footer.joinUs'}. <a target="_blank" href="https://github.com/MinecordNetwork">Github</a>
             </div>
         </div>
     </div>

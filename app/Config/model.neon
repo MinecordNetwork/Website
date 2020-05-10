@@ -12,3 +12,4 @@ search:
 			- *Provider
 			- *Sorter
 			- *Manager
+			- *Config

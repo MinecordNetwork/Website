@@ -1,0 +1,24 @@
+{templateType Minecord\Module\Front\Page\PageTemplate}
+{block content}
+<div class="container flex-shrink-0 mt-4 mb-2">
+    <div class="row">
+        <main class="col-12 col-md-8 page">
+            <section class="card page">
+                <div class="card-header">
+                    <h1 n:block="title">
+                        {$page->getTitle()}
+                    </h1>
+                </div>
+                <a n:if="$page->getThumbnail() !== null">
+                    <img class="preview" src="{$page->getThumbnail()->getPublicPath()}" alt="{$page->getTitle()}"/>
+                </a>
+                <div class="card-body">
+                    {$page->getContent()|noescape}
+                </div>
+            </section>
+        </main>
+        <aside class="col-12 col-md-4">
+            {include '../@Layout/sidebar.latte'}
+        </aside>
+    </div>
+</div>

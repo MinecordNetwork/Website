@@ -1,0 +1,18 @@
+{templateType Minecord\Module\Admin\Page\PageTemplate}
+{block content}
+<div class="card">
+	<div class="card-header">
+		Edit page
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-12 col-md-8">
+				{control form}
+			</div>
+			<div class="col-12 col-md-4">
+				<img n:if="$page->getThumbnail() !== null" src="{$page->getThumbnail()->getPublicPath()}" style="max-width:100%;"/>
+				{control thumbnailForm}
+			</div>
+		</div>
+	</div>
+</div>

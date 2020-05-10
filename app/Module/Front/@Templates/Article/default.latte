@@ -1,0 +1,37 @@
+{templateType Minecord\Module\Front\Article\ArticleTemplate}
+{block content}
+<div class="container flex-shrink-0 mt-4 mb-2">
+    <div class="row">
+        <main class="col-12 col-md-8 page">
+            <section class="card article">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <h1 n:block="title">
+                                {$article->getTitle()}
+                            </h1>
+                            <small>
+                                {$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format('d.m.Y H:i')}
+                            </small>
+                        </div>
+                        <div class="col-12 col-md-4 text-right d-none d-md-block">
+                            <a data-placement="top" title="{$article->getAuthor()->getDisplayName()}" data-toggle="tooltip">
+                                <img alt="{$article->getAuthor()->getDisplayName()}" style="width: 50px; border-radius: .3em" src="https://minotar.net/helm/{$article->getAuthor()->getDisplayName()}/150.png"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a n:if="$article->getThumbnail() !== null">
+                    <img class="preview" src="{$article->getThumbnail()->getPublicPath()}" alt="{$article->getTitle()}"/>
+                </a>
+                <div class="card-body">
+                    <i class="text-dark">{$article->getEditorial()|noescape}</i>
+                    {$article->getContent()|noescape}
+                </div>
+            </section>
+        </main>
+        <aside class="col-12 col-md-4">
+            {include '../@Layout/sidebar.latte'}
+        </aside>
+    </div>
+</div>

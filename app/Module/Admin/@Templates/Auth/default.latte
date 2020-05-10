@@ -1,0 +1,40 @@
+{block content}
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+			<div class="col col-login mx-auto">
+				<div class="text-center mb-6">
+					<img src="./demo/brand/tabler.svg" class="h-6" alt="">
+				</div>
+				<form n:name="loginForm" class="ajax card">
+					<div class="card-body p-6">
+						{include '../@Layout/flashes.latte'}
+						<div class="card-title">🔐 Restricted access</div>
+						<div class="form-group">
+							<label class="form-label">Email address</label>
+							<input autocomplete="off" n:name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label class="form-label">
+								Password
+							</label>
+							<input autocomplete="off" n:name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input">
+								<span class="custom-control-label">Remember me</span>
+							</label>
+						</div>
+						<div class="form-footer">
+							<button type="submit" class="ajax btn btn-primary btn-block">Sign in</button>
+						</div>
+					</div>
+				</form>
+				<div class="text-center text-muted">
+					Minecord system created by <a target="_blank" href="https://rixafy.pro">Rick Strafy</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

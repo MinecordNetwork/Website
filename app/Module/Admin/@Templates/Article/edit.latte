@@ -1,0 +1,18 @@
+{templateType Minecord\Module\Admin\Article\ArticleTemplate}
+{block content}
+<div class="card">
+	<div class="card-header">
+		Edit article
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-12 col-md-8">
+				{control form}
+			</div>
+			<div class="col-12 col-md-4">
+				<img n:if="$article->getThumbnail() !== null" src="{$article->getThumbnail()->getPublicPath()}" style="max-width:100%;"/>
+				{control thumbnailForm}
+			</div>
+		</div>
+	</div>
+</div>

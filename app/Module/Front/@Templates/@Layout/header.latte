@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" n:href="Homepage:default">{_'header.menu.blog'}</a>
+                            <a class="nav-link {$presenter->isLinkCurrent('Homepage:default') ? 'active'}" n:href="Homepage:default">{_'header.menu.blog'}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" n:href="Homepage:default">{_'header.menu.store'}</a>
@@ -55,7 +55,7 @@
                             <a class="nav-link" n:href="Homepage:default">{_'header.menu.vote'}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.rules'}</a>
+                            <a class="nav-link" n:href="Page:default '03fa1017-a62f-4b79-b205-b977da049a46'">{_'header.menu.rules'}</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">

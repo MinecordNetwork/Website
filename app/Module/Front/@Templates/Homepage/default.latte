@@ -4,44 +4,35 @@
 <div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
         <main class="col-12 col-md-8 page">
-            <section class="card article">
+            {varType Minecord\Model\Article\Article $article}
+            <section n:foreach="$articles as $article" class="card article">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 col-md-8">
                             <h2>
-                                <a href="#">Murder Mystery BETA released</a>
+                                <a n:href="Article:default (string) $article->getId()">{$article->getTitle()}</a>
                             </h2>
                             <small>
-                                <a href="#">Rixafy, 10.05.2019</a>
+                                <a n:href="Article:default (string) $article->getId()">{$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format('d.m.Y H:i')}</a>
                             </small>
                         </div>
                         <div class="col-12 col-md-4 text-right d-none d-md-block">
-                            <a data-placement="top" title="Rixafy" data-toggle="tooltip" href="#">
-                                <img style="width: 50px; border-radius: .3em" src="https://minotar.net/helm/Rixafy/150.png"/>
+                            <a data-placement="top" title="{$article->getAuthor()->getDisplayName()}" data-toggle="tooltip">
+                                <img alt="{$article->getAuthor()->getDisplayName()}" style="width: 50px; border-radius: .3em" src="https://minotar.net/helm/{$article->getAuthor()->getDisplayName()}/150.png"/>
                             </a>
                         </div>
                     </div>
                 </div>
-                <img class="preview" src="https://i.imgur.com/0dLo8sO.png" alt="Murder Mystery BETA released"/>
+                <a n:if="$article->getThumbnail() !== null" n:href="Article:default (string) $article->getId()">
+                    <img class="preview" src="{$article->getThumbnail()->getPublicPath()}" alt="{$article->getTitle()}"/>
+                </a>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit. Aenean commodo ligula eget dolor. Aenean massa
-                        <strong>strong</strong>. Cum sociis natoque penatibus
-                        et magnis dis parturient montes, nascetur ridiculus
-                        mus. Donec quam felis, ultricies nec, pellentesque
-                        eu, pretium quis, sem. Nulla consequat massa quis
-                        enim. Donec pede justo, fringilla vel, aliquet nec,
-                        vulputate eget, arcu. In enim justo, rhoncus ut,
-                        imperdiet a, venenatis vitae, justo. Nullam dictum
-                        felis eu pede <a class="external ext" href="#">link</a>
-                        mollis pretium. Integer tincidunt. Cras dapibus.
-                        Vivamus elementum semper nisi. Aenean vulputate
-                        eleifend tellus. Aenean leo ligula, porttitor eu,
-                        consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-                        dapibus in, viverra quis, feugiat a, tellus. Phasellus
-                        viverra nulla ut metus varius laoreet. Quisque rutrum.
-                        Aenean imperdiet. Etiam ultricies nisi vel augue.
-                        Curabitur ullamcorper ultricies nisi.</p>
+                    <i class="text-dark">{$article->getEditorial()|noescape}</i>
+                    <p>
+                        <a n:href="Article:default (string) $article->getId()" class="btn btn-primary">
+                            {_'homepage.continueReading'}
+                        </a>
+                    </p>
                 </div>
             </section>
         </main>
