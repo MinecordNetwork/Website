@@ -10,6 +10,7 @@ use Minecord\Model\Page\PageFacade;
 use Minecord\Model\Image\Image;
 use Minecord\Model\Image\ImageDataFactory;
 use Minecord\Model\Image\ImageFacade;
+use Minecord\Model\Route\RouteProvider;
 use Minecord\Module\Admin\Page\Form\PageFormFactory;
 use Minecord\Module\Admin\Page\Form\PageThumbnailFormFactory;
 use Minecord\Module\Admin\Page\Grid\PageGridFactory;
@@ -31,16 +32,18 @@ class PagePresenter extends BaseAdminPresenter
 	private PageGridFactory $pageGridFactory;
 	private PageDataFactory $pageDataFactory;
 	private PageFacade $pageFacade;
+	private RouteProvider $routeProvider;
 	private ?Page $page = null;
 
 	public function __construct(
-		ImageFacade $imageFacade, 
-		ImageDataFactory $imageDataFactory, 
-		PageFormFactory $pageFormFactory, 
-		PageThumbnailFormFactory $pageThumbnailFormFactory, 
-		PageGridFactory $pageGridFactory, 
-		PageDataFactory $pageDataFactory, 
-		PageFacade $pageFacade
+		ImageFacade $imageFacade,
+		ImageDataFactory $imageDataFactory,
+		PageFormFactory $pageFormFactory,
+		PageThumbnailFormFactory $pageThumbnailFormFactory,
+		PageGridFactory $pageGridFactory,
+		PageDataFactory $pageDataFactory,
+		PageFacade $pageFacade, 
+		RouteProvider $routeProvider
 	) {
 		parent::__construct();
 		$this->imageFacade = $imageFacade;
@@ -50,6 +53,7 @@ class PagePresenter extends BaseAdminPresenter
 		$this->pageGridFactory = $pageGridFactory;
 		$this->pageDataFactory = $pageDataFactory;
 		$this->pageFacade = $pageFacade;
+		$this->routeProvider = $routeProvider;
 	}
 
 
@@ -70,6 +74,8 @@ class PagePresenter extends BaseAdminPresenter
 			} else {
 				$this->pageFacade->edit($this->page->getId(), $this->pageDataFactory->createFromFormData($data));
 			}
+			$this->routeProvider->createRoutes('en');
+			$this->routeProvider->createRoutes('cs');
 			$this->redirect('this');
 		};
 

@@ -40,7 +40,7 @@ abstract class BaseFrontPresenter extends Presenter
 		parent::startup();
 
 		$this->sessionProvider->setup();
-		$this->languageProvider->setup('en');
+		$this->languageProvider->setup($_SERVER['SERVER_NAME'] && substr($_SERVER['SERVER_NAME'], -3) === 'net' ? 'en' : 'cs');
 		
 		$this->session = $this->sessionProvider->provide();
 		$this->admin = $this->adminProvider->provide();

@@ -22,39 +22,31 @@ class RouteProvider
 		$this->pageFacade = $pageFacade;
 	}
 	
-	public function cacheRouters(): void
+	public function createRoutes(string $locale): RouteList
 	{
-		$enRouter = new RouteList('Front');
-		$csRouter = new RouteList('Front');
+		$router = new RouteList('Front');
 
 		foreach ($this->articleFacade->getAll() as $article) {
-			$enRouter->addRoute($article->getRouteEnglish(), [
+			$router->addRoute($locale === 'cs' ? $article->getRouteCzech() : $article->getRouteEnglish(), [
 				Presenter::PRESENTER_KEY => 'Article',
 				Presenter::ACTION_KEY => 'default',
-				'id' => (string) $article->getId()
-			]);
-			$csRouter->addRoute($article->getRouteCzech(), [
-				Presenter::PRESENTER_KEY => 'Article',
-				Presenter::ACTION_KEY => 'default',
-				'id' => (string) $article->getId()
+				'id' => (string) $article->getId(),
+				'locale' => $locale
 			]);
 		}
 
 		foreach ($this->pageFacade->getAll() as $page) {
-			$enRouter->addRoute($page->getRouteEnglish(), [
+			$router->addRoute($locale === 'cs' ? $page->getRouteCzech() : $page->getRouteEnglish(), [
 				Presenter::PRESENTER_KEY => 'Page',
 				Presenter::ACTION_KEY => 'default',
-				'id' => (string) $page->getId()
-			]);
-			$csRouter->addRoute($page->getRouteCzech(), [
-				Presenter::PRESENTER_KEY => 'Page',
-				Presenter::ACTION_KEY => 'default',
-				'id' => (string) $page->getId()
+				'id' => (string) $page->getId(),
+				'locale' => $locale
 			]);
 		}
-
-		apcu_store('minecord_en_router', $enRouter, 3600 * 24);
-		apcu_store('minecord_cs_router', $csRouter, 3600 * 24);
+		
+		apcu_store(sprintf('minecord_%s_router', $locale), $router);
+		
+		return $router;
 	}
 	
 	public function getDynamicRouteList(string $locale): RouteList
@@ -62,8 +54,7 @@ class RouteProvider
 		$routeList = apcu_fetch(sprintf('minecord_%s_router', $locale));
 		
 		if (!$routeList) {
-			$this->cacheRouters();
-			$routeList = apcu_fetch(sprintf('minecord_%s_router', $locale));
+			$routeList = $this->createRoutes($locale);
 		}
 		
 		return $routeList;

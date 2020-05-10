@@ -10,6 +10,7 @@ use Minecord\Model\Article\ArticleFacade;
 use Minecord\Model\Image\Image;
 use Minecord\Model\Image\ImageDataFactory;
 use Minecord\Model\Image\ImageFacade;
+use Minecord\Model\Route\RouteProvider;
 use Minecord\Module\Admin\Article\Form\ArticleFormFactory;
 use Minecord\Module\Admin\Article\Form\ArticleThumbnailFormFactory;
 use Minecord\Module\Admin\Article\Grid\ArticleGridFactory;
@@ -31,16 +32,18 @@ class ArticlePresenter extends BaseAdminPresenter
 	private ArticleGridFactory $articleGridFactory;
 	private ArticleDataFactory $articleDataFactory;
 	private ArticleFacade $articleFacade;
+	private RouteProvider $routeProvider;
 	private ?Article $article = null;
 
 	public function __construct(
-		ImageFacade $imageFacade, 
-		ImageDataFactory $imageDataFactory, 
-		ArticleFormFactory $articleFormFactory, 
-		ArticleThumbnailFormFactory $articleThumbnailFormFactory, 
-		ArticleGridFactory $articleGridFactory, 
-		ArticleDataFactory $articleDataFactory, 
-		ArticleFacade $articleFacade
+		ImageFacade $imageFacade,
+		ImageDataFactory $imageDataFactory,
+		ArticleFormFactory $articleFormFactory,
+		ArticleThumbnailFormFactory $articleThumbnailFormFactory,
+		ArticleGridFactory $articleGridFactory,
+		ArticleDataFactory $articleDataFactory,
+		ArticleFacade $articleFacade, 
+		RouteProvider $routeProvider
 	) {
 		parent::__construct();
 		$this->imageFacade = $imageFacade;
@@ -50,6 +53,7 @@ class ArticlePresenter extends BaseAdminPresenter
 		$this->articleGridFactory = $articleGridFactory;
 		$this->articleDataFactory = $articleDataFactory;
 		$this->articleFacade = $articleFacade;
+		$this->routeProvider = $routeProvider;
 	}
 
 
@@ -70,6 +74,8 @@ class ArticlePresenter extends BaseAdminPresenter
 			} else {
 				$this->articleFacade->edit($this->article->getId(), $this->articleDataFactory->createFromFormData($data));
 			}
+			$this->routeProvider->createRoutes('en');
+			$this->routeProvider->createRoutes('cs');
 			$this->redirect('this');
 		};
 
