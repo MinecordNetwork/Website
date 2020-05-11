@@ -91,7 +91,7 @@ class PagePresenter extends BaseAdminPresenter
 			$netteImage = $formData['image'];
 
 			if ($netteImage->getError() === 0) {
-				$imageData = $this->imageDataFactory->createFromFormData($formData, Image::TYPE_ARTICLE);
+				$imageData = $this->imageDataFactory->createFromFormData($formData, Image::TYPE_PAGE);
 				$image = $this->imageFacade->create($imageData, function (string $saveDir) use ($netteImage) {
 					$netteImage->move($saveDir);
 				});

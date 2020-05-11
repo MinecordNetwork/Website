@@ -20,9 +20,11 @@ class Image
 {
 	public const TYPE_HTML_EDITOR = 1;
 	public const TYPE_ARTICLE = 2;
+	public const TYPE_PAGE = 3;
 	public const TYPES = [
 		self::TYPE_HTML_EDITOR => 'html-editor',
-		self::TYPE_ARTICLE => 'article'
+		self::TYPE_ARTICLE => 'article',
+		self::TYPE_PAGE => 'page'
 	];
 
 	/**

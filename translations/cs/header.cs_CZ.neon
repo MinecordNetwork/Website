@@ -8,7 +8,7 @@ joinToServer: "Připojit se k <span>%playerCount%</span> dalším hráčům"
 discord: "Discord server"
 play: "Začít hrát"
 menu:
-    blog: "Blog"
+    blog: "Novinky"
     store: "Obchod"
     vote: "Hlasovat"
     rules: "Pravidla"
