@@ -11,7 +11,7 @@ extensions:
 
 http:
 	headers:
-		X-Powered-By: PHP 6.0
+		X-Powered-By: Minecord System
 
 
 translation:

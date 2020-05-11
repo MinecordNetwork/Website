@@ -1,0 +1,23 @@
+{templateType Minecord\Module\Front\OnlineMap\OnlineMapTemplate}
+{block content}
+<div class="container flex-shrink-0 mt-4 mb-2">
+    <div class="row">
+        <main class="col-12">
+            <section class="card online-map">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-11">
+                            <h1 n:block="title">
+                                {_'page.customPages.onlineMaps.survival'}
+                            </h1>
+                        </div>
+                        <div class="col-1 text-right">
+                            <a data-placement="top" title="{_'page.customPages.onlineMaps.fullscreen'}" data-toggle="tooltip" id="online-map-fullscreen" href="javascript:void(0)"><i class="fa fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <iframe src="https://surv.minecord.net/index.html"></iframe>
+            </section>
+        </main>
+    </div>
+</div>

@@ -54,10 +54,10 @@
                             <a class="nav-link" n:href="Homepage:default">{_'header.menu.vote'}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.survivalDynmap'}</a>
+                            <a class="nav-link {if $presenter->isLinkCurrent('OnlineMap:survival')}active{/if}" n:href="OnlineMap:survival">{_'header.menu.survivalOnlineMap'}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.creativeDynmap'}</a>
+                            <a class="nav-link {if $presenter->isLinkCurrent('OnlineMap:creative')}active{/if}" n:href="OnlineMap:creative">{_'header.menu.creativeOnlineMap'}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {if $presenter->isLinkCurrent('Page:default', '03fa1017-a62f-4b79-b205-b977da049a46')}active{/if}" n:href="Page:default '03fa1017-a62f-4b79-b205-b977da049a46'">{_'header.menu.rules'}</a>

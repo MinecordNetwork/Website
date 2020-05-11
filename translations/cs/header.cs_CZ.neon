@@ -13,8 +13,8 @@ menu:
     vote: "Hlasovat"
     rules: "Pravidla"
     contact: "Kontakt"
-    survivalDynmap: "Survival mapa"
-    creativeDynmap: "Creative mapa"
+    survivalOnlineMap: "Survival mapa"
+    creativeOnlineMap: "Creative mapa"
 joinModal:
     howToJoin: "Jak se připojit?"
     ourIpIs: "Naše minecraft IP adresa je <strong>mc.minecord.cz</strong>"
