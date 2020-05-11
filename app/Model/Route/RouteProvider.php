@@ -27,7 +27,7 @@ class RouteProvider
 		$router = new RouteList('Front');
 
 		foreach ($this->articleFacade->getAll() as $article) {
-			$router->addRoute($locale === 'cs' ? $article->getRouteCzech() : $article->getRouteEnglish(), [
+			$router->addRoute('blog/' . ($locale === 'cs' ? $article->getRouteCzech() : $article->getRouteEnglish()), [
 				Presenter::PRESENTER_KEY => 'Article',
 				Presenter::ACTION_KEY => 'default',
 				'id' => (string) $article->getId(),

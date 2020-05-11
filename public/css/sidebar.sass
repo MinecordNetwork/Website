@@ -8,3 +8,16 @@ aside
       .card-header
         color: #fff
         background: #6275c1
+      .card-body
+        p
+          max-height: 12em
+          overflow: scroll
+          overflow-x: hidden
+          &::-webkit-scrollbar
+            width: .8em
+          &::-webkit-scrollbar-track
+            background: #7289DA
+            border-radius: .7em
+          &::-webkit-scrollbar-thumb
+            border-radius: .7em
+            background: #90a5f3

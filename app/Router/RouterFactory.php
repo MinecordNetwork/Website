@@ -28,7 +28,7 @@ final class RouterFactory
 
 	private function createFrontRouter(): RouteList
 	{
-		$locale = $_SERVER['SERVER_NAME'] && substr($_SERVER['SERVER_NAME'], -3) === 'net' ? 'en' : 'cs';
+		$locale = isset($_SERVER['SERVER_NAME']) && substr($_SERVER['SERVER_NAME'], -3) === 'net' ? 'en' : 'cs';
 		
 		$frontRouter = $this->routeProvider->getDynamicRouteList($locale);
 
