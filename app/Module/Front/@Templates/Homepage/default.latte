@@ -3,22 +3,18 @@
 {block content}
 <div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
-        <main class="col-12 col-md-8 page">
+        <main class="col-12 col-md-8">
             {varType Minecord\Model\Article\Article $article}
             <article n:foreach="$articles as $article" class="card article">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 col-md-8">
-                            <h2>
-                                <a n:href="Article:default (string) $article->getId()">{$article->getTitle()}</a>
-                            </h2>
-                            <small>
-                                <a n:href="Article:default (string) $article->getId()">{$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format('d.m.Y H:i')}</a>
-                            </small>
+                            <h2><a n:href="Article:default (string) $article->getId()">{$article->getTitle()}</a></h2>
+                            <small><a n:href="Article:default (string) $article->getId()">{$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format('d.m.Y H:i')}</a></small>
                         </div>
                         <div class="col-12 col-md-4 text-right d-none d-md-block">
                             <a data-placement="top" title="{$article->getAuthor()->getDisplayName()}" data-toggle="tooltip">
-                                <img alt="{$article->getAuthor()->getDisplayName()}" style="width: 50px; border-radius: .3em" src="https://minotar.net/helm/{$article->getAuthor()->getDisplayName()}/150.png"/>
+                                <img class="avatar" alt="{$article->getAuthor()->getDisplayName()}" src="https://minotar.net/helm/{$article->getAuthor()->getDisplayName()}/100.png"/>
                             </a>
                         </div>
                     </div>

@@ -2,21 +2,17 @@
 {block content}
 <div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
-        <main class="col-12 col-md-8 page">
+        <main class="col-12 col-md-8">
             <article class="card article">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 col-md-8">
-                            <h1 n:block="title">
-                                {$article->getTitle()}
-                            </h1>
-                            <small>
-                                {$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format('d.m.Y H:i')}
-                            </small>
+                            <h1 n:block="title">{$article->getTitle()}</h1>
+                            <small>{$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format('d.m.Y H:i')}</small>
                         </div>
                         <div class="col-12 col-md-4 text-right d-none d-md-block">
                             <a data-placement="top" title="{$article->getAuthor()->getDisplayName()}" data-toggle="tooltip">
-                                <img alt="{$article->getAuthor()->getDisplayName()}" style="width: 50px; border-radius: .3em" src="https://minotar.net/helm/{$article->getAuthor()->getDisplayName()}/150.png"/>
+                                <img class="avatar" alt="{$article->getAuthor()->getDisplayName()}" src="https://minotar.net/helm/{$article->getAuthor()->getDisplayName()}/100.png"/>
                             </a>
                         </div>
                     </div>

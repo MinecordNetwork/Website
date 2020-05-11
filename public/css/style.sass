@@ -35,6 +35,17 @@ main
     .card-header
       text-align: left
       font-weight: bold
+  .card
+    .card-header
+      .avatar
+        width: 80px
+        height: 80px
+        image-rendering: pixelated
+        position: absolute
+        right: .6em
+        border: 3px solid #fff
+    .preview
+      width: 100%
 
 a
   color: #2f67a5
@@ -71,9 +82,7 @@ a
       max-width: 100%
     h1, h2, h3, h4, h5, h6
       font-weight: bold
-  &.article, &.page
-    .preview
-      width: 100%
+
   &.online-map
     iframe
       border: 0
