@@ -21,14 +21,22 @@ $(function () {
 const button = document.querySelector('#online-map-fullscreen');
 button.addEventListener('click', fullscreen);
 
-document.addEventListener('keydown', function (e) {
-    console.log('key press' + e.key);
-});
+const button2 = document.querySelector('#online-map-maximize');
+button2.addEventListener('click', maximize);
 
 document.addEventListener('webkitfullscreenchange', fullscreenChange);
 document.addEventListener('mozfullscreenchange', fullscreenChange);
 document.addEventListener('fullscreenchange', fullscreenChange);
 document.addEventListener('MSFullscreenChange', fullscreenChange);
+
+function maximize() {
+    const container = document.getElementById('map-container');
+    if (container.style.maxWidth !== '99%') {
+        container.style.maxWidth = '99%'
+    } else {
+        container.style.maxWidth = '1140px'
+    }
+}
 
 function fullscreen() {
     if (document.fullscreenEnabled ||

@@ -2,4 +2,5 @@ customPages:
     onlineMaps:
         survival: "Survival Online Mapa"
         creative: "Creative Online Mapa"
-        fullscreen: "Na celou obrazovku"
+        maximize: "Zvětšit"
+        fullscreen: "Fullscreen"

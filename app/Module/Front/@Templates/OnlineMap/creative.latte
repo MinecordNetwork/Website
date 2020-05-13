@@ -1,20 +1,21 @@
 {templateType Minecord\Module\Front\OnlineMap\OnlineMapTemplate}
 {block content}
-<div class="container flex-shrink-0 mt-4 mb-2">
+<div id="map-container" class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
         <main class="col-12">
             <section class="card online-map">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-11">
+                        <div class="col-10">
                             <h1 n:block="title">{_'page.customPages.onlineMaps.creative'}</h1>
                         </div>
-                        <div class="col-1 text-right">
-                            <a data-placement="top" title="{_'page.customPages.onlineMaps.fullscreen'}" data-toggle="tooltip" id="online-map-fullscreen" href="javascript:void(0)"><i class="fa fa-expand"></i></a>
+                        <div class="col-2 text-right">
+                            <a class="btn btn-primary d-inline" data-placement="left" title="{_'page.customPages.onlineMaps.maximize'}" data-toggle="tooltip" id="online-map-maximize" href="javascript:void(0)"><i class="fa fa-search-plus"></i></a>
+                            <a class="btn btn-primary d-inline" data-placement="left" title="{_'page.customPages.onlineMaps.fullscreen'}" data-toggle="tooltip" id="online-map-fullscreen" href="javascript:void(0)"><i class="fa fa-expand"></i></a>
                         </div>
                     </div>
                 </div>
-                <iframe src="https://crea.minecord.net/index.html"></iframe>
+                <iframe onload="this.style.height = (screen.height * 0.8) + 'px'" src="https://crea.minecord.net/index.html"></iframe>
             </section>
         </main>
     </div>
