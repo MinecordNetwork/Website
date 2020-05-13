@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Minecord\Model\Page;
 
-use Minecord\Model\Admin\Admin;
+use Minecord\Model\User\User;
 
 final class PageData
 {
@@ -12,5 +12,5 @@ final class PageData
 	public string $titleCzech;
 	public string $contentEnglish;
 	public string $contentCzech;
-	public Admin $author;
+	public User $author;
 }

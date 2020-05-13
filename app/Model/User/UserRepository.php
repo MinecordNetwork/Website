@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Admin;
+namespace Minecord\Model\User;
 
 use Doctrine\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Minecord\Model\Admin\Exception\AdminNotFoundException;
+use Minecord\Model\User\Exception\UserNotFoundException;
 use Ramsey\Uuid\UuidInterface;
 
-abstract class AdminRepository
+abstract class UserRepository
 {
 	private EntityManagerInterface $entityManager;
 
@@ -25,43 +25,43 @@ abstract class AdminRepository
 	 */
 	private function getRepository()
 	{
-		return $this->entityManager->getRepository(Admin::class);
+		return $this->entityManager->getRepository(User::class);
 	}
 
 	/**
-	 * @throws AdminNotFoundException
+	 * @throws UserNotFoundException
 	 */
-	public function get(UuidInterface $id): Admin
+	public function get(UuidInterface $id): User
 	{
-		/** @var Admin $admin */
-		$admin = $this->getRepository()->find($id);
+		/** @var User $user */
+		$user = $this->getRepository()->find($id);
 
-		if ($admin === null) {
-			throw AdminNotFoundException::byId($id);
+		if ($user === null) {
+			throw UserNotFoundException::byId($id);
 		}
 
-		return $admin;
+		return $user;
 	}
 
 	/**
-	 * @throws AdminNotFoundException
+	 * @throws UserNotFoundException
 	 */
-	public function getByEmail(string $email): Admin
+	public function getByEmail(string $email): User
 	{
-		/** @var Admin $admin */
-		$admin = $this->getRepository()->findOneBy([
+		/** @var User $user */
+		$user = $this->getRepository()->findOneBy([
 			'email' => $email
 		]);
 
-		if ($admin === null) {
-			throw AdminNotFoundException::byEmail($email);
+		if ($user === null) {
+			throw UserNotFoundException::byEmail($email);
 		}
 
-		return $admin;
+		return $user;
 	}
 
 	/**
-	 * @return Admin[]
+	 * @return User[]
 	 */
 	public function getAll(): array
 	{

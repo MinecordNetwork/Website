@@ -6,7 +6,7 @@ namespace Minecord\Model\Article;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Minecord\Model\Admin\Admin;
+use Minecord\Model\User\User;
 use Minecord\Model\Image\Image;
 use Nette\Utils\Strings;
 use Ramsey\Uuid\UuidInterface;
@@ -48,8 +48,8 @@ class Article
 	/** @ORM\Column(type="text", options={"collation":"utf8mb4_unicode_ci"}) */
 	private string $editorialCzech;
 
-	/** @ORM\ManyToOne(targetEntity="\Minecord\Model\Admin\Admin") */
-	private Admin $author;
+	/** @ORM\ManyToOne(targetEntity="\Minecord\Model\User\User") */
+	private User $author;
 
 	/** @ORM\ManyToOne(targetEntity="\Minecord\Model\Image\Image") */
 	private ?Image $thumbnail = null;
@@ -148,7 +148,7 @@ class Article
 		return $this->editorialCzech;
 	}
 
-	public function getAuthor(): Admin
+	public function getAuthor(): User
 	{
 		return $this->author;
 	}

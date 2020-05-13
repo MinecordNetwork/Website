@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace Minecord\Module\Admin;
 
-use Minecord\Model\Admin\Admin;
-use Minecord\Model\Admin\AdminProvider;
-use Minecord\Model\Admin\Auth\AdminAuthenticator;
 use Minecord\Model\Session\SessionProvider;
+use Minecord\Model\User\Auth\UserAuthenticator;
+use Minecord\Model\User\User;
+use Minecord\Model\User\UserProvider;
 use Nette\Application\UI\Presenter;
 
 abstract class BaseAdminPresenter extends Presenter
 {
 	/** @inject */
-	public AdminAuthenticator $adminAuthenticator;
+	public UserAuthenticator $adminAuthenticator;
 
 	/** @inject */
 	public SessionProvider $sessionProvider;
 
 	/** @inject */
-	public AdminProvider $adminProvider;
+	public UserProvider $adminProvider;
 
-	protected ?Admin $admin;
+	protected ?User $user;
 
 	public function startup(): void
 	{
@@ -29,9 +29,9 @@ abstract class BaseAdminPresenter extends Presenter
 
 		$this->sessionProvider->setup();
 		
-		$this->admin = $this->adminProvider->provide();	
+		$this->user = $this->adminProvider->provide();	
 		
-		if ($this->admin !== null) {
+		if ($this->user !== null) {
 			if ($this->getName() === 'Admin:Auth' && $this->getAction() === 'default') {
 				$this->redirect('Dashboard:default');
 			}
@@ -45,7 +45,7 @@ abstract class BaseAdminPresenter extends Presenter
 	{
 		$this->setLayout(__DIR__ . '/@Templates/@Layout/layout.latte');
 		$this->getTemplate()->setFile(__DIR__ . '/@Templates/' . str_replace('Admin:', '', $this->getName()) . '/' . $this->getAction() .'.latte');
-		$this->template->admin = $this->admin;
+		$this->template->user = $this->user;
 	}
 
 	public function handleLogout(): void

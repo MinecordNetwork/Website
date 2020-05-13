@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Rixafy\DoctrineTraits\DateTimeTrait;
 use Rixafy\IpAddress\IpAddress;
-use Minecord\Model\Admin\Admin;
+use Minecord\Model\User\User;
 
 /**
  * @ORM\Entity
@@ -37,8 +37,8 @@ class Session
 	/** @ORM\ManyToOne(targetEntity="\Rixafy\IpAddress\IpAddress", inversedBy="session", cascade={"persist"}) */
 	private IpAddress $ipAddress;
 
-	/** @ORM\ManyToOne(targetEntity="\Minecord\Model\Admin\Admin", inversedBy="session", cascade={"persist"}) */
-	private ?Admin $admin = null;
+	/** @ORM\ManyToOne(targetEntity="\Minecord\Model\User\User", inversedBy="session", cascade={"persist"}) */
+	private ?User $user = null;
 
 	use DateTimeTrait;
 
@@ -78,20 +78,20 @@ class Session
 		return $this->ipAddress;
 	}
 
-	public function getAdmin(): ?Admin
+	public function getUser(): ?User
 	{
-		return $this->admin;
+		return $this->user;
 	}
 
-	public function authenticateAdmin(Admin $admin): void
+	public function authenticateUser(User $user): void
 	{
-		$this->admin = $admin;
-		$this->admin->onLogin();
+		$this->user = $user;
+		$this->user->onLogin();
 	}
 
-	public function logOutAdmin(): void
+	public function logOutUser(): void
 	{
-		$this->admin = null;
+		$this->user = null;
 	}
 
 	public function isCrawler(): bool

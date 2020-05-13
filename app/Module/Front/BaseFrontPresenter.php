@@ -13,6 +13,9 @@ use Minecord\Model\System\System;
 use Minecord\Model\System\SystemData;
 use Minecord\Model\System\SystemFacade;
 use Minecord\Model\System\SystemProvider;
+use Minecord\Model\User\Auth\UserAuthenticator;
+use Minecord\Model\User\User;
+use Minecord\Model\User\UserProvider;
 use Nette\Application\Helpers;
 use Nette\Application\UI\Presenter;
 use Rixafy\Language\Language;
@@ -27,10 +30,10 @@ abstract class BaseFrontPresenter extends Presenter
 	public SessionProvider $sessionProvider;
 	
 	/** @inject */
-	public AdminProvider $adminProvider;
+	public UserProvider $userProvider;
 	
 	/** @inject */
-	public AdminAuthenticator $adminAuthenticator;
+	public UserAuthenticator $userAuthenticator;
 	
 	/** @inject */
 	public LanguageProvider $languageProvider;
@@ -41,7 +44,7 @@ abstract class BaseFrontPresenter extends Presenter
 	protected System $system;
 	protected Session $session;
 	protected Language $language;
-	protected ?Admin $admin;
+	protected ?User $user;
 
 	public function startup()
 	{
@@ -52,7 +55,7 @@ abstract class BaseFrontPresenter extends Presenter
 		
 		$this->system = $this->systemProvider->provide();
 		$this->session = $this->sessionProvider->provide();
-		$this->admin = $this->adminProvider->provide();
+		$this->user = $this->userProvider->provide();
 		$this->language = $this->languageProvider->provide();
 	}
 
@@ -61,14 +64,14 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->setLayout(__DIR__ . '/@Templates/@Layout/layout.latte');
 		$this->getTemplate()->setFile(__DIR__ . '/@Templates/' . Helpers::splitName($this->getName())[1] . '/' . $this->getAction() .'.latte');
 		$this->template->system = $this->system;
-		$this->template->admin = $this->admin;
+		$this->template->user = $this->user;
 		$this->template->locale = $this->language->getIso();
 		$this->template->assetVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
 	}
 
 	public function handleLogout(): void
 	{
-		$this->adminAuthenticator->logOut();
+		$this->userAuthenticator->logOut();
 		$this->redirect('Homepage:default');
 	}
 }

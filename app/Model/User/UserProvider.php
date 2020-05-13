@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Admin;
+namespace Minecord\Model\User;
 
 use Minecord\Model\Session\SessionProvider;
 
-class AdminProvider
+class UserProvider
 {
 	private SessionProvider $sessionProvider;
 
@@ -15,8 +15,8 @@ class AdminProvider
 		$this->sessionProvider = $sessionProvider;
 	}
 
-	public function provide(): ?Admin
+	public function provide(): ?User
 	{
-		return $this->sessionProvider->provide()->getAdmin();
+		return $this->sessionProvider->provide()->getUser();
 	}
 }

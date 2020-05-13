@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Minecord\Model\Article;
 
-use Minecord\Model\Admin\Admin;
+use Minecord\Model\User\User;
 
 final class ArticleData
 {
@@ -14,5 +14,5 @@ final class ArticleData
 	public string $contentCzech;
 	public string $editorialEnglish;
 	public string $editorialCzech;
-	public Admin $author;
+	public User $author;
 }

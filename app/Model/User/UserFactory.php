@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Admin;
+namespace Minecord\Model\User;
 
 use Nette\Security\Passwords;
 use Ramsey\Uuid\Uuid;
 
-class AdminFactory
+class UserFactory
 {
 	private Passwords $passwords;
 
@@ -16,8 +16,8 @@ class AdminFactory
 		$this->passwords = $passwords;
 	}
 
-	public function create(AdminData $adminData): Admin
+	public function create(UserData $userData): User
 	{
-		return new Admin(Uuid::uuid4(), $adminData, $this->passwords);
+		return new User(Uuid::uuid4(), $userData, $this->passwords);
 	}
 }

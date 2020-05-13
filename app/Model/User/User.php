@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Admin;
+namespace Minecord\Model\User;
 
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
@@ -14,9 +14,9 @@ use Rixafy\DoctrineTraits\RemovableTrait;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="admin")
+ * @ORM\Table(name="user")
  */
-class Admin
+class User
 {
 	/**
 	 * @ORM\Id
@@ -51,19 +51,19 @@ class Admin
 	use RemovableTrait;
 	use DateTimeTrait;
 
-	public function __construct(UuidInterface $id, AdminData $adminData, Passwords $passwords)
+	public function __construct(UuidInterface $id, UserData $userData, Passwords $passwords)
 	{
 		$this->id = $id;
-		$this->edit($adminData, $passwords);
+		$this->edit($userData, $passwords);
 	}
 
-	public function edit(AdminData $adminData, Passwords $passwords = null): void
+	public function edit(UserData $userData, Passwords $passwords = null): void
 	{
-		$this->displayName = $adminData->displayName;
-		$this->email = $adminData->email;
+		$this->displayName = $userData->displayName;
+		$this->email = $userData->email;
 
-		if ($adminData->password !== null && $passwords !== null) {
-			$this->changePassword($adminData->password, $passwords);
+		if ($userData->password !== null && $passwords !== null) {
+			$this->changePassword($userData->password, $passwords);
 		}
 	}
 
@@ -72,9 +72,9 @@ class Admin
 		return $this->id;
 	}
 
-	public function getData(): AdminData
+	public function getData(): UserData
 	{
-		$data = new AdminData();
+		$data = new UserData();
 
 		$data->displayName = $this->displayName;
 		$data->email = $this->email;
@@ -127,6 +127,6 @@ class Admin
 
 	public function getAvatar(int $size = 90): string
 	{
-		return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->getEmail())) . '?d=' . urlencode('https://' . $_SERVER['SERVER_NAME'] . '/css/admin/img/default_avatar.png') . '&s=' . $size;
+		return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->getEmail())) . '?d=' . urlencode('https://' . $_SERVER['SERVER_NAME'] . '/css/user/img/default_avatar.png') . '&s=' . $size;
 	}
 }

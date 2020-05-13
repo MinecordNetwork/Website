@@ -4,24 +4,22 @@ declare(strict_types=1);
 
 namespace Minecord\Model\Article;
 
-use Minecord\Model\Admin\AdminProvider;
-use Minecord\Model\Image\Image;
 use Minecord\Model\Image\ImageDataFactory;
 use Minecord\Model\Image\ImageFacade;
-use Nette\Http\FileUpload;
+use Minecord\Model\User\UserProvider;
 
 final class ArticleDataFactory
 {
-	private AdminProvider $adminProvider;
+	private UserProvider $userProvider;
 	private ImageDataFactory $imageDataFactory;
 	private ImageFacade $imageFacade;
 
 	public function __construct(
-		AdminProvider $adminProvider,
+		UserProvider $userProvider,
 		ImageDataFactory $imageDataFactory, 
 		ImageFacade $imageFacade
 	) {
-		$this->adminProvider = $adminProvider;
+		$this->userProvider = $userProvider;
 		$this->imageDataFactory = $imageDataFactory;
 		$this->imageFacade = $imageFacade;
 	}
@@ -35,7 +33,7 @@ final class ArticleDataFactory
 		$data->contentCzech = $formData['contentCzech'];
 		$data->editorialEnglish = $formData['editorialEnglish'];
 		$data->editorialCzech = $formData['editorialCzech'];
-		$data->author = $this->adminProvider->provide();
+		$data->author = $this->userProvider->provide();
 
 		return $data;
 	}

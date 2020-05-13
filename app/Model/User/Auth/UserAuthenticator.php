@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Admin\Auth;
+namespace Minecord\Model\User\Auth;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Nette\Security\Passwords;
-use Minecord\Model\Admin\Admin;
-use Minecord\Model\Admin\AdminFacade;
-use Minecord\Model\Admin\Exception\AdminNotFoundException;
-use Minecord\Model\Admin\Exception\InvalidPasswordException;
+use Minecord\Model\User\User;
+use Minecord\Model\User\UserFacade;
+use Minecord\Model\User\Exception\UserNotFoundException;
+use Minecord\Model\User\Exception\InvalidPasswordException;
 use Minecord\Model\Session\SessionProvider;
 
-class AdminAuthenticator
+class UserAuthenticator
 {
-	private AdminFacade $adminFacade;
+	private UserFacade $userFacade;
 	private Passwords $passwords;
 	private SessionProvider $sessionProvider;
 	private EntityManagerInterface $entityManager;
 
 	public function __construct(
-		AdminFacade $adminFacade,
+		UserFacade $userFacade,
 		Passwords $passwords,
 		SessionProvider $sessionProvider,
 		EntityManagerInterface $entityManager
 	) {
-		$this->adminFacade = $adminFacade;
+		$this->userFacade = $userFacade;
 		$this->passwords = $passwords;
 		$this->sessionProvider = $sessionProvider;
 		$this->entityManager = $entityManager;
@@ -33,25 +33,25 @@ class AdminAuthenticator
 
 	/**
 	 * @throws InvalidPasswordException
-	 * @throws AdminNotFoundException
+	 * @throws UserNotFoundException
 	 */
-	public function authenticate(string $email, string $password): Admin
+	public function authenticate(string $email, string $password): User
 	{
-		$admin = $this->adminFacade->getByEmail($email);
+		$user = $this->userFacade->getByEmail($email);
 
-		if (!$admin->checkPassword($password, $this->passwords)) {
+		if (!$user->checkPassword($password, $this->passwords)) {
 			throw new InvalidPasswordException('Password is invalid');
 		}
 
-		$this->sessionProvider->provide()->authenticateAdmin($admin);
+		$this->sessionProvider->provide()->authenticateUser($user);
 		$this->entityManager->flush();
 
-		return $admin;
+		return $user;
 	}
 
 	public function logOut(): void
 	{
-		$this->sessionProvider->provide()->logOutAdmin();
+		$this->sessionProvider->provide()->logOutUser();
 		$this->entityManager->flush();
 	}
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Admin;
+namespace Minecord\Model\User;
 
-class AdminData
+class UserData
 {
 	public string $displayName;
 	public string $email;

@@ -11,24 +11,24 @@ use Ramsey\Uuid\UuidInterface;
 
 final class PageFacade extends PageRepository
 {
-	private PageFactory $PageFactory;
+	private PageFactory $pageFactory;
 	private EntityManagerInterface $entityManager;
 
 	public function __construct(PageFactory $PageFactory, EntityManagerInterface $entityManager)
 	{
 		parent::__construct($entityManager);
-		$this->PageFactory = $PageFactory;
+		$this->pageFactory = $PageFactory;
 		$this->entityManager = $entityManager;
 	}
 
 	public function create(PageData $data): Page
 	{
-		$Page = $this->PageFactory->create($data);
+		$page = $this->pageFactory->create($data);
 
-		$this->entityManager->persist($Page);
+		$this->entityManager->persist($page);
 		$this->entityManager->flush();
 
-		return $Page;
+		return $page;
 	}
 
 	/**
@@ -36,12 +36,12 @@ final class PageFacade extends PageRepository
 	 */
 	public function edit(UuidInterface $id, PageData $data): Page
 	{
-		$Page = $this->get($id);
+		$page = $this->get($id);
 
-		$Page->edit($data);
+		$page->edit($data);
 		$this->entityManager->flush();
 
-		return $Page;
+		return $page;
 	}
 
 	/**
@@ -49,12 +49,12 @@ final class PageFacade extends PageRepository
 	 */
 	public function changeThumbnail(UuidInterface $id, Image $image): Page
 	{
-		$Page = $this->get($id);
+		$page = $this->get($id);
 
-		$Page->changeThumbnail($image);
+		$page->changeThumbnail($image);
 		$this->entityManager->flush();
 
-		return $Page;
+		return $page;
 	}
 
 	/**
@@ -62,9 +62,9 @@ final class PageFacade extends PageRepository
 	 */
 	public function delete(UuidInterface $id): void
 	{
-		$Page = $this->get($id);
+		$page = $this->get($id);
 
-		$this->entityManager->remove($Page);
+		$this->entityManager->remove($page);
 		$this->entityManager->flush();
 	}
 }
