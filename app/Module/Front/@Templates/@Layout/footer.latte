@@ -35,7 +35,7 @@
                         <a n:href="Page:default '44dcd1ee-1b70-409e-9115-20273c608884'">{_'footer.links.technicalBackground'}</a>
                     </li>
                     <li>
-                        <a>{_'footer.links.contact'}</a>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#contact">{_'footer.links.contact'}</a>
                     </li>
                 </ul>
             </div>
@@ -46,6 +46,25 @@
             </div>
             <div class="col-6 text-right">
                 {_'footer.joinUs'}. <a target="_blank" href="https://github.com/MinecordNetwork">Github</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{_'footer.links.contact'}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="contact-protect">{_'footer.contactModal.email'}</p>
+                    {_'footer.contactModal.discord'} <a target="_blank" href="{_'sidebar.discordInvite'}">server</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">{_'header.joinModal.done'}</button>
+                </div>
             </div>
         </div>
     </div>

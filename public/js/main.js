@@ -13,22 +13,25 @@ async function copyIpAddress(str, strDefault, strCopied, element) {
     element.innerHTML = strDefault;
 }
 
+document.getElementById('contact-protect').innerHTML += '@gmail.com';
+
 $(function () {
     $('[data-toggle="tooltip"]').tooltip() 
 });
 
 // Online map fullscreen
 const button = document.querySelector('#online-map-fullscreen');
-button.addEventListener('click', fullscreen);
+if (button !== undefined) {
+    button.addEventListener('click', fullscreen);
 
-const button2 = document.querySelector('#online-map-maximize');
-button2.addEventListener('click', maximize);
+    const button2 = document.querySelector('#online-map-maximize');
+    button2.addEventListener('click', maximize);
 
-document.addEventListener('webkitfullscreenchange', fullscreenChange);
-document.addEventListener('mozfullscreenchange', fullscreenChange);
-document.addEventListener('fullscreenchange', fullscreenChange);
-document.addEventListener('MSFullscreenChange', fullscreenChange);
-
+    document.addEventListener('webkitfullscreenchange', fullscreenChange);
+    document.addEventListener('mozfullscreenchange', fullscreenChange);
+    document.addEventListener('fullscreenchange', fullscreenChange);
+    document.addEventListener('MSFullscreenChange', fullscreenChange);
+}
 function maximize() {
     const container = document.getElementById('map-container');
     if (container.style.maxWidth !== '99%') {
