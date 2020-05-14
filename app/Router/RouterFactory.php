@@ -32,7 +32,7 @@ final class RouterFactory
 		
 		$frontRouter = $this->routeProvider->getDynamicRouteList($locale);
 
-		$frontRouter->addRoute('<presenter=Homepage>/<action=default>', [
+		$frontRouter->addRoute('<presenter=Homepage>[/<action=default>]', [
 			'locale' => $locale
 		]);
 

@@ -13,6 +13,7 @@ menu:
     vote: "Hlasovat"
     rules: "Pravidla"
     contact: "Kontakt"
+    onlineMaps: "Online mapy"
     survivalOnlineMap: "Survival mapa"
     creativeOnlineMap: "Creative mapa"
 joinModal:

@@ -53,11 +53,17 @@
                         <li class="nav-item">
                             <a class="nav-link" n:href="Homepage:default">{_'header.menu.vote'}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {if $presenter->isLinkCurrent('OnlineMap:survival')}active{/if}" n:href="OnlineMap:survival">{_'header.menu.survivalOnlineMap'}</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {if $presenter->isLinkCurrent('OnlineMap:*')}active{/if}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {_'header.menu.onlineMaps'}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" n:href="OnlineMap:survival">{_'header.menu.survivalOnlineMap'}</a>
+                                <a class="dropdown-item" n:href="OnlineMap:creative">{_'header.menu.creativeOnlineMap'}</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {if $presenter->isLinkCurrent('OnlineMap:creative')}active{/if}" n:href="OnlineMap:creative">{_'header.menu.creativeOnlineMap'}</a>
+                            <a class="nav-link {if $presenter->isLinkCurrent('Banlist:default')}active{/if}" n:href="Banlist:default">Banlist</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {if $presenter->isLinkCurrent('Page:default', '03fa1017-a62f-4b79-b205-b977da049a46')}active{/if}" n:href="Page:default '03fa1017-a62f-4b79-b205-b977da049a46'">{_'header.menu.rules'}</a>

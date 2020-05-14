@@ -1,0 +1,49 @@
+{templateType Minecord\Module\Front\Banlist\BanlistTemplate}
+{block content}
+<div class="container flex-shrink-0 mt-4 mb-2">
+    <div class="row">
+        <main class="col-12 col-md-8">
+            <div class="card article">
+                <div class="card-header">
+                    <h1 n:block="title">Banlist</h1>
+                </div>
+                <table class="table custom">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>{_'banlist.nickname'}</th>
+                            <th>Admin</th>
+                            <th>{_'banlist.reason'}</th>
+                            <th>{_'banlist.createdAt'}</th>
+                            <th>{_'banlist.expireAt'}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {varType Minecord\Model\Banlist\Ban $ban}
+                    <tr n:foreach="$bans as $ban">
+                        <td><img style="image-rendering: pixelated" src="https://minotar.net/helm/{$ban->targetName}/25.png" alt="{$ban->targetName}"/></td>
+                        <td>{$ban->targetName}</td>
+                        <td>
+                            <img data-placement="left" title="{$ban->adminName}" data-toggle="tooltip" style="image-rendering: pixelated" src="https://minotar.net/helm/{$ban->adminName}/25.png" alt="{$ban->adminName}"/>
+                        </td>
+                        <td>{$ban->reason}</td>
+                        <td>{$ban->createdAt->format('d.m.Y H:i')}</td>
+                        <td>{$ban->expireAt->format('d.m.Y H:i')}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="card-body">
+                    <ul class="pagination pagination-custom justify-content-center">
+                        {varType int $i}
+                        <li n:for="$i = 1; $i <= $pageCount; $i++" n:class="$page === $i ? 'page-item active' : 'page-item'">
+                            <a n:href="this $i" class="page-link">{$i}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <aside class="col-12 col-md-4">
+            {include '../@Layout/sidebar.latte'}
+        </aside>
+    </div>
+</div>
