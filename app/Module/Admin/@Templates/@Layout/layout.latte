@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{ifset description}{include description|stripHtml}{else}{_'homepage.description'}{/ifset}">
+	<meta n:ifset="keywords" name="keywords" content="{include keywords|stripHtml}">
+	<meta name="author" content="https://rixafy.pro">
+	<meta n:ifset="image" name="og:image" content="{include image}">
+	<meta name="theme-color" content="#2f67a5">
 	<title>{ifset title}{include title|stripHtml} | {/ifset}Minecord</title>
-
 	<link href="/css/tabler.min.css" rel="stylesheet"/>
 	<link href="/css/dashboard.css" rel="stylesheet"/>
 	<link href="/css/datagrid.min.css" rel="stylesheet"/>

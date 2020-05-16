@@ -1,4 +1,5 @@
 {templateType Minecord\Module\Front\Article\ArticleTemplate}
+{block image}{$article->getThumbnail()->getPublicPath()}{/block}
 {block content}
 <div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
@@ -21,7 +22,7 @@
                     <img class="preview" src="{$article->getThumbnail()->getPublicPath()}" alt="{$article->getTitle()}"/>
                 </a>
                 <div class="card-body">
-                    <i class="text-dark">{$article->getEditorial()|noescape}</i>
+                    <i n:block="description" class="text-dark">{$article->getEditorial()|noescape}</i>
                     {$article->getContent()|noescape}
                 </div>
             </article>
