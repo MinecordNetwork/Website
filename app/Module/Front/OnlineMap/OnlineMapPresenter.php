@@ -6,7 +6,6 @@ namespace Minecord\Module\Front\OnlineMap;
 
 use Minecord\Model\Page\PageFacade;
 use Minecord\Module\Front\BaseFrontPresenter;
-use Ramsey\Uuid\Uuid;
 
 /**
  * @property-read OnlineMapTemplate $template
