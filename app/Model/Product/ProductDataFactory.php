@@ -13,6 +13,7 @@ final class ProductDataFactory
 		$data->nameCzech = $formData['nameCzech'];
 		$data->descriptionEnglish = $formData['descriptionEnglish'];
 		$data->descriptionCzech = $formData['descriptionCzech'];
+		$data->smsCode = $formData['smsCode'];
 		$data->price = $formData['price'];
 		$data->priceCzechSms = $formData['priceCzechSms'];
 		$data->priceSlovakSms = $formData['priceSlovakSms'];

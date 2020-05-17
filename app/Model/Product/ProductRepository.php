@@ -46,6 +46,23 @@ abstract class ProductRepository
 	}
 
 	/**
+	 * @throws ProductNotFoundException
+	 */
+	public function getBySmsCode(string $smsCode): Product
+	{
+		/** @var Product $product */
+		$product = $this->getRepository()->findOneBy([
+			'smsCode' => $smsCode
+		]);
+
+		if ($product === null) {
+			throw new ProductNotFoundException(sprintf('Product with smsCode "%s" not found.', $smsCode));
+		}
+
+		return $product;
+	}
+
+	/**
 	 * @return Product[]
 	 */
 	public function getAll(): array

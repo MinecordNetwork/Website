@@ -34,6 +34,9 @@ class Product
 	/** @ORM\Column(type="text") */
 	private string $descriptionCzech;
 
+	/** @ORM\Column(type="string", unique=true) */
+	private string $smsCode;
+
 	/** @ORM\Column(type="float") */
 	private float $price = 0;
 
@@ -130,6 +133,11 @@ class Product
 	public function getDescriptionCzech(): string
 	{
 		return $this->descriptionCzech;
+	}
+
+	public function getSmsCode(): string
+	{
+		return $this->smsCode;
 	}
 
 	public function getPrice(): float

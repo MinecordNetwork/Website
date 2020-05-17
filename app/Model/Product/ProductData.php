@@ -12,6 +12,7 @@ final class ProductData
 	public string $nameCzech;
 	public string $descriptionEnglish;
 	public string $descriptionCzech;
+	public string $smsCode;
 	public float $price = 0;
 	public float $priceCzechSms = 0;
 	public float $priceSlovakSms = 0;
