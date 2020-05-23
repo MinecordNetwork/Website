@@ -70,9 +70,22 @@ abstract class ProductRepository
 		return $this->getQueryBuilderForAll()->getQuery()->execute();
 	}
 
+	/**
+	 * @return Product[]
+	 */
+	public function getAllRanks(): array
+	{
+		return $this->getQueryBuilderForAll()
+			->andWhere('e.isRank = true')
+			->getQuery()
+			->execute();
+	}
+
 	private function getQueryBuilderForAll(): QueryBuilder
 	{
-		return $this->getRepository()->createQueryBuilder('e');
+		return $this->getRepository()
+			->createQueryBuilder('e')
+			->orderBy('e.sortOrder', 'ASC');
 	}
 
 	public function getQueryBuilderForDataGrid(): QueryBuilder

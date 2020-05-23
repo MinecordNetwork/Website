@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Page\Form;
+namespace Minecord\Module\Admin\Product\Form;
 
 use Minecord\UI\Form\AdminForm;
 use Nette\Application\UI\Form;
 
-class PageThumbnailFormFactory
+class ProductThumbnailFormFactory
 {
 	public function create(): Form
 	{

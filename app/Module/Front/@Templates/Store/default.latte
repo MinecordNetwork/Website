@@ -1,0 +1,25 @@
+{templateType Minecord\Module\Front\Store\StoreTemplate}
+{block title}Minecraft Server{/block}
+{block content}
+<div class="container flex-shrink-0 mt-4 mb-2">
+    <div class="row">
+        <main class="col-12 col-md-8">
+            <div class="row ranks">
+                {varType Minecord\Model\Product\Product $rank}
+                <div n:foreach="$ranks as $rank" class="col-4">
+                    <div class="card">
+                        <div class="card-header text-center font-weight-bold">{$rank->getName()}</div>
+                        <img src="{$rank->getThumbnail()->getPublicPath()|thumbnail: 250, 250}">
+                        <div class="card-body">
+                            <a href="#" class="btn btn-primary btn-block">Buy via SMS</a>
+                            <a href="#" class="btn btn-primary btn-block">Buy via PayPal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <aside class="col-12 col-md-4">
+            {include '../@Layout/sidebar.latte'}
+        </aside>
+    </div>
+</div>

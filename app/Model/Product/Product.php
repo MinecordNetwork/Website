@@ -8,6 +8,8 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Minecord\Model\Image\Image;
 use Ramsey\Uuid\UuidInterface;
+use Rixafy\DoctrineTraits\SortOrderTrait;
+use Rixafy\Language\LanguageStaticHolder;
 
 /**
  * @ORM\Entity
@@ -34,7 +36,7 @@ class Product
 	/** @ORM\Column(type="text") */
 	private string $descriptionCzech;
 
-	/** @ORM\Column(type="string", unique=true) */
+	/** @ORM\Column(type="string") */
 	private string $smsCode;
 
 	/** @ORM\Column(type="float") */
@@ -55,8 +57,8 @@ class Product
 	/** @ORM\Column(type="float") */
 	private float $discountedPriceSlovakSms = 0;
 
-	/** @ORM\Column(type="datetime") */
-	private ?DateTime $discountActiveTo;
+	/** @ORM\Column(type="datetime", nullable=true) */
+	private ?DateTime $discountActiveTo = null;
 
 	/** @ORM\Column(type="integer") */
 	private int $discountPercent = 0;
@@ -66,6 +68,8 @@ class Product
 
 	/** @ORM\ManyToOne(targetEntity="\Minecord\Model\Image\Image") */
 	private ?Image $thumbnail = null;
+	
+	use SortOrderTrait;
 
 	public function __construct(UuidInterface $id, ProductData $data)
 	{
@@ -88,6 +92,7 @@ class Product
 		$this->discountActiveTo = $data->discountActiveTo;
 		$this->discountPercent = $data->discountPercent;
 		$this->isRank = $data->isRank;
+		$this->smsCode = $data->smsCode;
 	}
 
 	public function getData(): ProductData
@@ -106,6 +111,7 @@ class Product
 		$data->discountActiveTo = $this->discountActiveTo;
 		$data->discountPercent = $this->discountPercent;
 		$data->isRank = $this->isRank;
+		$data->smsCode = $this->smsCode;
 
 		return $data;
 	}
@@ -113,6 +119,11 @@ class Product
 	public function getId(): UuidInterface
 	{
 		return $this->id;
+	}
+
+	public function getName(): string
+	{
+		return LanguageStaticHolder::getLanguage()->getIso() === 'en' ? $this->nameEnglish : $this->nameCzech;
 	}
 
 	public function getNameEnglish(): string
@@ -125,14 +136,9 @@ class Product
 		return $this->nameCzech;
 	}
 
-	public function getDescriptionEnglish(): string
+	public function getDescription(): string
 	{
-		return $this->descriptionEnglish;
-	}
-
-	public function getDescriptionCzech(): string
-	{
-		return $this->descriptionCzech;
+		return LanguageStaticHolder::getLanguage()->getIso() === 'en' ? $this->descriptionEnglish : $this->descriptionCzech;
 	}
 
 	public function getSmsCode(): string

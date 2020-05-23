@@ -17,11 +17,6 @@ final class ProductDataFactory
 		$data->price = $formData['price'];
 		$data->priceCzechSms = $formData['priceCzechSms'];
 		$data->priceSlovakSms = $formData['priceSlovakSms'];
-		$data->discountedPrice = $formData['discountedPrice'];
-		$data->discountedPriceCzechSms = $formData['discountedPriceCzechSms'];
-		$data->discountedPriceSlovakSms = $formData['discountedPriceSlovakSms'];
-		$data->discountActiveTo = $formData['discountActiveTo'];
-		$data->discountPercent = $formData['discountPercent'];
 		$data->isRank = $formData['isRank'];
 
 		return $data;

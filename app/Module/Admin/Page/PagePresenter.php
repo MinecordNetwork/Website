@@ -55,8 +55,7 @@ class PagePresenter extends BaseAdminPresenter
 		$this->pageFacade = $pageFacade;
 		$this->routeProvider = $routeProvider;
 	}
-
-
+	
 	public function actionEdit(string $id): void
 	{
 		$this->page = $this->pageFacade->get(Uuid::fromString($id));

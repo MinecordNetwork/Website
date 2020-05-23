@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Minecord\Model\Product;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Minecord\Model\Image\Image;
 use Minecord\Model\Product\Exception\ProductNotFoundException;
 use Ramsey\Uuid\UuidInterface;
 
@@ -52,5 +53,15 @@ final class ProductFacade extends ProductRepository
 
 		$this->entityManager->remove($product);
 		$this->entityManager->flush();
+	}
+
+	public function changeThumbnail(UuidInterface $id, Image $image): Product
+	{
+		$product = $this->get($id);
+		
+		$product->changeThumbnail($image);
+		$this->entityManager->flush();
+		
+		return $product;
 	}
 }
