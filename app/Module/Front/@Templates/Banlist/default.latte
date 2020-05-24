@@ -4,14 +4,10 @@
     <div class="row">
         <main class="col-12 col-md-8">
             <div class="card article">
-                <div class="card-header">
-                    <h1 n:block="title">Banlist</h1>
-                </div>
                 <table class="table custom">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>{_'banlist.nickname'}</th>
+                            <th><h1 n:block="title">Banlist</h1></th>
                             <th>Admin</th>
                             <th>{_'banlist.reason'}</th>
                             <th>{_'banlist.createdAt'}</th>
@@ -21,8 +17,10 @@
                     <tbody>
                     {varType Minecord\Model\Banlist\Ban $ban}
                     <tr n:foreach="$bans as $ban">
-                        <td><img style="image-rendering: pixelated" src="https://minotar.net/helm/{$ban->targetName}/25.png" alt="{$ban->targetName}"/></td>
-                        <td>{$ban->targetName}</td>
+                        <td class="d-flex">
+                            <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$ban->targetName}/25.png" alt="{$ban->targetName}"/>
+                            <span class="d-table-row">{$ban->targetName}</span>
+                        </td>
                         <td>
                             <img data-placement="left" title="{$ban->adminName}" data-toggle="tooltip" style="image-rendering: pixelated" src="https://minotar.net/helm/{$ban->adminName}/25.png" alt="{$ban->adminName}"/>
                         </td>
