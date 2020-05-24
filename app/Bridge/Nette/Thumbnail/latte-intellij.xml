@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<latte version="1" vendor="myVendor/myPackage">
+    <filters>
+        <filter name="thumbnail" arguments=":(?width = 0, ?height=0)" description="Test filter description" insertColons=":" />
+    </filters>
+</latte>

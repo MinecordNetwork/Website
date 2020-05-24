@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Store;
+namespace Minecord\Module\Front\Vip;
 
 use Minecord\Model\Product\Product;
 use Minecord\Model\Product\ProductRepository;
 use Minecord\Module\Front\BaseFrontPresenter;
 
 /**
- * @property StoreTemplate $template
+ * @property VipTemplate $template
  */
-class StorePresenter extends BaseFrontPresenter
+class VipPresenter extends BaseFrontPresenter
 {
 	/** @var Product[] */
 	private array $ranks;
