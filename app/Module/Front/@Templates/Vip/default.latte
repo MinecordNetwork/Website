@@ -1,5 +1,5 @@
 {templateType \Minecord\Module\Front\Vip\VipTemplate}
-{block title}Store{/block}
+{block title}Aktivace VIP{/block}
 {block content}
 <div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
@@ -12,8 +12,8 @@
                         <img src="{$rank->getThumbnail()->getPublicPath()}" alt=""/>
                         <br/>
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary btn-block">SMS - {$rank->getPriceCzechSms()} Kč</a>
-                            <a href="#" class="btn btn-info btn-block">PayPal - {$rank->getPrice()} EUR</a>
+                            <a href="#" class="btn btn-success btn-block">SMS - {$rank->getPriceCzechSms()} Kč</a>
+                            <a href="#" style="background:#3B7BBF; border-color:#3B7BBF" class="btn btn-info btn-block">PayPal - {$rank->getPrice()} EUR</a>
                         </div>
                     </div>
                 </div>
