@@ -1,0 +1,5 @@
+search:
+	api:
+		in: %appDir%/Module/Api
+		classes:
+			- *Controller
