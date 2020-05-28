@@ -20,6 +20,7 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 
+		$router->add($this->createApiRouter());
 		$router->add($this->createAdminRouter());
 		$router->add($this->createFrontRouter());
 
@@ -44,6 +45,15 @@ final class RouterFactory
 		$adminRouter = new RouteList('Admin');
 
 		$adminRouter->addRoute('admin[/<presenter=Auth>][/<action=default>][/<id>][/<name>]');
+
+		return $adminRouter;
+	}
+
+	private function createApiRouter(): RouteList
+	{
+		$adminRouter = new RouteList('Api');
+
+		$adminRouter->addRoute('api[/<presenter=Auth>][/<action=default>][/<id>][/<name>]');
 
 		return $adminRouter;
 	}

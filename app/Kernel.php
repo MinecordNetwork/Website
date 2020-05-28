@@ -11,9 +11,7 @@ class Kernel
 	public static function boot(): Configurator
 	{
 		$configurator = new Configurator;
-
-		$isApi = isset($_SERVER['REQUEST_URI']) && substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
-
+		
 		$debugMode = substr(dirname(__FILE__), -7) !== 'www/app';
 
 		$configurator->setDebugMode($debugMode)
