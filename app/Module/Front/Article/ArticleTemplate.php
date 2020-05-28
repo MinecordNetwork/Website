@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Minecord\Module\Front\Article;
 
 use Minecord\Model\Article\Article;
-use Nette\Bridges\ApplicationLatte\Template;
+use Minecord\Module\Front\BaseFrontTemplate;
 
-class ArticleTemplate extends Template
+class ArticleTemplate extends BaseFrontTemplate
 {
 	public Article $article;
 }
