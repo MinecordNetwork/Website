@@ -9,6 +9,7 @@ discord: "Discord server"
 play: "Začít hrát"
 menu:
     blog: "Novinky"
+    vip: "VIP"
     store: "Obchod"
     vote: "Hlasovat"
     rules: "Pravidla"

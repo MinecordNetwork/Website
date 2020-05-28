@@ -53,6 +53,9 @@
                         <li class="nav-item">
                             <a class="nav-link" n:href="Homepage:default">{_'header.menu.vote'}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link vip {isLinkCurrent('Vip:default') ? 'active'}" n:href="Vip:default">{_'header.menu.vip'}</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {if isLinkCurrent('OnlineMap:*')}active{/if}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {_'header.menu.onlineMaps'}

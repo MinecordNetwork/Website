@@ -1,5 +1,5 @@
 {templateType \Minecord\Module\Front\Vip\VipTemplate}
-{block title}Aktivace VIP{/block}
+{block title}{_'vip.title'}{/block}
 {block content}
 <div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
@@ -12,39 +12,15 @@
                         <img src="{$rank->getThumbnail()->getPublicPath()}" alt=""/>
                         <br/>
                         <div class="card-body">
-                            <a href="#" class="btn btn-success btn-block">SMS - {$rank->getPriceCzechSms()} Kč</a>
+                            {if $locale === 'cs'}
+                                <a href="#" class="btn btn-success btn-block">SMS - {$rank->getPriceCzechSms()} Kč</a>
+                            {/if}
                             <a href="#" style="background:#3B7BBF; border-color:#3B7BBF" class="btn btn-info btn-block">PayPal - {$rank->getPrice()} EUR</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row vip">
-                <div class="col-12">
-                    <div class="card">
-                        <table class="table custom">
-                            <thead>
-                            <tr>
-                                <th scope="col"><h2>VIP Výhody</h2></th>
-                                <th scope="col">VIP</th>
-                                <th scope="col">Hráč</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Létaní příkazem <b>/fly</b></td>
-                                <td><i class="fa fa-check"></i></td>
-                                <td><i class="fa fa-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Nastavení domovů <b>/sethome</b></td>
-                                <td>10x</td>
-                                <td>3x</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            {include '@Includes/advantages_' . $locale . '.latte'}
         </main>
         <aside class="col-12 col-md-4">
             {include '../@Layout/sidebar.latte'}
