@@ -44,7 +44,10 @@
         "jaybizzle/crawler-detect": "dev-master",
         "ext-apcu": "*",
         "ext-json": "*",
-        "php-minecraft/minecraft-query": "dev-master"
+        "php-minecraft/minecraft-query": "dev-master",
+        "ocramius/package-versions": "1.8",
+        "doctrine/inflector": "1.4",
+        "apitte/core": "0.7.x-dev"
     },
     "autoload": {
         "psr-4": {
