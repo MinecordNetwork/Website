@@ -40,7 +40,9 @@ session:
 services:
 	routerFactory: Minecord\Router\RouterFactory
 	router: @routerFactory::create
-
+	latte.templateFactory:
+		arguments:
+			user: null
 
 includes:
     - doctrine.neon
