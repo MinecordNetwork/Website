@@ -53,7 +53,7 @@ final class RouterFactory
 	{
 		$adminRouter = new RouteList('Api');
 
-		$adminRouter->addRoute('api[/<presenter=Auth>][/<action=default>][/<id>][/<name>]');
+		$adminRouter->addRoute('api[/<presenter=Auth>][/<action=default>]');
 
 		return $adminRouter;
 	}

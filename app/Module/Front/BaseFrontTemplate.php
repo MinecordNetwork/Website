@@ -14,5 +14,5 @@ class BaseFrontTemplate extends Template
 	public string $locale;
 	public int $assetVersion;
 	public array $flashes;
-	public User $user;
+	public ?User $user;
 }

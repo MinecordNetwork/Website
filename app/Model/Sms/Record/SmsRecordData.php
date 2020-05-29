@@ -9,10 +9,12 @@ use DateTime;
 final class SmsRecordData
 {
 	public string $text;
-	public string $provider;
+	public string $operator;
 	public string $shortcode;
 	public string $phone;
 	public string $externalId;
+	public string $country;
 	public bool $requireConfirmation = false;
-	public ?DateTime $confirmedAt = null;
+	public int $attempt;
+	public DateTime $sentAt;
 }

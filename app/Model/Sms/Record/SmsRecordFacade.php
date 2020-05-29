@@ -33,19 +33,6 @@ final class SmsRecordFacade extends SmsRecordRepository
 	/**
 	 * @throws SmsRecordNotFoundException
 	 */
-	public function edit(UuidInterface $id, SmsRecordData $data): SmsRecord
-	{
-		$smsRecord = $this->get($id);
-
-		$smsRecord->edit($data);
-		$this->entityManager->flush();
-
-		return $smsRecord;
-	}
-
-	/**
-	 * @throws SmsRecordNotFoundException
-	 */
 	public function delete(UuidInterface $id): void
 	{
 		$smsRecord = $this->get($id);

@@ -28,7 +28,7 @@ class SmsRecord
 	private string $text;
 
 	/** @ORM\Column(type="string") */
-	private string $provider;
+	private string $operator;
 
 	/** @ORM\Column(type="string") */
 	private string $shortcode;
@@ -36,11 +36,20 @@ class SmsRecord
 	/** @ORM\Column(type="string") */
 	private string $phone;
 
+	/** @ORM\Column(type="string") */
+	private string $country;
+
 	/** @ORM\Column(type="boolean") */
-	private bool $requireConfirmation = false;
+	private bool $requireConfirmation;
+
+	/** @ORM\Column(type="integer") */
+	private int $attempt;
 
 	/** @ORM\Column(type="datetime", nullable=true) */
 	private ?DateTime $confirmedAt = null;
+
+	/** @ORM\Column(type="datetime") */
+	private DateTime $sentAt;
 
 	/** @ORM\Column(type="datetime") */
 	private DateTime $createdAt;
@@ -49,17 +58,15 @@ class SmsRecord
 	{
 		$this->id = $id;
 		$this->createdAt = new DateTime();
-		$this->edit($data);
-	}
-
-	public function edit(SmsRecordData $data): void
-	{
 		$this->text = $data->text;
-		$this->provider = $data->provider;
+		$this->operator = $data->operator;
 		$this->shortcode = $data->shortcode;
 		$this->phone = $data->phone;
 		$this->externalId = $data->externalId;
+		$this->country = $data->country;
+		$this->attempt = $data->attempt;
 		$this->requireConfirmation = $data->requireConfirmation;
+		$this->sentAt = $data->sentAt;	
 	}
 	
 	public function onConfirm(): void
@@ -77,9 +84,9 @@ class SmsRecord
 		return $this->text;
 	}
 
-	public function getProvider(): string
+	public function getOperator(): string
 	{
-		return $this->provider;
+		return $this->operator;
 	}
 
 	public function getShortcode(): string
