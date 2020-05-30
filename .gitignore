@@ -7,3 +7,5 @@
 /app/Config/credentials_prod.neon
 /public/fontawesome
 /public/css/bootstrap
+/public/css/datagrid.min.css
+/public/css/tabler.min.css
