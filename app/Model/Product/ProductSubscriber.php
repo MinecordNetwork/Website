@@ -33,10 +33,10 @@ class ProductSubscriber implements EventSubscriberInterface
 
 	public function onSmsRecordPreCreated(SmsRecordPreCreatedEvent $event): void
 	{
-		$event->getSmsRecord()->setupAnswer('Dekujeme za zaslani SMS. Minecord Team.'); //TODO: Answer properly
+		$event->getSmsRecord()->setupAnswer($this->handleSms($event->getSmsRecord(), true));
 	}
 
-	public function onSmsRecordCreated(SmsRecordPreCreatedEvent $event): void
+	public function onSmsRecordCreated(SmsRecordCreatedEvent $event): void
 	{
 		$smsRecord = $event->getSmsRecord();
 		
@@ -50,7 +50,7 @@ class ProductSubscriber implements EventSubscriberInterface
 		$this->handleSms($event->getSmsRecord());
 	}
 	
-	private function handleSms(SmsRecord $smsRecord): string
+	private function handleSms(SmsRecord $smsRecord, bool $onlyAnswer = false): string
 	{
 		$smsTextParts = explode(' ', $smsRecord->getText());
 		$country = SmsCountryResolver::resolve($smsRecord->getShortcode());
@@ -58,7 +58,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
 		$invalidSms = function () use($smsRecord, $country): string {
 			if ($country === 'CZ') {
-				return 'Spatny format SMS, zaslama SMS nebyla zpoplatnena. Minecord.cz;FREE' . $smsRecord->getShortcode();
+				return 'Spatny format SMS, zaslana SMS nebyla zpoplatnena. Minecord.cz;FREE' . $smsRecord->getShortcode();
 			} else {
 				return 'Nespravny format SMS, zaslana SMS nebola spoplatnena. Minecord.cz;FREE8877';
 			}
@@ -75,7 +75,9 @@ class ProductSubscriber implements EventSubscriberInterface
 				$product = $this->productFacade->getBySmsCodeAndPriceSlovak($smsTextParts[1], $price);
 			}
 			
-			$this->productFacade->give($product->getId(), $smsTextParts[2]);
+			if (!$onlyAnswer) {
+				$this->productFacade->give($product->getId(), $smsTextParts[2]);
+			}
 			
 		} catch (ProductNotFoundException $e) {
 			return $invalidSms();
@@ -84,7 +86,7 @@ class ProductSubscriber implements EventSubscriberInterface
 		if ($country === 'CZ') {
 			return 'Dekujeme ze podporujete server Minecord.cz, balicek byl aktivovan!';
 		} else {
-			return 'Dakujeme ze podporujete server Minecord.cz, balicek bol aktivovany!';
+			return 'Dakujeme ze podporujete server Minecord.cz, balicek bol aktivovany!' . ($price > 100) ? ';' . $smsRecord->getShortcode() : '';
 		}
 	}
 }

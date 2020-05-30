@@ -13,7 +13,7 @@ class SmsPriceResolver
 		if (Strings::startsWith($shortcode, '90333')) {
 			return (int) str_replace('90333', '', $shortcode);
 			
-		} else if (Strings::startsWith($shortcode, '90333')) {
+		} else if (Strings::startsWith($shortcode, '90733')) {
 			return (int) str_replace('90733', '', $shortcode);
 			
 		} else if (Strings::startsWith($shortcode, '8877') && $shortcode !== '8877') {

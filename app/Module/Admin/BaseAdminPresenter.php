@@ -10,6 +10,9 @@ use Minecord\Model\User\User;
 use Minecord\Model\User\UserProvider;
 use Nette\Application\UI\Presenter;
 
+/**
+ * @property BaseAdminTemplate $template
+ */
 abstract class BaseAdminPresenter extends Presenter
 {
 	/** @inject */
@@ -46,6 +49,7 @@ abstract class BaseAdminPresenter extends Presenter
 		$this->setLayout(__DIR__ . '/@Templates/@Layout/layout.latte');
 		$this->getTemplate()->setFile(__DIR__ . '/@Templates/' . str_replace('Admin:', '', $this->getName()) . '/' . $this->getAction() .'.latte');
 		$this->template->user = $this->user;
+		$this->template->isAuthPresenter = $this->getName() === 'Admin:Auth';
 	}
 
 	public function handleLogout(): void

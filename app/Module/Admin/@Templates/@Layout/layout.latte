@@ -1,3 +1,4 @@
+{templateType Minecord\Module\Admin\BaseAdminTemplate}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
 </head>
 
 <body>
-	{if $presenter->getName() === 'Admin:Auth'}
+	{if $isAuthPresenter}
 		<div class="page">
 			{include content}
 		</div>

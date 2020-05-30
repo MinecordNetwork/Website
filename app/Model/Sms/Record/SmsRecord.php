@@ -40,7 +40,7 @@ class SmsRecord
 	private string $country;
 
 	/** @ORM\Column(type="string", nullable=true) */
-	private string $answer;
+	private ?string $answer;
 
 	/** @ORM\Column(type="boolean") */
 	private bool $requireConfirmation;
@@ -116,6 +116,11 @@ class SmsRecord
 	public function getConfirmedAt(): DateTime
 	{
 		return $this->confirmedAt;
+	}
+
+	public function isConfirmed(): bool
+	{
+		return $this->confirmedAt !== null;
 	}
 
 	public function getCreatedAt(): DateTime

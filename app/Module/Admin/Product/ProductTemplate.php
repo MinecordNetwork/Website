@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Minecord\Module\Admin\Product;
 
 use Minecord\Model\Product\Product;
-use Nette\Bridges\ApplicationLatte\Template;
+use Minecord\Module\Admin\BaseAdminTemplate;
 
-class ProductTemplate extends Template
+class ProductTemplate extends BaseAdminTemplate
 {
 	public ?Product $product;
 }

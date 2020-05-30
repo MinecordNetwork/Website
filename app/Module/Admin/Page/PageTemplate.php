@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Minecord\Module\Admin\Page;
 
 use Minecord\Model\Page\Page;
-use Nette\Bridges\ApplicationLatte\Template;
+use Minecord\Module\Admin\BaseAdminTemplate;
 
-class PageTemplate extends Template
+class PageTemplate extends BaseAdminTemplate
 {
 	public ?Page $page;
 }
