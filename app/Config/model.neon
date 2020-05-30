@@ -13,3 +13,6 @@ search:
 			- *Sorter
 			- *Manager
 			- *Config
+
+services:
+    discordWebhook: Minecord\Model\Discord\DiscordWebhook(%discord.webhookUrl%)

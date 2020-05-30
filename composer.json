@@ -47,7 +47,8 @@
         "php-minecraft/minecraft-query": "dev-master",
         "ocramius/package-versions": "1.8",
         "doctrine/inflector": "1.4",
-        "apitte/core": "0.7.x-dev"
+        "apitte/core": "0.7.x-dev",
+        "guzzlehttp/guzzle": "^7.0@dev"
     },
     "autoload": {
         "psr-4": {

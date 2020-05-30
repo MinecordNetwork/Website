@@ -108,7 +108,7 @@ class SmsRecord
 		return $this->externalId;
 	}
 
-	public function isRequireConfirmation(): bool
+	public function requireConfirmation(): bool
 	{
 		return $this->requireConfirmation;
 	}
@@ -131,5 +131,10 @@ class SmsRecord
 	public function setupAnswer(string $answer): void
 	{
 		$this->answer = $answer;
+	}
+
+	public function getCountry(): string
+	{
+		return $this->country;
 	}
 }

@@ -48,7 +48,7 @@ abstract class SmsRecordRepository
 	/**
 	 * @throws SmsRecordNotFoundException
 	 */
-	public function getByExternalId(string $externalId): SmsRecord
+	public function getByExternalId(int $externalId): SmsRecord
 	{
 		/** @var SmsRecord $smsRecord */
 		$smsRecord = $this->getRepository()->findOneBy([

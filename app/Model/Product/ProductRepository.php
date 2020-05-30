@@ -48,15 +48,34 @@ abstract class ProductRepository
 	/**
 	 * @throws ProductNotFoundException
 	 */
-	public function getBySmsCode(string $smsCode): Product
+	public function getBySmsCodeAndPriceCzech(string $smsCode, float $price): Product
 	{
 		/** @var Product $product */
 		$product = $this->getRepository()->findOneBy([
-			'smsCode' => $smsCode
+			'smsCode' => $smsCode,
+			'priceCzechSms' => $price,
 		]);
 
 		if ($product === null) {
-			throw new ProductNotFoundException(sprintf('Product with smsCode "%s" not found.', $smsCode));
+			throw new ProductNotFoundException(sprintf('Product with smsCode "%s" and priceSlovakSms "%s" not found.', $smsCode, $price));
+		}
+
+		return $product;
+	}
+
+	/**
+	 * @throws ProductNotFoundException
+	 */
+	public function getBySmsCodeAndPriceSlovak(string $smsCode, float $price): Product
+	{
+		/** @var Product $product */
+		$product = $this->getRepository()->findOneBy([
+			'smsCode' => $smsCode,
+			'priceSlovakSms' => $price,
+		]);
+
+		if ($product === null) {
+			throw new ProductNotFoundException(sprintf('Product with smsCode "%s" and priceSlovakSms "%s" not found.', $smsCode, $price));
 		}
 
 		return $product;

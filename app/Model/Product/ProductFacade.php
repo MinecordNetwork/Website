@@ -47,6 +47,18 @@ final class ProductFacade extends ProductRepository
 	/**
 	 * @throws ProductNotFoundException
 	 */
+	public function give(UuidInterface $id, string $nickname): Product
+	{
+		$product = $this->get($id);
+		
+		//TODO: Give logic
+
+		return $product;
+	}
+
+	/**
+	 * @throws ProductNotFoundException
+	 */
 	public function delete(UuidInterface $id): void
 	{
 		$product = $this->get($id);

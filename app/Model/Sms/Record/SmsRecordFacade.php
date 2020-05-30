@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Minecord\Model\Sms\Record;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Minecord\Model\Sms\Record\Event\SmsRecordConfirmedEvent;
 use Minecord\Model\Sms\Record\Event\SmsRecordCreatedEvent;
 use Minecord\Model\Sms\Record\Event\SmsRecordPreCreatedEvent;
 use Minecord\Model\Sms\Record\Exception\SmsRecordNotFoundException;
@@ -38,6 +39,19 @@ final class SmsRecordFacade extends SmsRecordRepository
 		$this->entityManager->flush();
 		
 		$this->eventDispatcher->dispatch(new SmsRecordCreatedEvent($smsRecord));
+
+		return $smsRecord;
+	}
+
+	public function onConfirm(UuidInterface $id): SmsRecord
+	{
+		$smsRecord = $this->get($id);
+		
+		$smsRecord->onConfirm();
+
+		$this->entityManager->flush();
+		
+		$this->eventDispatcher->dispatch(new SmsRecordConfirmedEvent($smsRecord));
 
 		return $smsRecord;
 	}
