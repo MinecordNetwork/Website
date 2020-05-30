@@ -39,6 +39,9 @@ class SmsRecord
 	/** @ORM\Column(type="string") */
 	private string $country;
 
+	/** @ORM\Column(type="string", nullable=true) */
+	private string $answer;
+
 	/** @ORM\Column(type="boolean") */
 	private bool $requireConfirmation;
 
@@ -64,6 +67,7 @@ class SmsRecord
 		$this->phone = $data->phone;
 		$this->externalId = $data->externalId;
 		$this->country = $data->country;
+		$this->answer = $data->answer;
 		$this->attempt = $data->attempt;
 		$this->requireConfirmation = $data->requireConfirmation;
 		$this->sentAt = $data->sentAt;	
@@ -117,5 +121,15 @@ class SmsRecord
 	public function getCreatedAt(): DateTime
 	{
 		return $this->createdAt;
+	}
+
+	public function getAnswer(): ?string
+	{
+		return $this->answer;
+	}
+
+	public function setupAnswer(string $answer): void
+	{
+		$this->answer = $answer;
 	}
 }

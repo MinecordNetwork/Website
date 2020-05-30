@@ -19,8 +19,13 @@ class SmsPresenter extends Presenter
 		parent::__construct();
 		$this->smsRecordFacade = $smsRecordFacade;
 	}
+	
+	public function actionConfirm(): void
+	{
+		
+	}
 
-	public function actionTest(string $id, string $sms, string $shortcode, string $phone, string $operator, string $timestamp, string $country, int $att): void
+	public function actionAccept(string $id, string $sms, string $shortcode, string $phone, string $operator, string $timestamp, string $country, int $att): void
 	{
 		$this->getHttpResponse()->setCode(200);
 		$this->getHttpResponse()->setContentType('text/plain');
@@ -34,14 +39,10 @@ class SmsPresenter extends Presenter
 		$data->sentAt = DateTime::createFromFormat('Y-m-d\TH:i:s', substr($timestamp, 0, 19));
 		$data->country = $country;
 		$data->attempt = $att;
+		$data->requireConfirmation = substr($shortcode, 0, 5) !== '90333';
 		
-		$this->smsRecordFacade->create($data);
+		$smsRecord = $this->smsRecordFacade->create($data);
 		
-		$this->sendResponse(new TextResponse('Dekujeme za zaslani SMS.'));
-	}
-	
-	public function beforeRender()
-	{
-
+		$this->sendResponse(new TextResponse($smsRecord->getAnswer()));
 	}
 }

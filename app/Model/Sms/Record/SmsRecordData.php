@@ -14,6 +14,7 @@ final class SmsRecordData
 	public string $phone;
 	public string $externalId;
 	public string $country;
+	public string $answer;
 	public bool $requireConfirmation = false;
 	public int $attempt;
 	public DateTime $sentAt;
