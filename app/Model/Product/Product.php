@@ -7,6 +7,7 @@ namespace Minecord\Model\Product;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Minecord\Model\Image\Image;
+use Minecord\Model\Sms\SmsPriceResolver;
 use Ramsey\Uuid\UuidInterface;
 use Rixafy\DoctrineTraits\SortOrderTrait;
 use Rixafy\Language\LanguageStaticHolder;
@@ -116,7 +117,6 @@ class Product
 		$data->discountPercent = $this->discountPercent;
 		$data->isRank = $this->isRank;
 		$data->smsCode = $this->smsCode;
-		$data->duration = $this->duration;
 
 		return $data;
 	}
@@ -164,6 +164,16 @@ class Product
 	public function getPriceSlovakSms(): float
 	{
 		return $this->priceSlovakSms;
+	}
+
+	public function getCzechSmsNumber(): string
+	{
+		return SmsPriceResolver::reverse($this->priceCzechSms);
+	}
+
+	public function getSlovakSmsNumber(): string
+	{
+		return SmsPriceResolver::reverse($this->priceSlovakSms);
 	}
 
 	public function getDiscountedPrice(): float

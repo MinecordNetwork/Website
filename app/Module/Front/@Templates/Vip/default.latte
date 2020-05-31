@@ -12,10 +12,56 @@
                         <img src="{$rank->getThumbnail()->getPublicPath()}" alt=""/>
                         <br/>
                         <div class="card-body">
-                            {if $locale === 'cs'}
-                                <a href="#" class="btn btn-success btn-block">SMS - {$rank->getPriceCzechSms()} Kč</a>
+                            {if $country === 'CZ' || $country === 'SK'}
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-{$rank->getId()->getInteger()}" class="btn btn-success btn-block">SMS - {if $country === 'CZ'}{$rank->getPriceCzechSms()|currency: 'CZK'}{else}{$rank->getPriceSlovakSms()|currency: 'EUR'}{/if}</a>
                             {/if}
-                            <a href="#" style="background:#3B7BBF; border-color:#3B7BBF" class="btn btn-info btn-block">PayPal - {$rank->getPrice()} EUR</a>
+                            <a href="#" style="background:#3B7BBF; border-color:#3B7BBF" class="btn btn-info btn-block disabled">PayPal - {$rank->getPrice()} EUR</a>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modal-{$rank->getId()->getInteger()}" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-full-width modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="row w-100">
+                                        <div class="col-10">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Zakoupení <strong>{$rank->getName()}</strong> přes SMS {if $country === 'CZ'}z <strong>Česka</strong>{else}zo <strong>Slovenska</strong>{/if}</h5>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <img class="position-absolute flag" src="/img/flags/{if $country === 'CZ'}czechia{else}slovakia{/if}.svg"/>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="modal-body">
+                                    <p>Zakoupená věc bude aktivována automaticky po odeslání SMS, na velikosti písma nezáleží.</p>
+                                    {if $country === 'CZ'}
+                                        <p>
+                                            <span>Zašlete sms: <strong class="sms-text">MINECORD VIP VášNick</strong> na číslo <strong class="sms-text">{$rank->getCzechSmsNumber()}</strong></span><br/>
+                                        </p>
+                                        <p class="text-danger">
+                                            Nezapomeňte nahradit <strong>VášNick</strong> vaším nickem na našem serveru.
+                                        </p>
+                                        <p>Cena SMS je <strong>{$rank->getPriceSlovakSms()|currency: 'CZK'}</strong> vč. DPH</p>
+                                        <div class="text-dark small">
+                                            Službu technicky zajišťuje Airtoy a.s. Reklamace plateb na reklamace@airtoy.cz nebo lince 602 777 555, 9 - 17 hodin, Po-Pá, www.platmobilem.cz. Kontakt na provozovatele: rixafy@gmail.com
+                                        </div>
+                                    {elseif $country === 'SK'}
+                                        <p>
+                                            <span>Zašlite sms: <strong class="sms-text">MINECORD VIP VášNick</strong> na číslo <strong class="sms-text">{$rank->getSlovakSmsNumber()}</strong></span><br/>
+                                        </p>
+                                        <p class="text-danger">
+                                            Nezabudnite nahradiť <strong>VášNick</strong> vaším nickom na našom serveri.
+                                        </p>
+                                        <p>Cena SMS je <strong>{$rank->getPriceSlovakSms()|currency: 'EUR'}</strong> vrátane DPH</p>
+                                        <div class="text-dark small">
+                                            Technicky zaisťuje Airtoy a.s. Reklamácie platieb na reklamace@airtoy.cz nebo na linke +420 602 777 555, 9 - 17 hodin, Po-Pi, www.platmobilem.cz. Kontakt na prevádzkovateľa: rixafy@gmail.com
+                                        </div>
+                                    {/if}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">{_'header.joinModal.done'}</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
