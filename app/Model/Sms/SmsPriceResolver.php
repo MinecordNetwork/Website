@@ -22,4 +22,16 @@ class SmsPriceResolver
 		
 		return 0;
 	}
+	
+	public static function reverse(float $price): string 
+	{
+		if ($price > 99) {
+			return sprintf('90733%s', $price);
+			
+		} else if ($price > 20) {
+			return sprintf('90333%s', $price);
+		}
+		
+		return sprintf('8877%02d00', $price);
+	}
 }
