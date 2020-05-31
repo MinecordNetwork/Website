@@ -21,5 +21,6 @@ final class ProductData
 	public float $discountedPriceSlovakSms = 0;
 	public ?DateTime $discountActiveTo = null;
 	public int $discountPercent = 0;
+	public int $duration = 0;
 	public bool $isRank = false;
 }

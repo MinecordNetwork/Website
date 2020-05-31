@@ -16,3 +16,4 @@ search:
 
 services:
     discordWebhook: Minecord\Model\Discord\DiscordWebhook(%discord.webhookUrl%)
+    rconCredentials: Minecord\Model\Rcon\RconCredentials(%server.rconPassword%)

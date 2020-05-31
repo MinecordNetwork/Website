@@ -66,6 +66,9 @@ class Product
 	/** @ORM\Column(type="boolean") */
 	private bool $isRank = false;
 
+	/** @ORM\Column(type="integer") */
+	private int $duration;
+
 	/** @ORM\ManyToOne(targetEntity="\Minecord\Model\Image\Image") */
 	private ?Image $thumbnail = null;
 	
@@ -93,6 +96,7 @@ class Product
 		$this->discountPercent = $data->discountPercent;
 		$this->isRank = $data->isRank;
 		$this->smsCode = $data->smsCode;
+		$this->duration = $data->duration;
 	}
 
 	public function getData(): ProductData
@@ -112,6 +116,7 @@ class Product
 		$data->discountPercent = $this->discountPercent;
 		$data->isRank = $this->isRank;
 		$data->smsCode = $this->smsCode;
+		$data->duration = $this->duration;
 
 		return $data;
 	}
@@ -199,5 +204,10 @@ class Product
 	public function getThumbnail(): ?Image
 	{
 		return $this->thumbnail;
+	}
+
+	public function getDuration(): int
+	{
+		return $this->duration;
 	}
 }

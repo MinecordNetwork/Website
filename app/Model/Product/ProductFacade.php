@@ -6,19 +6,26 @@ namespace Minecord\Model\Product;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Minecord\Model\Image\Image;
+use Minecord\Model\Product\Event\ProductPurchasedEvent;
 use Minecord\Model\Product\Exception\ProductNotFoundException;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Ramsey\Uuid\UuidInterface;
 
 final class ProductFacade extends ProductRepository
 {
 	private ProductFactory $productFactory;
 	private EntityManagerInterface $entityManager;
+	private EventDispatcherInterface $eventDispatcher;
 
-	public function __construct(ProductFactory $productFactory, EntityManagerInterface $entityManager)
-	{
+	public function __construct(
+		ProductFactory $productFactory,
+		EntityManagerInterface $entityManager, 
+		EventDispatcherInterface $eventDispatcher
+	) {
 		parent::__construct($entityManager);
 		$this->productFactory = $productFactory;
 		$this->entityManager = $entityManager;
+		$this->eventDispatcher = $eventDispatcher;
 	}
 
 	public function create(ProductData $data): Product
@@ -47,11 +54,11 @@ final class ProductFacade extends ProductRepository
 	/**
 	 * @throws ProductNotFoundException
 	 */
-	public function give(UuidInterface $id, string $nickname): Product
+	public function onPurchase(UuidInterface $id, string $nickname): Product
 	{
 		$product = $this->get($id);
 		
-		//TODO: Give logic
+		$this->eventDispatcher->dispatch(new ProductPurchasedEvent($product, $nickname));
 
 		return $product;
 	}

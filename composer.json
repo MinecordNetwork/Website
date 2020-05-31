@@ -48,7 +48,8 @@
         "ocramius/package-versions": "1.8",
         "doctrine/inflector": "1.4",
         "apitte/core": "0.7.x-dev",
-        "guzzlehttp/guzzle": "^7.0@dev"
+        "guzzlehttp/guzzle": "^7.0@dev",
+        "thedudeguy/rcon": "dev-master"
     },
     "autoload": {
         "psr-4": {

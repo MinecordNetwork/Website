@@ -76,7 +76,7 @@ class ProductSubscriber implements EventSubscriberInterface
 			}
 			
 			if (!$onlyAnswer) {
-				$this->productFacade->give($product->getId(), $smsTextParts[2]);
+				$this->productFacade->onPurchase($product->getId(), $smsTextParts[2]);
 			}
 			
 		} catch (ProductNotFoundException $e) {
