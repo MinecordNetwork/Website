@@ -134,10 +134,15 @@ a
     width: 100%
     height: auto
   .vip
-    .fa-check
-      color: #029600
-    .fa-times
-      color: #ff0303
+    table
+      .fa-check
+        color: #029600
+      .fa-times
+        color: #ff0303
+      td, th
+        text-align: center
+        &:first-child
+          text-align: left
 
 .tooltip
   font-family: 'PowerStation', impact, serif
