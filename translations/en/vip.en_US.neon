@@ -1,2 +1,10 @@
 title: "Activate VIP"
 latestActivations: "Latest activations"
+paypal: 
+    payment: "PayPal Payment for"
+    nickname: "Nickname"
+    package: "Package"
+    price: "Price"
+    continue: "Continue to PayPal"
+card: "Card"
+successfullyActivated: "Package was successfully activated, check the game!"

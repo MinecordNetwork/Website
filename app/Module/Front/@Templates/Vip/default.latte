@@ -1,10 +1,13 @@
-{templateType \Minecord\Module\Front\Vip\VipTemplate}
+{templateType Minecord\Module\Front\Vip\VipTemplate}
+{block scripts}
+    <script src="https://www.paypal.com/sdk/js?client-id={$payPalClientId}&currency=EUR"></script>
+{/block}
 {block title}{_'vip.title'}{/block}
 {block content}
 <div class="container flex-shrink-0 mt-4 mb-2">
     <div class="row">
         <main class="col-12 col-md-8 store">
-            <div class="row ranks">
+            <div n:snippet="productSnippetContainer" class="row ranks">
                 {varType Minecord\Model\Product\Product $rank}
                 <div n:foreach="$ranks as $rank" class="col-4">
                     <div class="card">
@@ -13,9 +16,9 @@
                         <br/>
                         <div class="card-body">
                             {if $country === 'CZ' || $country === 'SK'}
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-{$rank->getId()->getInteger()}" class="btn btn-success btn-block">SMS - {if $country === 'CZ'}{$rank->getPriceCzechSms()|currency: 'CZK'}{else}{$rank->getPriceSlovakSms()|currency: 'EUR'}{/if}</a>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-{$rank->getId()->getInteger()}" class="btn btn-success btn-block">SMS - <strong>{if $country === 'CZ'}{$rank->getPriceCzechSms()|currency: 'CZK'}{else}{$rank->getPriceSlovakSms()|currency: 'EUR'}{/if}</strong></a>
                             {/if}
-                            <a href="#" style="background:#3B7BBF; border-color:#3B7BBF" class="btn btn-info btn-block disabled">PayPal - {$rank->getPrice()} EUR</a>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-paypal-{$rank->getId()->getInteger()}" style="background:#3B7BBF; border-color:#3B7BBF" class="btn btn-info btn-block">PayPal/{_'vip.card'} - <strong>{if $country === 'CZ'}{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}{else}{$rank->getPrice()|currency: 'EUR'}{/if}</strong>{if $country === 'CZXX'}<br/><small>Přibližně <strong>{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}</strong></small>{/if}</a>
                         </div>
                     </div>
                     <div class="modal fade" id="modal-{$rank->getId()->getInteger()}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -64,6 +67,114 @@
                             </div>
                         </div>
                     </div>
+                    
+                    {var $id = $rank->getId()->getHex()}
+                    {form productForm-$id}
+                    <div class="modal fade" id="modal-paypal-{$rank->getId()->getInteger()}" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-full-width modal-md" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="row w-100">
+                                        <div class="col-12">
+                                            <h5 class="modal-title">{_'vip.paypal.payment'} <strong>{$rank->getName()}</strong></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                {snippet productSnippet-$id}
+                                <div class="modal-body {if $paymentSuccessful}text-center{/if}">
+                                    {if !$paymentSuccessful}
+                                        {var $disableForm = $payPalPayment !== null && $payPalPayment->getProduct()->getId() === $rank->getId()}
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-sm-10 control-label">
+                                                <label n:name="nickname">{_'vip.paypal.nickname'}</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input autocomplete="off" {if $disableForm}disabled{/if} n:name="nickname" class="form-control text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-sm-5">
+                                                <div class="row">
+                                                    <div class="col-sm-12 control-label">
+                                                        <label>{_'vip.paypal.package'}</label>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <input disabled value="{$rank->getName()}" class="form-control text"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="row">
+                                                    <div class="col-sm-12 control-label">
+                                                        <label>{_'vip.paypal.price'}</label>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <input disabled value="{$rank->getPrice()|currency: 'EUR'}" class="form-control text"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div n:if="!$disableForm" class="form-group row justify-content-center">
+                                            <div class="col-sm-10 mt-1">
+                                                <button type="submit" class="btn btn-primary btn-block ajax">{_'vip.paypal.continue'}</button>
+                                            </div>
+                                        </div>
+                                        
+                                        {if $payPalPayment !== null && $payPalPayment->getProduct()->getId() === $rank->getId()}
+                                            <div class="form-group row justify-content-center">
+                                                <div class="col-sm-10 mt-1">
+                                                    <div id="paypal-button-container-{$rank->getId()->getHex()}"></div>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                paypal.Buttons({
+                                                    createOrder: function(data, actions) {
+                                                        return actions.order.create({
+                                                            purchase_units: [{
+                                                                reference_id: {$payPalPayment->getId()},
+                                                                amount: {
+                                                                    value: {$payPalPayment->getPrice()}
+                                                                }
+                                                            }],
+                                                            application_context: {
+                                                                shipping_preference: 'NO_SHIPPING'
+                                                            }
+                                                        });
+                                                    },
+                                                    onApprove: function(data) {
+                                                        fetch({link :Api:PayPal:default} + '?orderId=' + data.orderID)
+                                                            .then(response=>response.json())
+                                                            .then(data => {
+                                                                if (data.success) {
+                                                                    {*$.ajax({
+                                                                        'url': handleOptionSelectedUrl,
+                                                                        'data': {optionVal: val}
+                                                                    });
+                                                                    window.location = {link success}*}
+                                                                    $.nette.ajax({
+                                                                        type: "POST",
+                                                                        dataType: "json",
+                                                                        url: {link success!}
+                                                                    });
+                                                                }
+                                                            });
+                                                    }
+                                                }).render('#paypal-button-container-' + {$rank->getId()->getHex()});
+                                            </script>
+                                        {/if}
+                                    {else}
+                                        <i class="fas fa-check-circle mt-2" style="font-size:5em; color:#2f67a5"></i>
+                                        <p class="mt-2">{_'vip.successfullyActivated'}</p>
+                                    {/if}
+                                    </div>
+                                    <div n:if="$paymentSuccessful" class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">{_'header.joinModal.done'}</button>
+                                    </div>
+                                {/snippet}
+                            </div>
+                        </div>
+                    </div>
+                    {/form}
                 </div>
             </div>
             {include '@Includes/advantages_' . $locale . '.latte'}

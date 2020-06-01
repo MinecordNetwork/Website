@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Minecord\Model\Rcon;
 
 use Minecord\Model\Product\Event\ProductPurchasedEvent;
+use Minecord\Model\Product\Product;
 use Minecord\Model\Server\ServerFacade;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -30,13 +31,18 @@ class RconSubscriber implements EventSubscriberInterface
 
 	public function onProductPurchased(ProductPurchasedEvent $event): void
 	{
+		$this->activate($event->getProduct(), $event->getNickname());
+	}
+	
+	private function activate(Product $product, string $nickname): void
+	{
 		foreach ($this->serverFacade->getAll() as $server) {
 			if ($server->rconPort !== null) {
-				if ($event->getProduct()->isIsRank()) {
-					$this->rconFacade->sendCommands([sprintf('cordex store %s SMS VIP', $event->getNickname())], $server->host, $server->rconPort);
-					$this->rconFacade->sendCommands([sprintf('cordex premium %s %s fake', $event->getNickname(), $event->getProduct()->getDuration())], $server->host, $server->rconPort);
+				if ($product->isIsRank()) {
+					$this->rconFacade->sendCommands([sprintf('cordex store %s SMS VIP', $nickname)], $server->host, $server->rconPort);
+					$this->rconFacade->sendCommands([sprintf('cordex premium %s %s fake', $nickname, $product->getDuration())], $server->host, $server->rconPort);
 					if ($server->name === 'lobby') {
-						$this->rconFacade->sendCommands([sprintf('cordex premium %s %s', $event->getNickname(), $event->getProduct()->getDuration())], $server->host, $server->rconPort);
+						$this->rconFacade->sendCommands([sprintf('cordex premium %s %s', $nickname, $product->getDuration())], $server->host, $server->rconPort);
 					}
 				}
 			}

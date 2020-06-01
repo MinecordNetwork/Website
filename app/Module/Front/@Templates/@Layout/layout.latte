@@ -43,6 +43,37 @@
 <script src="/js/jquery.min.js?deploy={$assetVersion}"></script>
 <script src="/js/popper.min.js?deploy={$assetVersion}"></script>
 <script src="/js/bootstrap.min.js?deploy={$assetVersion}"></script>
+<script src="/js/nette.min.js"></script>
+<script src="/js/nette.ajax.js"></script>
+<script src="/js/live.form.validation.js"></script>
 <script src="/js/main.js?deploy={$assetVersion}"></script>
+<script>
+    $(function () {
+        $.nette.ext('spinner', {
+            init: function () {
+                spinner = $('<div></div>', { id: "ajax-spinner" });
+                spinner.appendTo("body");
+            },
+            before: function (settings, ui, e) {
+                $("#ajax-spinner").css({
+                    visibility: "visible",
+                    left: e.pageX,
+                    top: e.pageY
+                });
+            },
+            complete: function () {
+                $("#ajax-spinner").css({
+                    visibility: "hidden"
+                });
+            }
+        });
+        
+        $.nette.init();
+
+        LiveForm.setOptions({
+            messageErrorPrefix: ''
+        });
+    });
+</script>
 </body>
 </html>

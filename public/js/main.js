@@ -21,7 +21,7 @@ $(function () {
 
 // Online map fullscreen
 const button = document.querySelector('#online-map-fullscreen');
-if (button !== undefined) {
+if (button !== null) {
     button.addEventListener('click', fullscreen);
 
     const button2 = document.querySelector('#online-map-maximize');

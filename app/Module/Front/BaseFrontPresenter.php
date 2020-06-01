@@ -13,6 +13,7 @@ use Minecord\Model\User\User;
 use Minecord\Model\User\UserProvider;
 use Nette\Application\Helpers;
 use Nette\Application\UI\Presenter;
+use Rixafy\Currency\CurrencyProvider;
 use Rixafy\Language\Language;
 use Rixafy\Language\LanguageProvider;
 use Tracy\Debugger;
@@ -35,6 +36,9 @@ abstract class BaseFrontPresenter extends Presenter
 	public LanguageProvider $languageProvider;
 	
 	/** @inject */
+	public CurrencyProvider $currencyProvider;
+	
+	/** @inject */
 	public SystemProvider $systemProvider;
 
 	protected System $system;
@@ -48,6 +52,7 @@ abstract class BaseFrontPresenter extends Presenter
 
 		$this->sessionProvider->setup();
 		$this->languageProvider->setup(isset($_SERVER['SERVER_NAME']) && substr($_SERVER['SERVER_NAME'], -3) === 'net' ? 'en' : 'cs');
+		$this->currencyProvider->setup('EUR');
 		
 		$this->system = $this->systemProvider->provide();
 		$this->session = $this->sessionProvider->provide();
@@ -71,6 +76,7 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->template->user = $this->user;
 		$this->template->locale = $this->language->getIso();
 		$this->template->country = $_SERVER['HTTP_CF_IPCOUNTRY'];
+		$this->template->currency = $this->currencyProvider->provide();
 		$this->template->assetVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
 		
 		if ($this->template->locale === 'cs') {

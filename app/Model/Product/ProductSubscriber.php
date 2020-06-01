@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Minecord\Model\Product;
 
+use Minecord\Model\Payment\PayPal\Event\PayPalPaymentAcceptedEvent;
 use Minecord\Model\Product\Exception\ProductNotFoundException;
 use Minecord\Model\Sms\Record\Event\SmsRecordConfirmedEvent;
 use Minecord\Model\Sms\Record\Event\SmsRecordCreatedEvent;
@@ -27,8 +28,14 @@ class ProductSubscriber implements EventSubscriberInterface
 		return [
 			SmsRecordPreCreatedEvent::class => 'onSmsRecordPreCreated',
 			SmsRecordCreatedEvent::class => 'onSmsRecordCreated',
-			SmsRecordConfirmedEvent::class => 'onSmsRecordConfirmed'
+			SmsRecordConfirmedEvent::class => 'onSmsRecordConfirmed',
+			PayPalPaymentAcceptedEvent::class => 'onPayPalPaymentAccepted'
 		];
+	}
+
+	public function onPayPalPaymentAccepted(PayPalPaymentAcceptedEvent $event): void
+	{
+		$this->productFacade->onPurchase($event->getPayPalPayment()->getProduct()->getId(), $event->getPayPalPayment()->getNickname());
 	}
 
 	public function onSmsRecordPreCreated(SmsRecordPreCreatedEvent $event): void

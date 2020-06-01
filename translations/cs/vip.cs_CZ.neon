@@ -1,2 +1,10 @@
 title: "Aktivace VIP"
 latestActivations: "Poslední aktivace"
+paypal: 
+    payment: "Paypal platba pro"
+    nickname: "Herní nick"
+    package: "Balíček"
+    price: "Cena"
+    continue: "Pokračovat k PayPal platbě"
+card: "Karta"
+successfullyActivated: "Balíček byl úspěšne aktivován a předán do hry!"
