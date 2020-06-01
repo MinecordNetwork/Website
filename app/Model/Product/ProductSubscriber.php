@@ -63,7 +63,7 @@ class ProductSubscriber implements EventSubscriberInterface
 		$country = SmsCountryResolver::resolve($smsRecord->getShortcode());
 		$price = SmsPriceResolver::resolve($smsRecord->getShortcode());
 
-		$invalidSms = function () use($smsRecord, $country): string {
+		$invalidSms = function () use ($smsRecord, $country): string {
 			if ($country === 'CZ') {
 				return 'Spatny format SMS, zaslana SMS nebyla zpoplatnena. Minecord.cz;FREE' . $smsRecord->getShortcode();
 			} else {
