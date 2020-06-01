@@ -15,6 +15,7 @@ class BaseFrontTemplate extends Template
 	public string $dateTimeFormat;
 	public string $dateFormat;
 	public string $locale;
+	public string $localeOther;
 	public string $country;
 	public Currency $currency;
 	public int $assetVersion;

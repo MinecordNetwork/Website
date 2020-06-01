@@ -6,6 +6,7 @@ namespace Minecord\Router;
 
 use Minecord\Model\Route\RouteProvider;
 use Nette\Application\Routers\RouteList;
+use Nette\Utils\Strings;
 
 final class RouterFactory
 {
@@ -33,8 +34,19 @@ final class RouterFactory
 		
 		$frontRouter = $this->routeProvider->getDynamicRouteList($locale);
 
-		$frontRouter->addRoute('<presenter=Homepage>[/<action=default>]', [
+		$firstDomain = '//' . $_SERVER['SERVER_NAME'];
+		if (Strings::contains($firstDomain, '.net')) {
+			$secondDomain = str_replace('.net', '.cz', $firstDomain);
+		} else {
+			$secondDomain = str_replace('.cz', '.net', $firstDomain);
+		}
+		
+		$frontRouter->addRoute($firstDomain . '/<presenter=Homepage>[/<action=default>]', [
 			'locale' => $locale
+		]);
+
+		$frontRouter->addRoute($secondDomain . '/<presenter=Homepage>[/<action=default>]', [
+			'locale' => $locale === 'cs' ? 'en' : 'cs'
 		]);
 
 		return $frontRouter;
