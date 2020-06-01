@@ -1,0 +1,15 @@
+about: "About our server"
+aboutContent: "Project Minecord was founded in 2018. Since then, we are doing our best to keep servers in good conditions on high quality hardware. Our domain are minigames, but you can still find pretty good Survival, Skyblock or Creative. We are programming our system and minigames by ourselves, all our work is open-source."
+social: "Where to find us"
+infoAndContact: "Info and contact"
+copyright: "all rights reserved"
+joinUs: "Join us, we are open-souce"
+links:
+    facebookUrl: "https://www.facebook.com/Minecord.net/"
+    rules: "Rules"
+    privacyPolicy: "Privacy Policy"
+    technicalBackground: "Technical background"
+    contact: "Contact"
+contactModal:
+    email: "Our email is rixafy"
+    discord: "But we can respond faster on our discord"

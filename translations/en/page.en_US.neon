@@ -1,0 +1,6 @@
+customPages:
+    onlineMaps:
+        survival: "Survival Online Map"
+        creative: "Creative Online Map"
+        maximize: "Zoom"
+        fullscreen: "Fullscreen"

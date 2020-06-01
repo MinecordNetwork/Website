@@ -1,0 +1,11 @@
+title: "Voting"
+alert: "At the end of the month top 5 players will receive great rewards!"
+info: "Support our server by voting on online serverlists, your votes are moving us up in the lists, for every vote you'll receive a reward!"
+topVotersThisMonth: "Top voters this month"
+topVotersLastMonth: "Top voters last month"
+voteCount: "Vote count"
+lastVote: "Last vote"
+modal:
+    title: "Fore for our server at "
+    sendVote: "Continue to vote"
+    info: "Here you can vote <strong>once caily</strong>, you'll receive <strong>Vote Key</strong> for every vote."

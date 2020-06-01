@@ -15,6 +15,7 @@ use Nette\Application\Helpers;
 use Nette\Application\UI\Presenter;
 use Rixafy\Language\Language;
 use Rixafy\Language\LanguageProvider;
+use Tracy\Debugger;
 
 /**
  * @property BaseFrontTemplate $template
@@ -52,12 +53,12 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->session = $this->sessionProvider->provide();
 		$this->user = $this->userProvider->provide();
 		$this->language = $this->languageProvider->provide();
-
-		if (isset($_SERVER['HTTP_USER_AGENT']) && !preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']) && !$this->getParameter('debugMode')) {
+		
+		if (isset($_SERVER['HTTP_USER_AGENT']) && !preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']) && Debugger::$productionMode && $this->user === null) {
 			if ($this->language->getIso() === 'cs' && !in_array($_SERVER['HTTP_CF_IPCOUNTRY'], ['CZ', 'SK'])) {
-				$this->redirectUrl('https://minecord.net');
+				$this->redirectUrl('https://minecord.net' . $_SERVER['REQUEST_URI']);
 			} elseif ($this->language->getIso() === 'en' && in_array($_SERVER['HTTP_CF_IPCOUNTRY'], ['CZ', 'SK'])) {
-				$this->redirectUrl('https://minecord.cz');
+				$this->redirectUrl('https://minecord.cz' . $_SERVER['REQUEST_URI']);
 			}
 		}
 	}

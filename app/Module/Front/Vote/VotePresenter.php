@@ -27,7 +27,7 @@ class VotePresenter extends BaseFrontPresenter
 		$this->playerFacade = $playerFacade;
 	}
 
-	public function actionDefault(int $playerId = null): void
+	public function actionDefault(int $pid = null): void
 	{
 		$this->template->voteStats = $this->voteFacade->getVoteStats((int) date('Y'), (int) date('m'), 100);
 
@@ -36,9 +36,9 @@ class VotePresenter extends BaseFrontPresenter
 		
 		$this->template->voteSites = VoteSite::getAll();
 		
-		if ($playerId !== null) {
+		if ($pid !== null) {
 			try {
-				$this->template->nickname = $this->playerFacade->get($playerId)->nickname;
+				$this->template->nickname = $this->playerFacade->get($pid)->nickname;
 			} catch (PlayerNotFoundException $e) {
 			}
 		}
