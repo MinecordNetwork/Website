@@ -80,7 +80,7 @@
                             <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$activation->nickname}/25.png" alt="{$activation->nickname}"/>
                             <span class="d-table-row">{$activation->nickname}</span>
                         </td>
-                        <td>{$activation->activatedAt->format('d.m.Y H:i:s')}</td>
+                        <td>{$activation->activatedAt->format($dateTimeFormat)}</td>
                     </tr>
                     </tbody>
                 </table>

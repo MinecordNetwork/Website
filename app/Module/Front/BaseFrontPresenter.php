@@ -63,6 +63,14 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->template->locale = $this->language->getIso();
 		$this->template->country = $_SERVER['HTTP_CF_IPCOUNTRY'];
 		$this->template->assetVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
+		
+		if ($this->template->locale === 'cs') {
+			$this->template->dateFormat = 'd.m.Y';
+			$this->template->dateTimeFormat = 'd.m.Y H:i';
+		} else {
+			$this->template->dateFormat = 'Y-m-d';
+			$this->template->dateTimeFormat = 'Y-m-d H:i';
+		}
 	}
 
 	public function handleLogout(): void

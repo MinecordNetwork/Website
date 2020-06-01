@@ -25,8 +25,8 @@
                             <img data-placement="left" title="{$ban->adminName}" data-toggle="tooltip" style="image-rendering: pixelated" src="https://minotar.net/helm/{$ban->adminName}/25.png" alt="{$ban->adminName}"/>
                         </td>
                         <td>{$ban->reason}</td>
-                        <td>{$ban->createdAt->format('d.m.Y H:i')}</td>
-                        <td>{$ban->expireAt->format('d.m.Y H:i')}</td>
+                        <td>{$ban->createdAt->format($dateTimeFormat)}</td>
+                        <td>{$ban->expireAt->format($dateTimeFormat)}</td>
                     </tr>
                     </tbody>
                 </table>

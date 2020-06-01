@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-12 col-md-8">
                             <h1 n:block="title">{$article->getTitle()}</h1>
-                            <small>{$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format('d.m.Y H:i')}</small>
+                            <small>{$article->getAuthor()->getDisplayName()}, {$article->getCreatedAt()->format($dateTimeFormat)}</small>
                         </div>
                         <div class="col-12 col-md-4 text-right d-none d-md-block">
                             <a data-placement="top" title="{$article->getAuthor()->getDisplayName()}" data-toggle="tooltip">

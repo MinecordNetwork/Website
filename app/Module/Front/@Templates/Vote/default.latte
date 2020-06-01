@@ -68,7 +68,7 @@
                             <span class="d-table-row">{$vote->nickname}</span>
                         </td>
                         <td>{$vote->count}</td>
-                        <td>{$vote->lastVote->format('d.m.Y H:i')}</td>
+                        <td>{$vote->lastVote->format($dateTimeFormat)}</td>
                     </tr>
                     </tbody>
                 </table>

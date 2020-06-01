@@ -11,6 +11,8 @@ use Nette\Bridges\ApplicationLatte\Template;
 class BaseFrontTemplate extends Template
 {
 	public System $system;
+	public string $dateTimeFormat;
+	public string $dateFormat;
 	public string $locale;
 	public string $country;
 	public int $assetVersion;
