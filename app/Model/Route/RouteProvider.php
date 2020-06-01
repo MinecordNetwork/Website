@@ -9,6 +9,7 @@ use Minecord\Model\Page\PageFacade;
 use Nette\Application\Routers\RouteList;
 use Nette\Application\UI\Presenter;
 use Nette\Utils\Strings;
+use Tracy\Debugger;
 
 class RouteProvider
 {
@@ -64,14 +65,14 @@ class RouteProvider
 			]);
 		}
 		
-		apcu_store(sprintf('minecord_%s_router', $locale), $router);
+		apcu_store(sprintf('minecord_%s_router_' . Debugger::$productionMode, $locale), $router);
 		
 		return $router;
 	}
 	
 	public function getDynamicRouteList(string $locale): RouteList
 	{
-		$routeList = apcu_fetch(sprintf('minecord_%s_router', $locale));
+		$routeList = apcu_fetch(sprintf('minecord_%s_router_' . Debugger::$productionMode, $locale));
 		
 		if (!$routeList) {
 			$routeList = $this->createRoutes($locale);

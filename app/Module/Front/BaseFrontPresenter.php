@@ -59,7 +59,7 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->user = $this->userProvider->provide();
 		$this->language = $this->languageProvider->provide();
 		
-		if (isset($_SERVER['HTTP_USER_AGENT']) && !preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']) && !Debugger::$productionMode && $this->user === null) {
+		if (isset($_SERVER['HTTP_USER_AGENT']) && !preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']) && Debugger::$productionMode && $this->user === null) {
 			if ($this->language->getIso() === 'cs' && !in_array($_SERVER['HTTP_CF_IPCOUNTRY'], ['CZ', 'SK'])) {
 				$this->redirect('this', ['locale' => 'en']);
 			} elseif ($this->language->getIso() === 'en' && in_array($_SERVER['HTTP_CF_IPCOUNTRY'], ['CZ', 'SK'])) {

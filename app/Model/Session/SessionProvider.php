@@ -69,9 +69,18 @@ class SessionProvider
 			} catch (IpAddressNotFoundException $e) {
 				$sessionData->ipAddress = $this->ipAddressFactory->create($_SERVER['REMOTE_ADDR']);
 			}
+			
+			if ($sessionData->isCrawler) {
+				try {
+					$this->session = $this->sessionFacade->getByHash($sessionData->hash);
 
-			$this->session = $this->sessionFacade->create($sessionData);
-
+				} catch (SessionNotFoundException $e) {
+					$this->session = $this->sessionFacade->create($sessionData);
+				}
+			} else {
+				$this->session = $this->sessionFacade->create($sessionData);
+			}
+			
 			$section->{self::SESSION_KEY} = (string) $this->session->getId();
 		}
 	}

@@ -8,6 +8,7 @@ use Minecord\Model\Product\Event\ProductPurchasedEvent;
 use Minecord\Model\Product\Product;
 use Minecord\Model\Server\ServerFacade;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Tracy\Debugger;
 
 class RconSubscriber implements EventSubscriberInterface
 {
@@ -39,7 +40,11 @@ class RconSubscriber implements EventSubscriberInterface
 		foreach ($this->serverFacade->getAll() as $server) {
 			if ($server->rconPort !== null) {
 				if ($product->isIsRank()) {
-					$this->rconFacade->sendCommands([sprintf('cordex store %s SMS VIP', $nickname)], $server->host, $server->rconPort);
+					if (Debugger::$productionMode) {
+						$this->rconFacade->sendCommands([sprintf('cordex store %s SMS VIP', $nickname)], $server->host, $server->rconPort);
+					} else {
+						$this->rconFacade->sendCommands([sprintf('msg %s Development mode', $nickname)], $server->host, $server->rconPort);
+					}
 					$this->rconFacade->sendCommands([sprintf('cordex premium %s %s fake', $nickname, $product->getDuration())], $server->host, $server->rconPort);
 					if ($server->name === 'lobby') {
 						$this->rconFacade->sendCommands([sprintf('cordex premium %s %s', $nickname, $product->getDuration())], $server->host, $server->rconPort);
