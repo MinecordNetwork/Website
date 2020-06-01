@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Minecord\Module\Front\Vip;
 
+use Minecord\Model\Player\PlayerFacade;
 use Minecord\Model\Product\Product;
-use Minecord\Model\Product\ProductRepository;
+use Minecord\Model\Product\ProductFacade;
 use Minecord\Module\Front\BaseFrontPresenter;
 
 /**
@@ -16,21 +17,26 @@ class VipPresenter extends BaseFrontPresenter
 	/** @var Product[] */
 	private array $ranks;
 	
-	private ProductRepository $productRepository;
+	private ProductFacade $productFacade;
+	private PlayerFacade $playerFacade;
 
-	public function __construct(ProductRepository $productRepository)
-	{
+	public function __construct(
+		ProductFacade $productFacade, 
+		PlayerFacade $playerFacade
+	) {
 		parent::__construct();
-		$this->productRepository = $productRepository;
+		$this->productFacade = $productFacade;
+		$this->playerFacade = $playerFacade;
 	}
 
 	public function actionDefault(): void
 	{
-		$this->ranks = $this->productRepository->getAllRanks();
+		$this->ranks = $this->productFacade->getAllRanks();
 	}
 	
 	public function renderDefault(): void
 	{
 		$this->template->ranks = $this->ranks;
+		$this->template->latestVipActivations = $this->playerFacade->getLatestVipActivations(5);
 	}
 }

@@ -70,6 +70,21 @@
         </main>
         <aside class="col-12 col-md-4">
             {include '../@Layout/sidebar.latte'}
+            <div class="card">
+                <div class="card-header">{_'vip.latestActivations'}</div>
+                <table class="table custom">
+                    <tbody>
+                    {varType Minecord\Model\Player\Vip\PlayerVipActivation $activation}
+                    <tr n:foreach="$latestVipActivations as $activation">
+                        <td class="d-flex">
+                            <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$activation->nickname}/25.png" alt="{$activation->nickname}"/>
+                            <span class="d-table-row">{$activation->nickname}</span>
+                        </td>
+                        <td>{$activation->activatedAt->format('d.m.Y H:i:s')}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </aside>
     </div>
 </div>
