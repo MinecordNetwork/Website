@@ -21,7 +21,9 @@ class ServerFacade
 		return (int) $this->database->query('SELECT id FROM minecraft_ban WHERE is_active = 1')->getRowCount();
 	}
 
-	/** @return Server[] */
+	/** 
+	 * @return Server[] 
+	 */
 	public function getAll(): array
 	{
 		$servers = [];

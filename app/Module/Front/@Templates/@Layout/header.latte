@@ -45,16 +45,13 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link {isLinkCurrent('Homepage:default') ? 'active'}" n:href="Homepage:default">{_'header.menu.blog'}</a>
-                        </li>
-                        {*<li class="nav-item">
-                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.store'}</a>
-                        </li>*}
-                        <li class="nav-item">
-                            <a class="nav-link" n:href="Homepage:default">{_'header.menu.vote'}</a>
+                            <a class="nav-link {isLinkCurrent('Homepage:*') ? 'active'}" n:href="Homepage:default">{_'header.menu.blog'}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link vip {isLinkCurrent('Vip:default') ? 'active'}" n:href="Vip:default">{_'header.menu.vip'}</a>
+                            <a class="nav-link {isLinkCurrent('Vote:*') ? 'active'}" n:href="Vote:default">{_'header.menu.vote'}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link vip {isLinkCurrent('Vip:*') ? 'active'}" n:href="Vip:default">{_'header.menu.vip'}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {if isLinkCurrent('OnlineMap:*')}active{/if}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +63,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {if isLinkCurrent('Banlist:default')}active{/if}" n:href="Banlist:default">Banlist</a>
+                            <a class="nav-link {if isLinkCurrent('Banlist:*')}active{/if}" n:href="Banlist:default">Banlist</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {if isLinkCurrent('Page:default', '03fa1017-a62f-4b79-b205-b977da049a46')}active{/if}" n:href="Page:default '03fa1017-a62f-4b79-b205-b977da049a46'">{_'header.menu.rules'}</a>

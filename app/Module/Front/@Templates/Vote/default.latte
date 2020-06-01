@@ -1,0 +1,97 @@
+{templateType Minecord\Module\Front\Vote\VoteTemplate}
+{block content}
+<div class="container flex-shrink-0 mt-4 mb-2">
+    <div class="row">
+        <main class="col-12 col-md-8">
+            <section class="card">
+                <div class="card-header"><h1 n:block="title">{_'vote.title'}</h1></div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>{_'vote.info'}</p>
+                            <p class="alert alert-dark text-center">{_'vote.alert'}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {varType Minecord\Module\Front\Vote\Site\VoteSite $voteSite}
+                        <div class="col-6 col-md-3" n:foreach="$voteSites as $voteSite">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-vote-{$voteSite->getId()}" class="btn btn-block btn-primary">{$voteSite->getName()}</a>
+                            <form target="_blank" action="{$voteSite->getBaseUrl()}">
+                                <div class="modal fade" id="modal-vote-{$voteSite->getId()}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">{_'vote.modal.title'} {$voteSite->getName()}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group row justify-content-center">
+                                                    <div class="col-sm-8 control-label">
+                                                        <label for="frm-voteForm-nickName">Nickname</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input value="{$nickname}" class="form-control text" type="text" name="{$voteSite->getNickFieldName()}" pattern="^(?=.*[A-Za-z0-9_-])[$!@{}[\]A-Za-z0-9_-]{syntax off}{1,16}{/syntax}$" id="frm-voteForm-nickName" required="" {syntax off}data-nette-rules="[{&quot;op&quot;:&quot;:filled&quot;,&quot;msg&quot;:&quot;Toto pole je povinné&quot;},{&quot;op&quot;:&quot;:pattern&quot;,&quot;msg&quot;:&quot;Nick je v nesprávnom formáte&quot;,&quot;arg&quot;:&quot;^(?=.*[A-Za-z0-9_-])[$!@{}[\\]A-Za-z0-9_-]{1,16}$&quot;}]"{/syntax}>
+                                                    </div>
+                                                </div>
+                                                <p class="text-center">
+                                                    {_'vote.modal.info'|noescape}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" name="_submit">{_'vote.modal.sendVote'}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="card">
+                <table class="table custom">
+                    <thead>
+                        <tr>
+                            <th><h2>{_'vote.topVotersThisMonth'}</h2></th>
+                            <th>{_'vote.voteCount'}</th>
+                            <th>{_'vote.lastVote'}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {varType Minecord\Model\Vote\VoteStats $vote}
+                    <tr n:foreach="$voteStats as $vote">
+                        <td class="d-flex">
+                            <strong class="d-table-row mr-3">#{$vote->rank}</strong>
+                            <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$vote->nickname}/25.png" alt="{$vote->nickname}"/>
+                            <span class="d-table-row">{$vote->nickname}</span>
+                        </td>
+                        <td>{$vote->count}</td>
+                        <td>{$vote->lastVote->format('d.m.Y H:i')}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <aside class="col-12 col-md-4">
+            {include '../@Layout/sidebar.latte'}
+            <div class="card">
+                <div class="card-header">{_'vote.topVotersLastMonth'}</div>
+                <table class="table custom">
+                    <tbody>
+                    {varType Minecord\Model\Vote\VoteStats $vote}
+                    <tr n:foreach="$voteStatsLastMonth as $vote">
+                        <td class="d-flex">
+                            <strong class="d-table-row mr-3">#{$vote->rank}</strong>
+                            <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$vote->nickname}/25.png" alt="{$vote->nickname}"/>
+                            <span class="d-table-row">{$vote->nickname}</span>
+                        </td>
+                        <td>{$vote->count}x</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </aside>
+    </div>
+</div>
