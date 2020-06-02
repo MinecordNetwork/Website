@@ -9,7 +9,7 @@
         <main class="col-12 col-md-8 store">
             <div n:snippet="productSnippetContainer" class="row ranks">
                 {varType Minecord\Model\Product\Product $rank}
-                <div n:foreach="$ranks as $rank" class="col-4">
+                <div n:foreach="$ranks as $rank" class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-header text-center font-weight-bold">{$rank->getName()}</div>
                         <img src="{$rank->getThumbnail()->getPublicPath()}" alt=""/>
