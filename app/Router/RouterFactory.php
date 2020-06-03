@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Minecord\Router;
 
+use Minecord\Model\Domain\Info\DomainInfoProvider;
 use Minecord\Model\Route\RouteProvider;
 use Nette\Application\Routers\RouteList;
 use Nette\Utils\Strings;
@@ -11,10 +12,14 @@ use Nette\Utils\Strings;
 final class RouterFactory
 {
 	private RouteProvider $routeProvider;
+	private DomainInfoProvider $domainInfoProvider;
 
-	public function __construct(RouteProvider $routeProvider)
-	{
+	public function __construct(
+		RouteProvider $routeProvider, 
+		DomainInfoProvider $domainInfoProvider
+	) {
 		$this->routeProvider = $routeProvider;
+		$this->domainInfoProvider = $domainInfoProvider;
 	}
 
 	public function create(): RouteList
@@ -34,18 +39,13 @@ final class RouterFactory
 		
 		$frontRouter = $this->routeProvider->getDynamicRouteList($locale);
 
-		$firstDomain = '//' . $_SERVER['SERVER_NAME'];
-		if (Strings::contains($firstDomain, '.net')) {
-			$secondDomain = str_replace('.net', '.cz', $firstDomain);
-		} else {
-			$secondDomain = str_replace('.cz', '.net', $firstDomain);
-		}
+		$domainInfo = $this->domainInfoProvider->provide();
 		
-		$frontRouter->addRoute($firstDomain . '/<presenter=Homepage>[/<action=default>]', [
+		$frontRouter->addRoute($domainInfo->getPrimaryDomain() . '/<presenter=Homepage>[/<action=default>]', [
 			'locale' => $locale
 		]);
 
-		$frontRouter->addRoute($secondDomain . '/<presenter=Homepage>[/<action=default>]', [
+		$frontRouter->addRoute($domainInfo->getSecondaryDomain() . '/<presenter=Homepage>[/<action=default>]', [
 			'locale' => $locale === 'cs' ? 'en' : 'cs'
 		]);
 
