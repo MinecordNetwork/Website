@@ -39,7 +39,7 @@ class RconSubscriber implements EventSubscriberInterface
 	{
 		foreach ($this->serverFacade->getAll() as $server) {
 			if ($server->rconPort !== null) {
-				if ($product->isIsRank()) {
+				if ($product->isRank()) {
 					if (Debugger::$productionMode) {
 						$this->rconFacade->sendCommands([sprintf('cordex store %s SMS VIP', $nickname)], $server->host, $server->rconPort);
 					} else {
@@ -51,6 +51,10 @@ class RconSubscriber implements EventSubscriberInterface
 					}
 				}
 			}
+		}
+		
+		if ($product->isUnban()) {
+			$this->rconFacade->sendCommandsToProxy([sprintf('unban %s', $nickname)]);
 		}
 	}
 }

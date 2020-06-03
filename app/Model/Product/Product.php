@@ -8,6 +8,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Minecord\Model\Image\Image;
 use Minecord\Model\Sms\SmsPriceResolver;
+use Nette\Utils\Strings;
 use Ramsey\Uuid\UuidInterface;
 use Rixafy\DoctrineTraits\SortOrderTrait;
 use Rixafy\Language\LanguageStaticHolder;
@@ -201,9 +202,14 @@ class Product
 		return $this->discountPercent;
 	}
 
-	public function isIsRank(): bool
+	public function isRank(): bool
 	{
 		return $this->isRank;
+	}
+
+	public function isUnban(): bool
+	{
+		return Strings::contains(strtolower($this->nameEnglish), 'unban');
 	}
 
 	public function changeThumbnail(?Image $thumbnail): void
