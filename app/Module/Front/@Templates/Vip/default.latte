@@ -15,9 +15,9 @@
                         <img src="{$rank->getThumbnail()->getPublicPath()}" alt=""/>
                         <div class="card-body">
                             {if $country === 'CZ' || $country === 'SK'}
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-{$rank->getId()->getInteger()}" class="btn btn-success btn-block">SMS - <strong>{if $country === 'CZ'}{$rank->getPriceCzechSms()|currency: 'CZK'}{else}{$rank->getPriceSlovakSms()|currency: 'EUR'}{/if}</strong></a>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-{$rank->getId()->getInteger()}" class="btn btn-sms btn-block">SMS - <strong>{if $country === 'CZ'}{$rank->getPriceCzechSms()|currency: 'CZK'}{else}{$rank->getPriceSlovakSms()|currency: 'EUR'}{/if}</strong></a>
                             {/if}
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-paypal-{$rank->getId()->getInteger()}" style="background:#3B7BBF; border-color:#3B7BBF" class="btn btn-info btn-block">PayPal/{_'vip.card'} - <strong>{if $country === 'CZ'}{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}{else}{$rank->getPrice()|currency: 'EUR'}{/if}</strong>{if $country === 'CZXX'}<br/><small>Přibližně <strong>{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}</strong></small>{/if}</a>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-paypal-{$rank->getId()->getInteger()}" class="btn btn-paypal btn-block">PayPal/{_'vip.card'} - <strong>{if $country === 'CZ'}{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}{else}{$rank->getPrice()|currency: 'EUR'}{/if}</strong>{if $country === 'CZXX'}<br/><small>Přibližně <strong>{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}</strong></small>{/if}</a>
                         </div>
                     </div>
                     <div class="modal fade" id="modal-{$rank->getId()->getInteger()}" tabindex="-1" role="dialog" aria-hidden="true">

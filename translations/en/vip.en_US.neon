@@ -5,6 +5,6 @@ paypal:
     nickname: "Nickname"
     package: "Package"
     price: "Price"
-    continue: "Continue to PayPal"
+    continue: "Pay with PayPal or Credit Card"
 card: "Card"
 successfullyActivated: "Package was successfully activated, check the game!"
