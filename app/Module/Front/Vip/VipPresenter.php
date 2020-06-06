@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Minecord\Module\Front\Vip;
 
 use Minecord\Model\Payment\PayPal\PayPalCredentials;
-use Minecord\Model\Payment\PayPal\PayPalPayment;
 use Minecord\Model\Payment\PayPal\PayPalPaymentDataFactory;
 use Minecord\Model\Payment\PayPal\PayPalPaymentFacade;
 use Minecord\Model\Player\PlayerFacade;
