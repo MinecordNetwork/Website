@@ -5,6 +5,6 @@ paypal:
     nickname: "Herní nick"
     package: "Balíček"
     price: "Cena"
-    continue: "Zaplatit přes PayPal neob kreditní kartu"
+    continue: "Zaplatit přes PayPal anebo kreditní kartu"
 card: "Karta"
 successfullyActivated: "Balíček byl úspěšne aktivován a předán do hry!"
