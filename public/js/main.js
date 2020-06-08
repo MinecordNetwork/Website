@@ -1,37 +1,23 @@
-const $ = require('jquery');
-global.$ = global.jQuery = $;
-
-require('bootstrap');
-require('popper.js');
+require('bootstrap.native');
 
 import naja from 'naja'
 import netteForms from 'nette-forms';
 
+naja.addEventListener('start', () => {
+    document.getElementById('ajax-spinner').style.visibility = 'visible';
+});
+
+naja.addEventListener('complete', () => {
+    document.getElementById('ajax-spinner').style.visibility = 'hidden';
+});
+
+naja.formsHandler.netteForms = netteForms;
+
 document.addEventListener('DOMContentLoaded', function() {
     naja.initialize({
-        history: false,
-        myCustomOption: 42
+        history: false
     });
-
-    naja.addEventListener('init', () => {
-        const spinner = $('<div></div>', {id: "ajax-spinner"});
-        spinner.appendTo("body");
-    });
-
-    naja.addEventListener('start', () => {
-            $("#ajax-spinner").css({
-                visibility: "visible"
-            });
-        }
-    );
-    naja.addEventListener('complete', () => {
-        $("#ajax-spinner").css({
-            visibility: "hidden"
-        });
-    });
-
-    naja.formsHandler.netteForms = netteForms;
-
+    
     global.naja = naja
 });
 
