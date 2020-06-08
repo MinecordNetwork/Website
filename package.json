@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.28.3",
+    "autoprefixer": "^9.7.5",
+    "bootstrap": "^4.4.1",
+    "popper.js": "^1.16.1"
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "jquery": "^3.4.1",
+    "naja": "^1.8.3",
+    "nette-forms": "^3.0.5",
+    "npm": "^6.14.5"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 5%"
+  ],
+  "scripts": {
+    "build": "webpack"
+  }
+}

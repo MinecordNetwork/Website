@@ -1,3 +1,40 @@
+const $ = require('jquery');
+global.$ = global.jQuery = $;
+
+require('bootstrap');
+require('popper.js');
+
+import naja from 'naja'
+import netteForms from 'nette-forms';
+
+document.addEventListener('DOMContentLoaded', function() {
+    naja.initialize({
+        history: false,
+        myCustomOption: 42
+    });
+
+    naja.addEventListener('init', () => {
+        const spinner = $('<div></div>', {id: "ajax-spinner"});
+        spinner.appendTo("body");
+    });
+
+    naja.addEventListener('start', () => {
+            $("#ajax-spinner").css({
+                visibility: "visible"
+            });
+        }
+    );
+    naja.addEventListener('complete', () => {
+        $("#ajax-spinner").css({
+            visibility: "hidden"
+        });
+    });
+
+    naja.formsHandler.netteForms = netteForms;
+
+    global.naja = naja
+});
+
 async function copyIpAddress(str, strDefault, strCopied, element) {
     const el = document.createElement('textarea');
     el.value = str;
@@ -14,10 +51,6 @@ async function copyIpAddress(str, strDefault, strCopied, element) {
 }
 
 document.getElementById('contact-protect').innerHTML += '@gmail.com';
-
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip() 
-});
 
 // Online map fullscreen
 const button = document.querySelector('#online-map-fullscreen');

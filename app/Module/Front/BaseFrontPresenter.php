@@ -77,7 +77,8 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->template->locale = $this->language->getIso();
 		$this->template->country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? 'CZ';
 		$this->template->currency = $this->currencyProvider->provide();
-		$this->template->assetVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
+		$this->template->cssBundleVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
+		$this->template->jsBundleVersion = filemtime(__DIR__ . '/../../../public/js/build/bundle.js');
 		
 		if ($this->template->locale === 'cs') {
 			$this->template->localeOther = 'en';

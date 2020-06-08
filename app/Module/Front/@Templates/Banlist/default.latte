@@ -178,16 +178,7 @@
                                                                 .then(response=>response.json())
                                                                 .then(data => {
                                                                     if (data.success) {
-                                                                        {*$.ajax({
-                                                                            'url': handleOptionSelectedUrl,
-                                                                            'data': {optionVal: val}
-                                                                        });
-                                                                        window.location = {link success}*}
-                                                                        $.nette.ajax({
-                                                                            type: "POST",
-                                                                            dataType: "json",
-                                                                            url: {link success!}
-                                                                        });
+                                                                        naja.makeRequest("POST", {link success!}, data = null);
                                                                     }
                                                                 });
                                                         }

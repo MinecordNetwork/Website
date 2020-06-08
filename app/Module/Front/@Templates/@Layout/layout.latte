@@ -10,7 +10,7 @@
     <meta name="author" content="https://rixafy.pro">
     <meta name="og:image" content="{ifset image}{include image|trim}{else}/img/logo.png{/ifset}">
     <meta name="theme-color" content="#2f67a5">
-    <link rel="stylesheet" href="/css/style.css?deploy={$assetVersion}">
+    <link rel="stylesheet" href="/css/style.css?deploy={$cssBundleVersion}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
     <link href="/fontawesome/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
@@ -54,43 +54,7 @@
 {include content}
 
 {include 'footer.latte'}
-{block scripts}
-
-{/block}
-<script src="/js/jquery.min.js?deploy={$assetVersion}"></script>
-<script src="/js/popper.min.js?deploy={$assetVersion}"></script>
-<script src="/js/bootstrap.min.js?deploy={$assetVersion}"></script>
-<script src="/js/nette.min.js"></script>
-<script src="/js/nette.ajax.js"></script>
-<script src="/js/live.form.validation.js"></script>
-<script src="/js/main.js?deploy={$assetVersion}"></script>
-<script>
-    $(function () {
-        $.nette.ext('spinner', {
-            init: function () {
-                spinner = $('<div></div>', { id: "ajax-spinner" });
-                spinner.appendTo("body");
-            },
-            before: function (settings, ui, e) {
-                $("#ajax-spinner").css({
-                    visibility: "visible",
-                    left: e.pageX,
-                    top: e.pageY
-                });
-            },
-            complete: function () {
-                $("#ajax-spinner").css({
-                    visibility: "hidden"
-                });
-            }
-        });
-        
-        $.nette.init();
-
-        LiveForm.setOptions({
-            messageErrorPrefix: ''
-        });
-    });
-</script>
+{block scripts}{/block}
+<script src="/js/build/bundle.js?deploy={$cssBundleVersion}"></script>
 </body>
 </html>

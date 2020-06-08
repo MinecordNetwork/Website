@@ -18,7 +18,8 @@ class BaseFrontTemplate extends Template
 	public string $localeOther;
 	public string $country;
 	public Currency $currency;
-	public int $assetVersion;
+	public int $cssBundleVersion;
+	public int $jsBundleVersion;
 	public array $flashes;
 	public ?User $user;
 }

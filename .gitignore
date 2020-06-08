@@ -9,3 +9,6 @@
 /public/css/bootstrap
 /public/css/*.css
 /public/css/*.map
+/public/js/build/*
+/node_modules
+.env
