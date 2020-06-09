@@ -1,5 +1,4 @@
-require('bootstrap.native');
-
+import 'bootstrap.native'
 import naja from 'naja'
 import netteForms from 'nette-forms';
 
@@ -11,14 +10,19 @@ naja.addEventListener('complete', () => {
     document.getElementById('ajax-spinner').style.visibility = 'hidden';
 });
 
-naja.formsHandler.netteForms = netteForms;
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     naja.initialize({
         history: false
     });
-
-    global.naja = naja
+    
+    Array.from(document.getElementsByClassName('form-control')).forEach(function(element) {
+        element.addEventListener('change', () => {
+            netteForms.validateControl(this);
+        });
+    });
+    
+    global.naja = naja;
+    global.LiveForm = liveForm;
 
     const _paq = window._paq || [];
     _paq.push(['trackPageView']);
