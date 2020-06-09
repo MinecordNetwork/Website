@@ -10,6 +10,10 @@ extensions:
 	api: Apitte\Core\DI\ApiExtension
 
 
+archette.currency:
+	apiKey: %currency.apiKey%
+
+
 http:
 	headers:
 		X-Powered-By: Minecord System
@@ -43,6 +47,13 @@ services:
 	latte.templateFactory:
 		arguments:
 			user: null
+
+
+database:
+	dsn: 'mysql:host=%database.host%;dbname=%database.dbname%'
+	user: %database.user%
+	password: %database.password%
+
 
 includes:
     - doctrine.neon

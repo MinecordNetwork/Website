@@ -23,6 +23,10 @@ doctrine.dbal:
 			uuid_binary:
 				class: Ramsey\Uuid\Doctrine\UuidBinaryType
 				commented: false
+		host: %doctrine.host%
+		user: %doctrine.user%
+		password: %doctrine.password%
+		dbname: %doctrine.dbname%
 
 
 doctrine.orm:
