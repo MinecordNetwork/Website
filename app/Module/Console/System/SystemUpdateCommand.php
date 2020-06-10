@@ -51,7 +51,7 @@ final class SystemUpdateCommand extends Command
 		}
 		$data->discordEnglishMemberList = utf8_encode(substr($data->discordEnglishMemberList, 0, -2));
 
-		$queryResult = (MinecraftQueryResolver::fromAddress('mc.minecord.net'))->getResult();
+		$queryResult = MinecraftQueryResolver::fromAddress('mc.minecord.net')->getResult();
 		$data->onlinePlayerCount = $queryResult->getOnlinePlayers();
 		$data->onlinePlayerList = implode(', ', $queryResult->getPlayersSample());
 		
