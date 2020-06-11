@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     global.naja = naja;
-    global.LiveForm = liveForm;
 
     const _paq = window._paq || [];
     _paq.push(['trackPageView']);
