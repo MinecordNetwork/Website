@@ -58,6 +58,16 @@ abstract class ArticleRepository
 	/**
 	 * @return Article[]
 	 */
+	public function getAllByNotifiedDiscord(bool $notifiedDiscord): array
+	{
+		return $this->getRepository()->findBy([
+			'notifiedDiscord' => $notifiedDiscord
+		]);
+	}
+
+	/**
+	 * @return Article[]
+	 */
 	public function getAll(): array
 	{
 		return $this->getQueryBuilderForAll()->getQuery()->execute();

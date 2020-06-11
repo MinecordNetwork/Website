@@ -14,7 +14,9 @@ use Rixafy\Language\LanguageStaticHolder;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="article")
+ * @ORM\Table(name="article", indexes={
+ * 		@ORM\Index(columns={"notified_discord"})
+ *	 })
  */
 class Article
 {
@@ -56,6 +58,9 @@ class Article
 
 	/** @ORM\Column(type="integer") */
 	private int $views = 0;
+
+	/** @ORM\Column(type="boolean") */
+	private bool $notifiedDiscord = false;
 
 	/** @ORM\Column(type="datetime") */
 	private DateTime $createdAt;
@@ -101,6 +106,11 @@ class Article
 	public function getId(): UuidInterface
 	{
 		return $this->id;
+	}
+	
+	public function onDiscordNotify(): void
+	{
+		$this->notifiedDiscord = true;
 	}
 	
 	public function getTitle(): string 

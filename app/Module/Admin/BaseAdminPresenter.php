@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Minecord\Module\Admin;
 
+use Minecord\Model\Article\ArticleFacade;
 use Minecord\Model\Session\SessionProvider;
 use Minecord\Model\User\Auth\UserAuthenticator;
 use Minecord\Model\User\User;
@@ -23,6 +24,9 @@ abstract class BaseAdminPresenter extends Presenter
 
 	/** @inject */
 	public UserProvider $adminProvider;
+
+	/** @inject */
+	public ArticleFacade $articleFacade;
 
 	protected ?User $user;
 
@@ -56,5 +60,10 @@ abstract class BaseAdminPresenter extends Presenter
 	{
 		$this->adminAuthenticator->logOut();
 		$this->redirect('Dashboard:default');
+	}
+
+	public function handleNotifyDiscord(): void
+	{
+		$this->articleFacade->notifyDiscord();
 	}
 }

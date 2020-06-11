@@ -26,9 +26,11 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 
-		$router->add($this->createApiRouter());
-		$router->add($this->createAdminRouter());
-		$router->add($this->createFrontRouter());
+		if (!$this->isMigrating()) {
+			$router->add($this->createApiRouter());
+			$router->add($this->createAdminRouter());
+			$router->add($this->createFrontRouter());
+		}
 
 		return $router;
 	}
@@ -68,5 +70,14 @@ final class RouterFactory
 		$adminRouter->addRoute('api[/<presenter=Auth>][/<action=default>]');
 
 		return $adminRouter;
+	}
+
+	private function isMigrating(): bool
+	{
+		if (isset($_SERVER['argv']) && count($_SERVER['argv']) > 1) {
+			return Strings::contains($_SERVER['argv'][1], 'migration');
+		}
+
+		return false;
 	}
 }

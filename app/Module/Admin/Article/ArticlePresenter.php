@@ -31,7 +31,6 @@ class ArticlePresenter extends BaseAdminPresenter
 	private ArticleThumbnailFormFactory $articleThumbnailFormFactory;
 	private ArticleGridFactory $articleGridFactory;
 	private ArticleDataFactory $articleDataFactory;
-	private ArticleFacade $articleFacade;
 	private RouteProvider $routeProvider;
 	private ?Article $article = null;
 
@@ -42,7 +41,6 @@ class ArticlePresenter extends BaseAdminPresenter
 		ArticleThumbnailFormFactory $articleThumbnailFormFactory,
 		ArticleGridFactory $articleGridFactory,
 		ArticleDataFactory $articleDataFactory,
-		ArticleFacade $articleFacade, 
 		RouteProvider $routeProvider
 	) {
 		parent::__construct();
@@ -52,7 +50,6 @@ class ArticlePresenter extends BaseAdminPresenter
 		$this->articleThumbnailFormFactory = $articleThumbnailFormFactory;
 		$this->articleGridFactory = $articleGridFactory;
 		$this->articleDataFactory = $articleDataFactory;
-		$this->articleFacade = $articleFacade;
 		$this->routeProvider = $routeProvider;
 	}
 
