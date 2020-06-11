@@ -16,6 +16,6 @@ search:
 
 services:
     discordWebhook: Minecord\Model\Discord\DiscordWebhook(%discord.webhookUrl%)
-    discordMessenger: Minecord\Model\Discord\DiscordMessenger(%discord.czechAnnoucements%, %discord.englishAnnoucements%)
+    discordMessenger: Minecord\Model\Discord\DiscordMessenger(%discord.englishAnnoucements%, %discord.czechAnnoucements%)
     rconCredentials: Minecord\Model\Rcon\RconCredentials(%server.rconPassword%, %server.rconProxyHost%, %server.rconProxyPort%)
     paypalCredentials: Minecord\Model\Payment\PayPal\PayPalCredentials(%paypal.clientId%, %paypal.clientSecret%)
