@@ -1,6 +1,7 @@
 import 'bootstrap.native'
 import naja from 'naja'
 import netteForms from 'nette-forms';
+import cookieBar from './cookies.js';
 
 naja.addEventListener('start', () => {
     document.getElementById('ajax-spinner').style.visibility = 'visible';
@@ -11,28 +12,20 @@ naja.addEventListener('complete', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    cookieBar.checkCookies();
+
     naja.initialize({
         history: false
     });
-    
+
     Array.from(document.getElementsByClassName('form-control')).forEach(function(element) {
         element.addEventListener('change', () => {
             netteForms.validateControl(this);
         });
     });
-    
-    global.naja = naja;
 
-    const _paq = window._paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-        const u = "//analytics.rixafy.pro/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', window.location.hostname === 'minecord.net' ? 6 : 5]);
-        const d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
+    global.naja = naja;
+    global.cookieBar = cookieBar;
 });
 
 async function copyIpAddress(str, strDefault, strCopied, element) {

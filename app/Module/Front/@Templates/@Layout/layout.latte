@@ -12,8 +12,20 @@
     <meta name="theme-color" content="#2f67a5">
     <link rel="stylesheet" href="/css/style.css?deploy={$cssBundleVersion}">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <link rel="alternate" hreflang="{$localeOther}" href="{link this 'locale' => $localeOther}" />
+    <link rel="alternate" hreflang="{$localeOther}" href="{link this 'locale' => $localeOther}"/>
     <title>{ifset title}{include title|stripHtml|trim} | {/ifset}{_'homepage.title'}</title>
+    <script type="text/javascript">
+        var _paq = window._paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//analytics.rixafy.pro/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', {if $locale === 'en'}6{else}5{/if}]);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
 </head>
 
 <body>
