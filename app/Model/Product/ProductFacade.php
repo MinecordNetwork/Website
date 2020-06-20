@@ -54,11 +54,11 @@ final class ProductFacade extends ProductRepository
 	/**
 	 * @throws ProductNotFoundException
 	 */
-	public function onPurchase(UuidInterface $id, string $nickname): Product
+	public function onPurchase(UuidInterface $id, string $nickname, string $method): Product
 	{
 		$product = $this->get($id);
 		
-		$this->eventDispatcher->dispatch(new ProductPurchasedEvent($product, $nickname));
+		$this->eventDispatcher->dispatch(new ProductPurchasedEvent($product, $nickname, $method));
 
 		return $product;
 	}

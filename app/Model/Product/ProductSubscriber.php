@@ -35,7 +35,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
 	public function onPayPalPaymentAccepted(PayPalPaymentAcceptedEvent $event): void
 	{
-		$this->productFacade->onPurchase($event->getPayPalPayment()->getProduct()->getId(), $event->getPayPalPayment()->getNickname());
+		$this->productFacade->onPurchase($event->getPayPalPayment()->getProduct()->getId(), $event->getPayPalPayment()->getNickname(), 'PayPal');
 	}
 
 	public function onSmsRecordPreCreated(SmsRecordPreCreatedEvent $event): void
@@ -83,7 +83,7 @@ class ProductSubscriber implements EventSubscriberInterface
 			}
 			
 			if (!$onlyAnswer) {
-				$this->productFacade->onPurchase($product->getId(), $smsTextParts[2]);
+				$this->productFacade->onPurchase($product->getId(), $smsTextParts[2], 'SMS');
 			}
 			
 		} catch (ProductNotFoundException $e) {

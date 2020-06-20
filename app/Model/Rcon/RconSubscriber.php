@@ -32,16 +32,16 @@ class RconSubscriber implements EventSubscriberInterface
 
 	public function onProductPurchased(ProductPurchasedEvent $event): void
 	{
-		$this->activate($event->getProduct(), $event->getNickname());
+		$this->activate($event->getProduct(), $event->getNickname(), $event->getMethod());
 	}
 	
-	private function activate(Product $product, string $nickname): void
+	private function activate(Product $product, string $nickname, string $method): void
 	{
 		foreach ($this->serverFacade->getAll() as $server) {
 			if ($server->rconPort !== null) {
 				if ($product->isRank()) {
 					if (Debugger::$productionMode) {
-						$this->rconFacade->sendCommands([sprintf('cordex store %s SMS VIP', $nickname)], $server->host, $server->rconPort);
+						$this->rconFacade->sendCommands([sprintf('cordex store %s %s VIP', $nickname, $method)], $server->host, $server->rconPort);
 						$this->rconFacade->sendCommands([sprintf('cordex premium %s %s fake', $nickname, $product->getDuration())], $server->host, $server->rconPort);
 						if ($server->name === 'lobby') {
 							$this->rconFacade->sendCommands([sprintf('cordex premium %s %s', $nickname, $product->getDuration())], $server->host, $server->rconPort);

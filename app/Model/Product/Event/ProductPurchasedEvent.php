@@ -10,13 +10,16 @@ class ProductPurchasedEvent
 {
 	private Product $product;
 	private string $nickname;
+	private string $method;
 
 	public function __construct(
 		Product $product, 
-		string $nickname
+		string $nickname,
+		string $method
 	) {
 		$this->product = $product;
 		$this->nickname = $nickname;
+		$this->method = $method;
 	}
 
 	public function getProduct(): Product
@@ -27,5 +30,10 @@ class ProductPurchasedEvent
 	public function getNickname(): string
 	{
 		return $this->nickname;
+	}
+
+	public function getMethod(): string
+	{
+		return $this->method;
 	}
 }
