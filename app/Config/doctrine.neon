@@ -10,8 +10,8 @@ extensions:
 
 
 doctrine.orm.annotations:
-    paths:
-        - %appDir%/Model
+    mapping:
+        Minecord\Model: %appDir%/Model
 
 
 doctrine.dbal:
