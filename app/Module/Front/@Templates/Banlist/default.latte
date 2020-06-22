@@ -57,13 +57,13 @@
                     <div class="modal fade text-left" id="modal-{$unBan->getId()->getInteger()}" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-full-width modal-lg" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <div class="row w-100">
+                                <div class="modal-header d-block">
+                                    <div class="row w-100 d-flex">
                                         <div class="col-10">
                                             <h5 class="modal-title" id="exampleModalLongTitle">Zakoupení <strong>{$unBan->getName()}u</strong> přes SMS {if $country === 'CZ'}z <strong>Česka</strong>{else}zo <strong>Slovenska</strong>{/if}</h5>
                                         </div>
                                         <div class="col-2 text-right">
-                                            <img class="position-absolute flag" src="/img/flags/{if $country === 'CZ'}czechia{else}slovakia{/if}.svg"/>
+                                            <img class="flag" src="/img/flags/{if $country === 'CZ'}czechia{else}slovakia{/if}.svg"/>
                                         </div>
                                     </div>
 
