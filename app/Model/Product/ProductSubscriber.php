@@ -82,7 +82,7 @@ class ProductSubscriber implements EventSubscriberInterface
 		$nick = $smsTextParts[3];
 		
 		try {
-			if ($smsRecord->getCountry() === 'CZ') {
+			if ($country === 'CZ') {
 				$product = $this->productFacade->getBySmsCodeAndPriceCzech($code, $price);
 			} else {
 				$product = $this->productFacade->getBySmsCodeAndPriceSlovak($code, $price);
