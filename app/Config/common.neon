@@ -7,7 +7,6 @@ extensions:
 	translation: Contributte\Translation\DI\TranslationExtension
 	events: Contributte\EventDispatcher\DI\EventDispatcherExtension
 	thumbnail: Minecord\Bridge\Nette\Thumbnail\ThumbnailExtension
-	api: Apitte\Core\DI\ApiExtension
 
 
 archette.currency:
