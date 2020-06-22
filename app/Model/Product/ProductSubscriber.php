@@ -11,7 +11,6 @@ use Minecord\Model\Sms\Record\Event\SmsRecordCreatedEvent;
 use Minecord\Model\Sms\Record\Event\SmsRecordPreCreatedEvent;
 use Minecord\Model\Sms\Record\SmsRecord;
 use Minecord\Model\Sms\SmsCountryResolver;
-use Minecord\Model\Sms\SmsPriceResolver;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ProductSubscriber implements EventSubscriberInterface
@@ -59,9 +58,7 @@ class ProductSubscriber implements EventSubscriberInterface
 	
 	private function handleSms(SmsRecord $smsRecord, bool $onlyAnswer = false): string
 	{
-		$smsTextParts = explode(' ', $smsRecord->getText());
 		$country = SmsCountryResolver::resolve($smsRecord->getShortcode());
-		$price = SmsPriceResolver::resolve($smsRecord->getShortcode());
 
 		$invalidSms = function () use ($smsRecord, $country): string {
 			if ($country === 'CZ') {
@@ -71,19 +68,24 @@ class ProductSubscriber implements EventSubscriberInterface
 			}
 		};
 
-		if (count($smsTextParts) < 3) {
+		$smsTextParts = explode(' ', $smsRecord->getText());
+		if (count($smsTextParts) < 4) {
 			return $invalidSms();
 		}
 		
+		$price = (float) $smsTextParts[1];
+		$code = $smsTextParts[2];
+		$nick = $smsTextParts[3];
+		
 		try {
 			if ($smsRecord->getCountry() === 'CZ') {
-				$product = $this->productFacade->getBySmsCodeAndPriceCzech($smsTextParts[1], $price);
+				$product = $this->productFacade->getBySmsCodeAndPriceCzech($code, $price);
 			} else {
-				$product = $this->productFacade->getBySmsCodeAndPriceSlovak($smsTextParts[1], $price);
+				$product = $this->productFacade->getBySmsCodeAndPriceSlovak($code, $price);
 			}
 			
 			if (!$onlyAnswer) {
-				$this->productFacade->onPurchase($product->getId(), $smsTextParts[2], 'SMS');
+				$this->productFacade->onPurchase($product->getId(), $nick, 'SMS');
 			}
 			
 		} catch (ProductNotFoundException $e) {

@@ -7,7 +7,7 @@ namespace Minecord\Model\Product;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Minecord\Model\Image\Image;
-use Minecord\Model\Sms\SmsPriceResolver;
+use Minecord\Model\Sms\SmsNumberResolver;
 use Nette\Utils\Strings;
 use Ramsey\Uuid\UuidInterface;
 use Rixafy\DoctrineTraits\SortOrderTrait;
@@ -169,12 +169,12 @@ class Product
 
 	public function getCzechSmsNumber(): string
 	{
-		return SmsPriceResolver::reverse($this->priceCzechSms);
+		return SmsNumberResolver::resolve($this->priceCzechSms);
 	}
 
 	public function getSlovakSmsNumber(): string
 	{
-		return SmsPriceResolver::reverse($this->priceSlovakSms);
+		return SmsNumberResolver::resolve($this->priceSlovakSms);
 	}
 
 	public function getDiscountedPrice(): float

@@ -38,7 +38,7 @@
                                     <p>Zakoupená věc bude aktivována automaticky po odeslání SMS, na velikosti písma nezáleží.</p>
                                     {if $country === 'CZ'}
                                         <p>
-                                            <span>Zašlete sms: <strong class="sms-text">MINECORD VIP VášNick</strong> na číslo <strong class="sms-text">{$rank->getCzechSmsNumber()}</strong></span><br/>
+                                            <span>Zašlete sms: <strong class="sms-text">MINECORD {$rank->getPriceCzechSms()} VIP VášNick</strong> na číslo <strong class="sms-text">{$rank->getCzechSmsNumber()}</strong></span><br/>
                                         </p>
                                         <p class="text-danger">
                                             Nezapomeňte nahradit <strong>VášNick</strong> vaším nickem na našem serveru.
@@ -49,7 +49,7 @@
                                         </div>
                                     {elseif $country === 'SK'}
                                         <p>
-                                            <span>Zašlite sms: <strong class="sms-text">MINECORD VIP VášNick</strong> na číslo <strong class="sms-text">{$rank->getSlovakSmsNumber()}</strong></span><br/>
+                                            <span>Zašlite sms: <strong class="sms-text">MINECORD {$rank->getPriceSlovakSms()} VIP VášNick</strong> na číslo <strong class="sms-text">{$rank->getSlovakSmsNumber()}</strong></span><br/>
                                         </p>
                                         <p class="text-danger">
                                             Nezabudnite nahradiť <strong>VášNick</strong> vaším nickom na našom serveri.
