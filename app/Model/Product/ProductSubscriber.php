@@ -60,9 +60,13 @@ class ProductSubscriber implements EventSubscriberInterface
 	{
 		$country = SmsCountryResolver::resolve($smsRecord->getShortcode());
 
-		$invalidSms = function () use ($smsRecord, $country): string {
+		$invalidSms = function (float $price) use ($smsRecord, $country): string {
 			if ($country === 'CZ') {
-				return 'Spatny format SMS, zaslana SMS nebyla zpoplatnena. Minecord.cz;FREE' . $smsRecord->getShortcode();
+				if ($price > 100) {
+					return 'Spatny format SMS, zaslana SMS nebyla zpoplatnena. Minecord.cz;FREE' . $smsRecord->getShortcode() . $price;
+				} else {
+					return 'Spatny format SMS, kontaktujte nas na nasem discordu, naleznete ho na Minecord.cz';
+				}
 			} else {
 				return 'Nespravny format SMS, zaslana SMS nebola spoplatnena. Minecord.cz;FREE8877';
 			}
@@ -70,7 +74,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
 		$smsTextParts = explode(' ', $smsRecord->getText());
 		if (count($smsTextParts) < 4) {
-			return $invalidSms();
+			return $invalidSms(isset($smsTextParts[1]) ? (float) $smsTextParts[1] : 0);
 		}
 		
 		$price = (float) $smsTextParts[1];
@@ -89,13 +93,13 @@ class ProductSubscriber implements EventSubscriberInterface
 			}
 			
 		} catch (ProductNotFoundException $e) {
-			return $invalidSms();
+			return $invalidSms($price);
 		}
 		
 		if ($country === 'CZ') {
-			return 'Dekujeme ze podporujete server Minecord.cz, balicek byl aktivovan!' . (($price > 100) ? ';' . $smsRecord->getShortcode() : '');
+			return 'Dekujeme ze podporujete server Minecord.cz, balicek byl aktivovan!' . (($price > 100) ? ';' . $smsRecord->getShortcode() . $price : '');
 		} else {
-			return 'Dakujeme ze podporujete server Minecord.cz, balicek bol aktivovany!;' . $smsRecord->getShortcode();
+			return 'Dakujeme ze podporujete server Minecord.cz, balicek bol aktivovany!;' . $smsRecord->getShortcode() . number_format($price, 2, '', '');
 		}
 	}
 }
