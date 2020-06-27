@@ -6,9 +6,9 @@ namespace Minecord\Module\Front\Vote;
 
 use Minecord\Model\Player\Exception\PlayerNotFoundException;
 use Minecord\Model\Player\PlayerFacade;
+use Minecord\Model\Vote\Site\VoteSite;
 use Minecord\Model\Vote\VoteFacade;
 use Minecord\Module\Front\BaseFrontPresenter;
-use Minecord\Module\Front\Vote\Site\VoteSite;
 
 /**
  * @property-read VoteTemplate $template

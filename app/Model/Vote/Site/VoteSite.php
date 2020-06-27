@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Vote\Site;
+namespace Minecord\Model\Vote\Site;
 
 class VoteSite
 {

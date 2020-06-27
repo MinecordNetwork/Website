@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Minecord\Module\Front\Vote;
 
+use Minecord\Model\Vote\Site\VoteSite;
 use Minecord\Model\Vote\VoteStats;
 use Minecord\Module\Front\BaseFrontTemplate;
-use Minecord\Module\Front\Vote\Site\VoteSite;
 
 class VoteTemplate extends BaseFrontTemplate
 {
