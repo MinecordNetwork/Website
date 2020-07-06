@@ -18,11 +18,11 @@ class Kernel
 			->setTimeZone('Europe/Prague')
 			->setTempDirectory(__DIR__ . '/../temp');
 
-		$configurator->addConfig(__DIR__ . '/Config/common.neon');
+		$configurator->addConfig(__DIR__ . '/../config/common.neon');
 
-		$configurator->addConfig(__DIR__ . '/Config/credentials_dev.neon');
+		$configurator->addConfig(__DIR__ . '/../config/credentials_dev.neon');
 		if (!$debugMode) {
-			$configurator->addConfig(__DIR__ . '/Config/credentials_prod.neon');
+			$configurator->addConfig(__DIR__ . '/../config/credentials_prod.neon');
 		}
 
 		$configurator->enableTracy(__DIR__ . '/../log');
