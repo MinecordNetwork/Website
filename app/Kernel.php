@@ -18,7 +18,7 @@ class Kernel
 			->setTimeZone('Europe/Prague')
 			->setTempDirectory(__DIR__ . '/../temp');
 
-		$configurator->addConfig(__DIR__ . '/../config/common.neon');
+		$configurator->addConfig(__DIR__ . '/../config/main.neon');
 
 		$configurator->addConfig(__DIR__ . '/../config/credentials_dev.neon');
 		if (!$debugMode) {
