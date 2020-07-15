@@ -99,7 +99,7 @@ class ProductSubscriber implements EventSubscriberInterface
 		if ($country === 'CZ') {
 			return 'Dekujeme ze podporujete server Minecord.cz, balicek byl aktivovan!' . (($price > 100) ? ';' . $smsRecord->getShortcode() . $price : '');
 		} else {
-			return 'Dakujeme ze podporujete server Minecord.cz, balicek bol aktivovany!;' . $smsRecord->getShortcode() . number_format($price, 2, '', '');
+			return 'Dakujeme ze podporujete server Minecord.cz, balicek bol aktivovany!;' . $smsRecord->getShortcode() . str_pad(number_format($price, 2, '', ''), 4, '0', STR_PAD_LEFT);
 		}
 	}
 }
