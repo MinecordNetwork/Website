@@ -62,6 +62,14 @@ abstract class SmsRecordRepository
 		return $smsRecord;
 	}
 
+	public function getRealValue(int $year, int $month): int
+	{
+		return (int) $this->getQueryBuilderForAll()
+			->select('SUM(e.stockCount)')
+			->getQuery()
+			->getSingleScalarResult();
+	}
+
 	/**
 	 * @return SmsRecord[]
 	 */
