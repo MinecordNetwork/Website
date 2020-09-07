@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <a n:if="$article->getThumbnail() !== null">
-                    <img class="preview" src="{$article->getThumbnail()->getPublicPath()}" alt="{$article->getTitle()}"/>
+                    <img class="preview" src="{$article->getThumbnail()->getPublicPath()|thumbnail: 1000}" alt="{$article->getTitle()}"/>
                 </a>
                 <div class="card-body">
                     <i n:block="description" class="text-dark">{$article->getEditorial()|noescape}</i>

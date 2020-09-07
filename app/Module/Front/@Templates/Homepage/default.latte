@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <a n:if="$article->getThumbnail() !== null" n:href="Article:default (string) $article->getId()">
-                    <img class="preview" src="{$article->getThumbnail()->getPublicPath()}" alt="{$article->getTitle()}"/>
+                    <img class="preview" src="{$article->getThumbnail()->getPublicPath()|thumbnail: 1000}" alt="{$article->getTitle()}"/>
                 </a>
                 <div class="card-body">
                     <i class="text-dark">{$article->getEditorial()|noescape}</i>
