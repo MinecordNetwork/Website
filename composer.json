@@ -45,6 +45,7 @@
         "guzzlehttp/guzzle": "^7.0",
         "thedudeguy/rcon": "dev-master",
         "paypal/paypal-checkout-sdk": "dev-master",
+        "ramsey/uuid-doctrine": "dev-master",
         "ext-apcu": "*",
         "ext-json": "*"
     },
