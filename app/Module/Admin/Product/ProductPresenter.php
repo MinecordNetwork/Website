@@ -69,13 +69,15 @@ class ProductPresenter extends BaseAdminPresenter
 		$form->onSuccess[] = function(Form $form, array $data): void {
 			if ($this->product === null) {
 				$this->productFacade->create($this->productDataFactory->createFromFormData($data));
-				$this->flashMessage('New product successfully created!', 'success');
+				$this->flashMessage('Nový produkt bol vytvorený!', 'success');
+				$this->redirect('this');
 			} else {
 				$this->productFacade->edit($this->product->getId(), $this->productDataFactory->createFromFormData($data));
+				$this->flashMessage('Produkt bol upravený', 'success');
+				$this->redrawControl('flashes');
 			}
 			$this->routeProvider->createRoutes('en');
 			$this->routeProvider->createRoutes('cs');
-			$this->redirect('this');
 		};
 
 		return $form;

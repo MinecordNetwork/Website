@@ -1,0 +1,315 @@
+// there is .css extension because without it, icons are broken
+@import "libs/libs.bundle.css"
+@import "libs/theme.bundle.css"
+
+@import "libs/mapboxgl"
+@import "libs/font-awesome"
+@import "libs/font-awesome"
+@import "libs/bootstrap-colorpicker"
+@import "libs/summernote-lite"
+@import "libs/flatpickr"
+@import "libs/datagrid-spinners"
+@import "libs/datagrid"
+@import "libs/toastr"
+@import "libs/simplemde"
+
+@import "ajax-spinner"
+
+.datagrid-container
+  .datagrid
+    overflow-y: auto
+    padding: 0
+    margin: -1px
+    border-radius: 0 0 .5rem .5rem
+    border-left: 1px solid #edf2f9
+    border-right: 1px solid #edf2f9
+    .row-grid-bottom
+      background-color: transparent
+      border: none
+    table
+      tbody
+        td
+          font-size: .9375rem
+        tr
+          .col-createdAt
+            color: #95aac9
+            font-size: .8rem
+          .text-left>a
+            border-radius: .375rem
+            font-weight: bold
+            padding: .3em .5em
+            margin-left: -.5em
+            transition: all ease .3s
+            white-space: nowrap
+            .fe
+              transition: all ease .3s
+          &:hover
+            .text-left>a
+              background: #d9ecff
+              transition: all ease .3s
+              &:hover
+                color: #fff
+                background: #2c7be5
+                .fe
+                  color: rgba(255, 255, 255, .6)!important
+    .table-sm>:not(caption)>*>*
+      padding: .7rem 1rem
+    .input-sm.form-control-sm
+      appearance: auto
+      padding: .3rem .5rem
+  table thead tr
+    &.row-group-actions th
+      background-color: #f9fbfd
+    th
+      font-size: .675rem
+      &.col-checkbox
+        background-color: #f9fbfd
+    a
+      color: #95aac9
+  .table-bordered td,
+  .table-bordered th
+    border-left: none
+    border-right: none
+  .datagrid-collapse-filters-button-row
+    display: none
+  .row-filters
+    background-color: #f9fbfd
+    padding: .7em 1em .2em 1em
+    border-top: 1px solid #edf2f9
+  &.datagrid-sm
+    .table-sm>:not(caption)>*>*
+      padding: .7rem .5rem
+
+.datagrid-tree
+  padding-bottom: 1.8rem
+  .datagrid-tree-item-content
+    box-shadow: none!important
+    border-bottom: 1px dashed #edf2f9
+  .datagrid-tree-header
+    background-color: #f9fbfd
+    text-transform: uppercase
+    font-size: .675rem
+    font-weight: 600
+    letter-spacing: .08em
+    color: #95aac9
+    padding: .2rem 2rem 0 1.5rem!important
+    margin-left: 0!important
+    border-top: 1px solid #edf2f9
+    border-bottom: 1px solid #edf2f9
+    margin-bottom: .5rem
+    &>.datagrid-tree-item-content
+      border-bottom: 0
+  &>.datagrid-tree-item-content
+    &:last-child
+      border-bottom: none
+  &>.datagrid-tree-item
+    padding: 0 2rem 0 1.5rem
+  .datagrid-tree-item
+    a
+      border-radius: .375rem
+      font-weight: bold
+      padding: .3em .5em
+      transition: all ease .3s
+      white-space: nowrap
+      .fe
+        transition: all ease .3s
+      &:hover
+        background: #d9ecff
+        transition: all ease .3s
+        &:hover
+          color: #fff
+          background: #2c7be5
+          .fe
+            color: rgba(255, 255, 255, .6)!important
+            
+.datagrid .datagrid-tree .datagrid-tree-item .datagrid-tree-item-content .datagrid-tree-item-left > .chevron
+  box-shadow: 0 0 3px 0 #dcdcdc
+  height: 1.8rem
+  width: 1.8rem
+  border-radius: 50px
+  margin: 0 0 0 -1.8rem
+  &:hover
+    color: #000
+    
+.icon-card
+  font-size: 50px
+  line-height: 50px
+
+.note-editor
+  .dropdown-toggle::after
+    display: none
+
+.choices__list--single
+  .choices__placeholder
+    .choices__button
+      display: none
+  .choices__item
+    position: relative
+    .choices__button
+      position: absolute
+      font-size: 20px
+      line-height: 15px
+      width: 15px
+      height: 15px
+      background-color: transparent
+      border: none
+      color: transparent
+      right: 5px
+      top: 2px
+      &:before
+        content: "×"
+        display: block
+        color: #d2ddec
+
+.help-block
+  font-size: .8rem
+
+.form-select
+  .help-block
+    position: absolute
+    bottom: -20px
+    margin-left: -10px
+
+.form-check-label
+  display: inline
+
+#toast-container
+  & .toast
+    border: none
+    border-radius: 6px
+    padding: 10px 10px 10px 50px
+    display: flex
+    align-items: center
+    background-image: none!important
+    box-shadow: 0 10px 15px rgba(0,0,0,.2)
+    -o-box-shadow: 0 10px 15px rgba(0,0,0,.2)
+    -moz-box-shadow: 0 10px 15px rgba(0,0,0,.2)
+    -webkit-box-shadow: 0 10px 15px rgba(0,0,0,.2)
+    &:before
+      font-family: 'Feather', sans-serif !important
+      display: inline-block
+      font-size: 20px
+      margin-left: -35px
+      margin-right: 10px
+    &.toast-success:before
+      content: '\e92b'
+    &.toast-info:before
+      content: '\e902'
+    &.toast-warning:before
+      content: '\e904'
+    &.toast-error:before
+      content: '\e903'
+    &:hover
+      box-shadow: 0 10px 15px rgba(0,0,0,.2)
+      -o-box-shadow: 0 10px 15px rgba(0,0,0,.2)
+      -moz-box-shadow: 0 10px 15px rgba(0,0,0,.2)
+      -webkit-box-shadow: 0 10px 15px rgba(0,0,0,.2)
+
+.badge
+  font-size: 90% !important
+
+.card
+  .card-no-shadow
+    box-shadow: none
+    -o-box-shadow: none
+    -moz-box-shadow: none
+    -webkit-box-shadow: none
+  .card-header
+    .form-group
+      margin-bottom: 0
+  .card-header-tabs
+    z-index: 1
+    .nav-link.active
+      background-color: transparent
+      .fe
+        color: #2c7be5
+  .card-sm
+    .card-header
+      height: 50px
+      .card-header-tabs
+        .nav-link
+          padding-top: 15px!important
+          padding-bottom: 15px!important
+
+.bg-light
+  background-color: #f9fbfd!important
+
+.note-editor
+  border-radius: .375rem
+  border-color: #d2ddec!important
+  .note-toolbar,
+  .note-statusbar
+    background-color: #f9fbfd!important
+    border-color: #d2ddec!important
+  .note-btn,
+  .note-status-output
+    border-color: #d2ddec!important
+  .note-tooltip
+    display: none
+  .note-btn:hover + .note-dropdown-menu
+    display: block
+  .note-dropdown-menu:hover
+    display: block
+
+label
+  font-weight: 600
+  text-transform: uppercase
+  color: #7489a9
+  letter-spacing: 0.05em
+  font-size: 0.75rem
+
+.editor-toolbar
+  opacity: 1
+  border-color: #d2ddec
+  &.fullscreen
+    z-index: 9999
+  a
+    color: #6e84a3!important
+    transition: color ease-in .2s
+  &:hover
+    opacity: 1
+    a
+      color: #12263f!important
+.editor-preview-side
+  border-color: #d2ddec
+.CodeMirror
+  border-color: #d2ddec
+  &, .CodeMirror-scroll
+    min-height: auto
+  &.CodeMirror-fullscreen
+    z-index: 9999
+
+.form-group.required
+  .control-label label,
+  & > label
+    &:after
+      content: '*'
+      color: #f52e29
+      margin-left: 3px
+
+.chart-legend
+  display: block
+
+.navbar
+  .navbar-nav
+    .nav-link
+      .badge
+        font-size: .7rem!important
+  .debugger-label
+    display: inline-block
+    position: absolute
+    left: 0
+    top: 0
+    font-size: .6rem!important
+    text-transform: uppercase
+    letter-spacing: .05rem
+    padding: .3rem .5rem
+    font-weight: bold
+    border-radius: 0 0 .25rem
+
+.locale-list
+  img
+    width: 1.5rem
+    border: 1px solid #edf2f9
+    margin-top: -.2rem
+    box-sizing: content-box

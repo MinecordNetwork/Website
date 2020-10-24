@@ -6,6 +6,9 @@ namespace Minecord\Module\Admin\Dashboard;
 
 use Minecord\Module\Admin\BaseAdminPresenter;
 
+/**
+ * @property DashboardTemplate $template
+ */
 class DashboardPresenter extends BaseAdminPresenter
 {
 	public function actionDefault(): void

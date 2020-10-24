@@ -1,9 +1,23 @@
+{templateType Minecord\Module\Admin\Article\ArticleTemplate}
+{block title}Články{/block}
+{block headerButtons}
+    <a href="#" class="btn btn-primary lift" data-toggle="modal" data-target="#modal-create"><i class="fe fe-plus-circle mr-1"></i> Nový článok</a>
+{/block}
 {block content}
-<div class="card">
-	<div class="card-header">
-		Articles
-	</div>
-	<div class="card-body">
-		{control pageGrid}
-	</div>
+
+{snippetArea titlesWrapper}
+{includeblock '../@Layout/header.latte'}
+{/snippetArea}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header block-header-default">
+            <h4 class="card-header-title">Zoznam článkov</h4>
+        </div>
+        <div class="datagrid-container">
+            {control grid}
+        </div>
+    </div>
 </div>
+
+{include '../@Common/create-modal.latte' title => 'Vytvoriť nový článok'}

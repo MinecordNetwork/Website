@@ -12,4 +12,7 @@ class BaseAdminTemplate extends Template
 	public array $flashes;
 	public bool $isAuthPresenter;
 	public ?User $user;
+
+	public string $javaScriptTag = '';
+	public string $styleSheetsTag = '';
 }

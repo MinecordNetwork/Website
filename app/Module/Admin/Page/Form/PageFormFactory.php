@@ -33,7 +33,7 @@ class PageFormFactory
 		$form->addTextEditor('contentCzech', 'Content 🇨🇿')
 			->setRequired();
 
-		$form->addSubmit('submit', 'Save page');
+		$form->addAjaxSubmit('submit', 'Uložiť stránku');
 		
 		if ($page !== null) {
 			$form->setDefaults(new FormData($page->getData()));

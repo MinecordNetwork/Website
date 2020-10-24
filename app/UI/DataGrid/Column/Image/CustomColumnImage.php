@@ -38,7 +38,7 @@ class CustomColumnImage extends ColumnText
 		$image = $this->getColumnValue($row);
 		
 		if ($image === null) {
-			return '<small class="text-muted">Bez obrázka</small>';
+			return '<i class="text-muted fe fe-image" title="Bez obrázka"></i>';
 		}
 
 		return $this->latte->renderToString('main', [

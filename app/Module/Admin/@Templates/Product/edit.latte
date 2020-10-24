@@ -1,17 +1,43 @@
 {templateType Minecord\Module\Admin\Product\ProductTemplate}
+{block preTitle}Upraviť produkt{/block}
+{block title}{$product->getName()}{/block}
+{*block headerButtons}
+    <a n:href="remove!" class="btn btn-danger lift"><i class="fe fe-trash mr-1"></i> Odstrániť článok</a>
+{/block*}
 {block content}
-<div class="card">
-	<div class="card-header">
-		Edit product
-	</div>
-	<div class="card-body">
-		<div class="row">
-			<div class="col-12 col-md-8">
-				{control form}
+
+{snippetArea titlesWrapper}
+	{includeblock '../@Layout/header.latte'}
+{/snippetArea}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xl-7">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-header-title">Produkt</h4>
+				</div>
+				<div class="card-body pb-0">
+					{control form}
+				</div>
 			</div>
-			<div class="col-12 col-md-4">
-				<img n:if="$product->getThumbnail() !== null" src="{$product->getThumbnail()->getPublicPath()}" style="max-width:100%;"/>
-				{control thumbnailForm}
+		</div>
+		<div class="col-xl-5">
+			<div class="card">
+				<div class="card-header">
+					<div class="row align-items-center">
+						<div class="col">
+							<h4 class="card-header-title">Náhľadový obrázok</h4>
+						</div>
+						{*<div class="col-auto">
+                            <a n:if="$article->getThumbnail() !== null" n:href="removeImage! (string) $article->getThumbnail()->getId()" class="btn btn-danger btn-sm lift"><i class="fe fe-trash mr-1"></i> Odstrániť náhľadový obrázok</a>
+                        </div>*}
+					</div>
+				</div>
+				<div class="card-body pb-0">
+					<img n:if="$product->getThumbnail() !== null" class="img-fluid options-item pb-2" src="{$product->getThumbnail()->getPublicPath()}" alt="">
+					{control thumbnailForm}
+				</div>
 			</div>
 		</div>
 	</div>

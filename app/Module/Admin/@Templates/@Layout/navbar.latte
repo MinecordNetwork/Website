@@ -1,0 +1,442 @@
+{templateType Minecord\Module\Admin\BaseAdminTemplate}
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+    <div n:snippet="sidebar" class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" n:href="Dashboard:default">
+            MINECORD
+        </a>
+
+        <div class="navbar-user d-md-none">
+            <div class="dropdown">
+                <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm avatar-online">
+                        <img src="/assets/admin/img/avatar.svg" class="avatar-img rounded-circle" alt="...">
+                    </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
+                    <span class="dropdown-item-text">
+                        <span class="text-dark">{$user->getDisplayName()}</span>
+                        <div class="text-muted mt-n2"><small>{$user->getEmail()}</small></div>
+                    </span>
+                    <hr class="dropdown-divider">
+                    <a n:href="logout!" class="dropdown-item">Odhlásiť sa</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="sidebarCollapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a data-naja-history="on" class="ajax nav-link{isLinkCurrent('Dashboard:*') ? ' active'}" n:href="Dashboard:default">
+                        <i class="fe fe-home"></i> Nástenka
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-naja-history="on" class="ajax nav-link{isLinkCurrent('Product:*') ? ' active'}" n:href="Product:default">
+                        <i class="fe fe-grid"></i> Produkty
+                    </a>
+                </li>
+                <li class="nav-item my-2 border-top"></li>
+                <li class="nav-item">
+                    <a data-naja-history="on" class="ajax nav-link{isLinkCurrent('Page:*') ? ' active'}" n:href="Page:default">
+                        <i class="fe fe-file"></i> Stránky
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-naja-history="on" class="ajax nav-link{isLinkCurrent('Article:*') ? ' active'}" n:href="Article:default">
+                        <i class="fe fe-align-left"></i> Články
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarSmallCollapse" aria-controls="sidebarSmallCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" n:href="Dashboard:default">
+            <img src="/img/logo.png" class="navbar-brand-img mx-auto" alt="Minecord logo">
+        </a>
+
+        <div class="navbar-user d-md-none">
+            <div class="dropdown">
+                <a href="#" id="sidebarSmallIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm avatar-online">
+                        <img src="/assets/admin/img/default-avatar.png" class="avatar-img rounded-circle" alt="...">
+                    </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarSmallIcon">
+                    <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/profile-posts.html" class="dropdown-item">Profile</a>
+                    <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/account-general.html" class="dropdown-item">Settings</a>
+                    <hr class="dropdown-divider">
+                    <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-in.html" class="dropdown-item">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="sidebarSmallCollapse">
+            <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge input-group-reverse">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-text">
+                        <span class="fe fe-search"></span>
+                    </div>
+                </div>
+            </form>
+
+            <hr class="navbar-divider d-none d-md-block mt-0 mb-3">
+
+            <ul class="navbar-nav">
+                <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle active" id="sidebarSmallDashboards" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" title="Dashboards">
+                        <i class="fe fe-home"></i> <span class="d-md-none">Dashboards</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="sidebarSmallDashboards">
+                        <li class="dropdown-header d-none d-md-block">
+                            <h6 class="text-uppercase mb-0">Dashboards</h6>
+                        </li>
+                        <li>
+                            <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/index.html" class="dropdown-item active">
+                                Default
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/dashboard-project-management.html" class="dropdown-item ">
+                                Project Management
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/dashboard-ecommerce.html" class="dropdown-item ">
+                                E-Commerce
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle " id="sidebarSmallPages" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fe fe-file"></i> <span class="d-md-none">Pages</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="sidebarSmallPages">
+                        <li class="dropdown-header d-none d-md-block">
+                            <h6 class="text-uppercase mb-0">Pages</h6>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle " href="#" id="sidebarSmallAccount" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Account
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallAccount">
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/account-general.html">
+                                    General
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/account-billing.html">
+                                    Billing
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/account-members.html">
+                                    Members
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/account-security.html">
+                                    Security
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/account-notifications.html">
+                                    Notifications
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle " href="#" id="sidebarSmallCrm" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                CRM
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallCrm">
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/crm-contacts.html">
+                                    Contacts
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/crm-companies.html">
+                                    Companies
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/crm-deals.html">
+                                    Deals
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle " href="#" id="sidebarSmallProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Profile
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallProfile">
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/profile-posts.html">
+                                    Posts
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/profile-groups.html">
+                                    Groups
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/profile-projects.html">
+                                    Projects
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/profile-files.html">
+                                    Files
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/profile-subscribers.html">
+                                    Subscribers
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle " href="#" id="sidebarSmallProject" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Project
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallProject">
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/project-overview.html">
+                                    Overview
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/project-files.html">
+                                    Files
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/project-reports.html">
+                                    Reports
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/project-new.html">
+                                    New project
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle " href="#" id="sidebarSmallTeam" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Team
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallTeam">
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/team-overview.html">
+                                    Overview
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/team-projects.html">
+                                    Projects
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/team-members.html">
+                                    Members
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/team-new.html">
+                                    New team
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle " href="#" id="sidebarSmallFeed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Feed
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallFeed">
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/feed.html">
+                                    Platform
+                                </a>
+                                <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/social-feed.html">
+                                    Social
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/wizard.html">
+                                Wizard
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/kanban.html">
+                                Kanban
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/orders.html">
+                                Orders
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/invoice.html">
+                                Invoice
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/pricing.html">
+                                Pricing
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="Widgets">
+                    <a class="nav-link " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/widgets.html">
+                        <i class="fe fe-grid"></i> <span class="d-md-none">Widgets</span>
+                    </a>
+                </li>
+                <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle" id="sidebarSmallAuth" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fe fe-user"></i> <span class="d-md-none">Auth</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="sidebarSmallAuth">
+                        <li class="dropdown-header d-none d-md-block">
+                            <h6 class="text-uppercase mb-0">Authentication</h6>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle" href="#" id="sidebarSmallSignIn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sign in
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallSignIn">
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-in-cover.html">
+                                    Cover
+                                </a>
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-in-illustration.html">
+                                    Illustration
+                                </a>
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-in-basics.html">
+                                    Basic
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle" href="#" id="sidebarSmallSignUp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sign up
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallSignUp">
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-up-cover.html">
+                                    Cover
+                                </a>
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-up-illustration.html">
+                                    Illustration
+                                </a>
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-up.html">
+                                    Basic
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle" href="#" id="sidebarSmallPassword" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Password reset
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallPassword">
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/password-reset-cover.html">
+                                    Cover
+                                </a>
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/password-reset-illustration.html">
+                                    Illustration
+                                </a>
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/password-reset.html">
+                                    Basic
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropright">
+                            <a class="dropdown-item dropdown-toggle" href="#" id="sidebarSmallError" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Error
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="sidebarSmallError">
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/error-illustration.html">
+                                    Illustration
+                                </a>
+                                <a class="dropdown-item" href="https://dashkit.goodthemes.co/v/2.0.0-alpha/error.html">
+                                    Basic
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item d-md-none">
+                    <a class="nav-link" href="#sidebarModalActivity" data-toggle="modal">
+                        <span class="fe fe-bell"></span> Notifications
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Divider -->
+            <hr class="navbar-divider my-3">
+
+            <!-- Navigation -->
+            <ul class="navbar-nav mb-md-4">
+                <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle " id="sidebarSmallBasics" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Basics">
+                        <i class="fe fe-clipboard"></i> <span class="d-md-none">Basics</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="sidebarSmallBasics">
+                        <li class="dropdown-header d-none d-md-block">
+                            <h6 class="text-uppercase mb-0">Basics</h6>
+                        </li>
+                        <li>
+                            <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/docs/getting-started.html" class="dropdown-item ">
+                                Getting Started
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/docs/design-file.html" class="dropdown-item ">
+                                Design File
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/docs/components.html" data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="Components">
+                        <i class="fe fe-book-open"></i> <span class="d-md-none">Components</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="https://dashkit.goodthemes.co/v/2.0.0-alpha/docs/changelog.html" data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="Changelog">
+                        <i class="fe fe-git-branch"></i> <span class="d-md-none">Changelog</span> <span class="badge bg-primary ml-auto d-md-none">v2.0.0-alpha</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Push content down -->
+            <div class="mt-auto"></div>
+
+            <!-- Customize -->
+            <div class="mb-4" data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="Customize">
+                <a href="#modalDemo" class="btn btn-block btn-primary" data-toggle="modal">
+                    <i class="fe fe-sliders"></i> <span class="d-md-none ml-2">Customize</span>
+                </a>
+            </div>
+
+            <!-- User (md) -->
+            <div class="navbar-user d-none d-md-flex flex-column" id="sidebarSmallUser">
+
+                <!-- Icon -->
+                <a href="#sidebarModalSearch" class="navbar-user-link mb-3" data-toggle="modal">
+                    <span class="icon">
+                      <i class="fe fe-search"></i>
+                    </span>
+                </a>
+
+                <!-- Icon -->
+                <a href="#sidebarModalActivity" class="navbar-user-link mb-3" data-toggle="modal">
+                    <span class="icon">
+                      <i class="fe fe-bell"></i>
+                    </span>
+                </a>
+
+                <!-- Dropup -->
+                <div class="dropright">
+
+                    <!-- Toggle -->
+                    <a href="#" id="sidebarSmallIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="avatar avatar-sm avatar-online">
+                            <img src="/assets/admin/img/default-avatar.png" class="avatar-img rounded-circle" alt="...">
+                        </div>
+                    </a>
+
+                    <!-- Menu -->
+                    <div class="dropdown-menu" aria-labelledby="sidebarSmallIconCopy">
+                        <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/profile-posts.html" class="dropdown-item">Profile</a>
+                        <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/account-general.html" class="dropdown-item">Settings</a>
+                        <hr class="dropdown-divider">
+                        <a href="https://dashkit.goodthemes.co/v/2.0.0-alpha/sign-in.html" class="dropdown-item">Logout</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div> <!-- / .navbar-collapse -->
+
+    </div>
+</nav>
+<div id="topnav"></div>

@@ -35,16 +35,14 @@ class PageGridFactory
 
 		$grid->addColumnImage('thumbnail', 'Thumbnail');
 
-		$grid->addColumnText('titleEnglish', 'Title [EN]')
+		$grid->addColumnLink('titleEnglish', 'Title [EN]', 'edit')
 			->setSortable()
 			->setFilterText('titleEnglish');
 
-		$grid->addColumnText('titleCzech', 'Title [CZ]')
+		$grid->addColumnLink('titleCzech', 'Title [CZ]', 'edit')
 			->setSortable()
 			->setFilterText('titleCzech');
-
-		$grid->addAction('edit', 'Edit');
-
+		
 		return $grid;
 	}
 }

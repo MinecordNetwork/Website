@@ -27,7 +27,7 @@ class CustomColumnStatus extends ColumnStatus
 			throw new DataGridColumnStatusException('Option value has to be scalar');
 		}
 
-		$option = new CustomOption($this, $value, $text);
+		$option = new CustomOption($this->grid, $this, $value, $text);
 
 		$this->options[] = $option;
 

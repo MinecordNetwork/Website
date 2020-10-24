@@ -47,7 +47,7 @@ class ProductFormFactory
 
 		$form->addCheckbox('isRank', 'Is this product a Rank?');
 
-		$form->addSubmit('submit', 'Save product');
+		$form->addAjaxSubmit('submit', 'Uložiť produkt');
 
 		if ($product !== null) {
 			$form->setDefaults(new FormData($product->getData()));

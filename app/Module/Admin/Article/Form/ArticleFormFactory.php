@@ -39,7 +39,7 @@ class ArticleFormFactory
 		$form->addTextEditor('contentCzech', 'Content 🇨🇿')
 			->setRequired();
 
-		$form->addSubmit('submit', 'Save article');
+		$form->addAjaxSubmit('submit', 'Uložiť príspevok');
 		
 		if ($article !== null) {
 			$form->setDefaults(new FormData($article->getData()));

@@ -1,13 +1,21 @@
-const path = require('path');
+const Encore = require('@symfony/webpack-encore');
 
-module.exports = {
-    entry: './public/js/main.js',
-    mode: 'production',
-    resolve: {
-        extensions: ['*', '.js', '.jsx']
-    },
-    output: {
-        filename: 'bundle.js',
-        path: path.join(__dirname, 'public', 'js', 'build'),
-    },
-};
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
+Encore
+    .setOutputPath('./public/js/build')
+    .setPublicPath('/public/js/build')
+    .addEntry('bundle', './public/js/main.js')
+    .addEntry('admin', './public/js/admin.js')
+    .disableSingleRuntimeChunk()
+    .cleanupOutputBeforeBuild()
+    .enableBuildNotifications()
+    .configureBabelPresetEnv((config) => {
+        config.useBuiltIns = 'usage';
+        config.corejs = 3;
+    })
+    .autoProvidejQuery();
+
+module.exports = Encore.getWebpackConfig();

@@ -1,18 +1,44 @@
 {templateType Minecord\Module\Admin\Page\PageTemplate}
+{block preTitle}Upraviť stránku{/block}
+{block title}{$page->getTitle()}{/block}
+{*block headerButtons}
+    <a n:href="remove!" class="btn btn-danger lift"><i class="fe fe-trash mr-1"></i> Odstrániť stránku</a>
+{/block*}
 {block content}
-<div class="card">
-	<div class="card-header">
-		Edit page
-	</div>
-	<div class="card-body">
-		<div class="row">
-			<div class="col-12 col-md-8">
-				{control form}
-			</div>
-			<div class="col-12 col-md-4">
-				<img n:if="$page->getThumbnail() !== null" src="{$page->getThumbnail()->getPublicPath()}" style="max-width:100%;"/>
-				{control thumbnailForm}
-			</div>
-		</div>
-	</div>
+
+{snippetArea titlesWrapper}
+{includeblock '../@Layout/header.latte'}
+{/snippetArea}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-7">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-header-title">Stránka</h4>
+                </div>
+                <div class="card-body pb-0">
+                    {control form}
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="card-header-title">Náhľadový obrázok</h4>
+                        </div>
+                        {*<div class="col-auto">
+                            <a n:if="$page->getThumbnail() !== null" n:href="removeImage! (string) $page->getThumbnail()->getId()" class="btn btn-danger btn-sm lift"><i class="fe fe-trash mr-1"></i> Odstrániť náhľadový obrázok</a>
+                        </div>*}
+                    </div>
+                </div>
+                <div class="card-body pb-0">
+                    <img n:if="$page->getThumbnail() !== null" class="img-fluid options-item pb-2" src="{$page->getThumbnail()->getPublicPath()}" alt="">
+                    {control thumbnailForm}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

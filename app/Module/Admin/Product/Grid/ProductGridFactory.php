@@ -35,16 +35,14 @@ class ProductGridFactory
 
 		$grid->addColumnImage('thumbnail', 'Thumbnail');
 
-		$grid->addColumnText('nameEnglish', 'Name [EN]')
+		$grid->addColumnLink('nameEnglish', 'Name [EN]', 'edit')
 			->setSortable()
 			->setFilterText('nameEnglish');
 
-		$grid->addColumnText('nameCzech', 'Name [CZ]')
+		$grid->addColumnLink('nameCzech', 'Name [CZ]', 'edit')
 			->setSortable()
 			->setFilterText('nameCzech');
-
-		$grid->addAction('edit', 'Edit');
-
+		
 		return $grid;
 	}
 }

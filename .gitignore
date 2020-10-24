@@ -10,5 +10,8 @@
 /public/css/*.css
 /public/css/*.map
 /public/js/build/*
+/public/js/vendor/*
+/public/css/libs/*
 /node_modules
+/public/assets
 .env

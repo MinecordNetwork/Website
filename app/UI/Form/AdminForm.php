@@ -16,10 +16,12 @@ use Minecord\UI\Form\Control\DateInput;
 use Minecord\UI\Form\Control\DateTimeInput;
 use Minecord\UI\Form\Control\DateRangeInput;
 use Minecord\UI\Form\Control\DateTimeRangeInput;
+use Minecord\UI\Form\Control\MarkdownEditorInput;
 use Minecord\UI\Form\Control\PriceInput;
+use Minecord\UI\Form\Control\SwitchCheckbox;
 use Minecord\UI\Form\Control\TextEditorInput;
 use Minecord\UI\Form\Control\TimeInput;
-use Minecord\UI\Form\Renderer\CodebaseRenderer;
+use Minecord\UI\Form\Renderer\DashkitRenderer;
 
 class AdminForm extends Form
 {
@@ -29,7 +31,8 @@ class AdminForm extends Form
 	{
 		parent::__construct($parent, $name);
 
-		$this->setRenderer(new CodebaseRenderer());
+		$this->setRenderer(new DashkitRenderer());
+		$this->addProtection('Prosím opakujte akciu, CSRF protekcia formulára expirovala');
 	}
 
 	public function addCodebaseRadioList(string $name, $label = null, array $items = null): CodebaseRadioList
@@ -40,6 +43,11 @@ class AdminForm extends Form
 	public function addCodebaseCheckbox(string $name, $caption = null): CodebaseCheckbox
 	{
 		return $this[$name] = new CodebaseCheckbox($caption);
+	}
+
+	public function addSwitchCheckbox(string $name, $caption = null): SwitchCheckbox
+	{
+		return $this[$name] = new SwitchCheckbox($caption);
 	}
 
 	public function addDate(string $name, $label = null, int $cols = null): DateInput
@@ -87,6 +95,12 @@ class AdminForm extends Form
 	public function addTextEditor(string $name, $label = null, int $cols = null, int $rows = null): TextEditorInput
 	{
 		return $this[$name] = (new TextEditorInput($label))
+			->setHtmlAttribute('size', $cols)->setHtmlAttribute('rows', $rows);
+	}
+
+	public function addMarkdownEditor(string $name, $label = null, int $cols = null, int $rows = null): MarkdownEditorInput
+	{
+		return $this[$name] = (new MarkdownEditorInput($label))
 			->setHtmlAttribute('size', $cols)->setHtmlAttribute('rows', $rows);
 	}
 

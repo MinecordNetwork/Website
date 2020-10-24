@@ -69,13 +69,15 @@ class PagePresenter extends BaseAdminPresenter
 		$form->onSuccess[] = function(Form $form, array $data): void {
 			if ($this->page === null) {
 				$this->pageFacade->create($this->pageDataFactory->createFromFormData($data));
-				$this->flashMessage('New page successfully created!', 'success');
+				$this->flashMessage('Stránka úspešne vytvorená!', 'success');
+				$this->redirect('this');
 			} else {
 				$this->pageFacade->edit($this->page->getId(), $this->pageDataFactory->createFromFormData($data));
+				$this->flashMessage('Stránka úspešne upravená!', 'success');
+				$this->redrawControl('flashes');
 			}
 			$this->routeProvider->createRoutes('en');
 			$this->routeProvider->createRoutes('cs');
-			$this->redirect('this');
 		};
 
 		return $form;
@@ -111,7 +113,7 @@ class PagePresenter extends BaseAdminPresenter
 		return $form;
 	}
 
-	public function createComponentPageGrid(): ?IComponent
+	public function createComponentGrid(): ?IComponent
 	{
 		return $this->pageGridFactory->create();
 	}

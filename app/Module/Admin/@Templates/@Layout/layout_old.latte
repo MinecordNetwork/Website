@@ -1,0 +1,85 @@
+{templateType Minecord\Module\Admin\BaseAdminTemplate}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{ifset description}{include description|stripHtml}{else}{_'homepage.description'}{/ifset}">
+	<meta n:ifset="keywords" name="keywords" content="{include keywords|stripHtml}">
+	<meta name="author" content="https://rixafy.pro">
+	<meta n:ifset="image" name="og:image" content="{include image}">
+	<meta name="theme-color" content="#2f67a5">
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Minecord</title>
+	<link href="/css/tabler.min.css" rel="stylesheet"/>
+	<link href="/css/dashboard.css" rel="stylesheet"/>
+	<link href="/css/datagrid.min.css" rel="stylesheet"/>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+	<link href="/fontawesome/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+	{if $isAuthPresenter}
+		<div class="page">
+			{include content}
+		</div>
+	{else}
+		<div class="page">
+			<div class="flex-fill">
+				{include 'header.latte'}
+				<div class="my-3 my-md-5">
+					<div class="container">
+						{include 'flashes.latte'}
+						{include content}
+					</div>
+				</div>
+			</div>
+			{include 'footer.latte'}
+		</div>
+	{/if}
+
+	{block scripts}
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/popper.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+		<script src="/js/netteajax.js"></script>
+		<script src="/js/datagrid.js"></script>
+		<script src="/js/tabler.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+		<script>
+            $(function () {
+                $.nette.init();
+				
+				$('.summernote').summernote({
+					lang: 'sk-SK',
+					height: 250,
+					callbacks: {
+						onImageUpload: function(files) {
+							var $this = $(this);
+							uploadFile(files[0], function(url) {
+								$this.summernote("insertImage", url);
+							});
+						}
+					}
+				});
+
+				function uploadFile(file, callback) {
+					const data = new FormData();
+					data.append("file", file);
+					$.ajax({
+						data: data,
+						type: "POST",
+						url: {link Image:upload},
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: function(url) {
+							callback(url);
+						}
+					});
+				}
+            });
+		</script>
+	{/block}
+</body>
+</html>

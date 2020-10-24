@@ -18,10 +18,17 @@ class DateRangeInput extends TextInput
 	public function loadHttpData(): void
 	{
 		$value = explode(' - ', $this->getHttpData(Form::DATA_LINE));
-		$this->setValue([
-			'from' => new DateTime($value[0]),
-			'to' => new DateTime($value[1])
-		]);
+		if (count($value) > 1) {
+			$this->setValue([
+				'from' => new DateTime($value[0]),
+				'to' => new DateTime($value[1])
+			]);
+		} else {
+			$this->setValue([
+				'from' => null,
+				'to' => null
+			]);
+		}
 	}
 
 	public function setValue($value)

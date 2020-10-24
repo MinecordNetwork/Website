@@ -174,7 +174,7 @@ class BootstrapRenderer extends DefaultFormRenderer
 		}
 
 		$this->controlsInit = true;
-		$this->form->getElementPrototype()->appendAttribute('class', 'ajax form-horizontal');
+		$this->form->getElementPrototype()->appendAttribute('class', 'form-horizontal');
 
 		foreach ($this->form->getControls() as $control) {
 			$type = $control->getOption('type');

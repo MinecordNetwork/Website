@@ -1,0 +1,162 @@
+{templateType Minecord\Module\Admin\BaseAdminTemplate}
+<div class="modal fade fixed-right" id="modalDemo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-vertical" role="document">
+        <form class="modal-content" id="demoForm">
+            <div class="modal-body">
+
+                <!-- Close -->
+                <a class="close" href="#" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+
+                <!-- Image -->
+                <div class="text-center">
+                    <img src="https://dashkit.goodthemes.co/v/2.0.0-alpha/assets/img/illustrations/designer-life.svg" alt="..." class="img-fluid mb-3">
+                </div>
+
+                <!-- Heading -->
+                <h2 class="text-center mb-2">
+                    Make Dashkit Your Own
+                </h2>
+
+                <!-- Text -->
+                <p class="text-center mb-4">
+                    Set preferences that will be cookied for your live preview demonstration.
+                </p>
+
+                <!-- Divider -->
+                <hr class="mb-4">
+
+                <!-- Heading -->
+                <h4 class="mb-1">
+                    Color Scheme
+                </h4>
+
+                <!-- Text -->
+                <p class="small text-muted mb-3">
+                    Overall light or dark presentation.
+                </p>
+
+                <!-- Button group -->
+                <div class="btn-group-toggle row gx-2 mb-4">
+                    <div class="col">
+                        <input class="btn-check" name="colorScheme" id="colorSchemeLight" type="radio" value="light">
+                        <label class="btn btn-block btn-white" for="colorSchemeLight">
+                            <i class="fe fe-sun mr-2"></i> Light Mode
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input class="btn-check" name="colorScheme" id="colorSchemeDark" type="radio" value="dark">
+                        <label class="btn btn-block btn-white" for="colorSchemeDark">
+                            <i class="fe fe-moon mr-2"></i> Dark Mode
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Heading -->
+                <h4 class="mb-1">
+                    Navigation Position
+                </h4>
+
+                <!-- Text -->
+                <p class="small text-muted mb-3">
+                    Select the primary navigation paradigm for your app.
+                </p>
+
+                <!-- Button group -->
+                <div class="btn-group-toggle row gx-2 mb-4">
+                    <div class="col">
+                        <input class="btn-check" name="navPosition" id="navPositionSidenav" type="radio" value="sidenav">
+                        <label class="btn btn-block btn-white" for="navPositionSidenav">
+                            Sidenav
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input class="btn-check" name="navPosition" id="navPositionTopnav" type="radio" value="topnav">
+                        <label class="btn btn-block btn-white" for="navPositionTopnav">
+                            Topnav
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input class="btn-check" name="navPosition" id="navPositionCombo" type="radio" value="combo">
+                        <label class="btn btn-block btn-white" for="navPositionCombo">
+                            Combo
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Collapse -->
+                <div id="sidebarSizeContainer">
+
+                    <!-- Heading -->
+                    <h4 class="mb-1">
+                        Sidenav Sizing <span class="badge bg-soft-primary">New</span>
+                    </h4>
+
+                    <!-- Text -->
+                    <p class="small text-muted mb-3">
+                        Standard navigation sizing or minified icons with dropdowns.
+                    </p>
+
+                    <!-- Button group -->
+                    <div class="btn-group-toggle row gx-2 mb-4">
+                        <div class="col">
+                            <input class="btn-check" name="sidebarSize" id="sidebarSizeBase" type="radio" value="base">
+                            <label class="btn btn-block btn-white" for="sidebarSizeBase">
+                                Fullsize
+                            </label>
+                        </div>
+                        <div class="col">
+                            <input class="btn-check" name="sidebarSize" id="sidebarSizeSmall" type="radio" value="small">
+                            <label class="btn btn-block btn-white" for="sidebarSizeSmall">
+                                Icons
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Heading -->
+                <h4 class="mb-1">
+                    Navigation Color <span class="badge bg-soft-primary">New</span>
+                </h4>
+
+                <!-- Text -->
+                <p class="small text-muted mb-3">
+                    Usually dictated by the color scheme, but can be overriden.
+                </p>
+
+                <!-- Button group -->
+                <div class="btn-group-toggle row gx-2">
+                    <div class="col">
+                        <input class="btn-check" name="navColor" id="navColorDefault" type="radio" value="default">
+                        <label class="btn btn-block btn-white" for="navColorDefault">
+                            Default
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input class="btn-check" name="navColor" id="navColorInverted" type="radio" value="inverted">
+                        <label class="btn btn-block btn-white" for="navColorInverted">
+                            Inverted
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input class="btn-check" name="navColor" id="navColorVibrant" type="radio" value="vibrant">
+                        <label class="btn btn-block btn-white" for="navColorVibrant">
+                            Vibrant
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer border-0">
+
+                <!-- Button -->
+                <button type="submit" class="btn btn-block btn-primary mt-auto">
+                    Preview
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,69 +1,48 @@
 {templateType Minecord\Module\Admin\BaseAdminTemplate}
-<div class="header py-4">
-	<div class="container">
-		<div class="d-flex">
-			<a class="header-brand" n:href="Dashboard:default">
-				<div>Minecord Web System v0.1</div>
-			</a>
-			<div class="d-flex order-lg-2 ml-auto">
-				<div class="nav-item d-none d-md-flex">
-					<a n:href="notifyDiscord!" class="ajax btn btn-sm btn-outline-primary">Notify discord</a>
-				</div>
-				<div class="dropdown">
-					<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-						<span class="avatar" style="background-image: url('https://minotar.net/helm/{$user->getDisplayName()}/25.png'); border-radius: 0"></span>
-						<span class="ml-2 d-none d-lg-block">
-                      <span class="text-default">{$user->getDisplayName()}</span>
-                      <small class="text-muted d-block mt-1">Admin</small>
-                    </span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-						<a class="dropdown-item" n:href="logout!">
-							<i class="dropdown-icon fa fa-log-out"></i> Sign out
-						</a>
-					</div>
-				</div>
-			</div>
-			<a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
-				<span class="header-toggler-icon"></span>
-			</a>
-		</div>
-	</div>
-</div>
-<div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-lg-3 ml-auto">
+<nav class="navbar navbar-expand-md navbar-light d-none d-md-flex">
+    <div class="container-fluid">
+        <div class="mr-auto navbar-nav">
 
-			</div>
-			<div class="col-lg order-lg-first">
-				<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-					<li class="nav-item">
-						<a n:href="Dashboard:default" class="nav-link"><i class="fa fa-home"></i> Dashboard</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="javascript:void(0)" class="nav-link {if isLinkCurrent('Article:*')}active{/if}" data-toggle="dropdown"><i class="fa fa-calendar"></i> Articles</a>
-						<div class="dropdown-menu dropdown-menu-arrow">
-							<a n:href="Article:create" class="dropdown-item ">New article</a>
-							<a n:href="Article:default" class="dropdown-item ">Articles</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="javascript:void(0)" class="nav-link {if isLinkCurrent('Page:*')}active{/if}" data-toggle="dropdown"><i class="fa fa-file"></i> Pages</a>
-						<div class="dropdown-menu dropdown-menu-arrow">
-							<a n:href="Page:create" class="dropdown-item ">New page</a>
-							<a n:href="Page:default" class="dropdown-item ">Pages</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="javascript:void(0)" class="nav-link {if isLinkCurrent('Product:*')}active{/if}" data-toggle="dropdown"><i class="fa fa-file"></i> Products</a>
-						<div class="dropdown-menu dropdown-menu-arrow">
-							<a n:href="Product:create" class="dropdown-item ">New product</a>
-							<a n:href="Product:default" class="dropdown-item ">Products</a>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+        </div>
+
+        <div class="navbar-user">
+            <div class="dropdown d-flex align-items-center text-right">
+                <span class="mr-3">
+                    {$user->getDisplayName()}
+                    <div class="text-muted mt-n2"><small>{$user->getEmail()}</small></div>
+                </span>
+                <a href="#" class="avatar avatar-sm avatar-online dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="/assets/admin/img/avatar.svg" alt="..." class="avatar-img rounded-circle" />
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a n:href="notifyDiscord!" class="dropdown-item">Notify Discord</a>
+                    <a n:href="logout!" class="dropdown-item">Odhlásiť sa</a>
+                </div>
+            </div>
+        </div>
+
+        <a href="#modalDemo" class="navbar-user-link ml-3 d-none" data-toggle="modal">
+            <span class="icon">
+                <i class="fe fe-sliders"></i>
+            </span>
+        </a>
+    </div>
+</nav>
+
+<div class="header">
+    <div class="container-fluid">
+        <div class="header-body">
+            {snippet titles}
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="header-pretitle">{ifset preTitle}{include preTitle}{else}Prehľad{/ifset}</h6>
+                    <h1 class="header-title">{ifset title}{include title}{/ifset}</h1>
+                </div>
+                <div class="col-auto">
+                    {ifset headerButtons}{include headerButtons}{/ifset}
+                </div>
+            </div>
+            {/snippet}
+        </div>
+    </div>
 </div>

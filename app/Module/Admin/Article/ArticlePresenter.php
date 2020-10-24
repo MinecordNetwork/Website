@@ -67,13 +67,15 @@ class ArticlePresenter extends BaseAdminPresenter
 		$form->onSuccess[] = function(Form $form, array $data): void {
 			if ($this->article === null) {
 				$this->articleFacade->create($this->articleDataFactory->createFromFormData($data));
-				$this->flashMessage('New article successfully created!', 'success');
+				$this->flashMessage('Príspevok bol úspešne vytvorený!', 'success');
+				$this->redirect('this');
 			} else {
 				$this->articleFacade->edit($this->article->getId(), $this->articleDataFactory->createFromFormData($data));
+				$this->flashMessage('Príspevok bol úspešne upravený!', 'success');
+				$this->redrawControl('flashes');
 			}
 			$this->routeProvider->createRoutes('en');
 			$this->routeProvider->createRoutes('cs');
-			$this->redirect('this');
 		};
 
 		return $form;
@@ -109,7 +111,7 @@ class ArticlePresenter extends BaseAdminPresenter
 		return $form;
 	}
 
-	public function createComponentPageGrid(): ?IComponent
+	public function createComponentGrid(): ?IComponent
 	{
 		return $this->articleGridFactory->create();
 	}

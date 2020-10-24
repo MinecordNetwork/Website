@@ -2,84 +2,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="{ifset description}{include description|stripHtml}{else}{_'homepage.description'}{/ifset}">
-	<meta n:ifset="keywords" name="keywords" content="{include keywords|stripHtml}">
-	<meta name="author" content="https://rixafy.pro">
-	<meta n:ifset="image" name="og:image" content="{include image}">
-	<meta name="theme-color" content="#2f67a5">
-	<title>{ifset title}{include title|stripHtml} | {/ifset}Minecord</title>
-	<link href="/css/tabler.min.css" rel="stylesheet"/>
-	<link href="/css/dashboard.css" rel="stylesheet"/>
-	<link href="/css/datagrid.min.css" rel="stylesheet"/>
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
-	<link href="/fontawesome/css/all.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Minecord admin interface" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="/css/admin.css?tag={$styleSheetsTag}">
+    <title n:snippet="title">{ifset preTitle}{include preTitle|stripHtml} {/ifset}{ifset title}{include title|stripHtml} | {/ifset}Minecord</title>
+    <style>body { display: none }</style>
 </head>
+<body {if isLinkCurrent('Auth:*')}class="d-flex align-items-center bg-auth border-top border-top-2 border-primary"{/if}>
+<div class="ajax-spinner" id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+{if isLinkCurrent('Auth:*')}
+{include content}
+{else}
+    {include 'preferences.latte'}
+    {snippetArea sidebarArea}
+    {include 'navbar.latte'}
+    {/snippetArea}
+    <div n:snippet="page" class="main-content">
+        <script>
+            loadDashboardStats = false;
+            loadStats = false;
+        </script>
+        {include content}
+        <script>
+            if (typeof firstLoad !== 'undefined' && !firstLoad) {
+                document.dispatchEvent(new Event('DOMContentRefreshed'));
+            }
+            
+            firstLoad = false;
+        </script>
+    </div>
+{/if}
+{block scripts}
+    
+<script src="/js/build/admin.js?tag={$javaScriptTag}"></script>
 
-<body>
-	{if $isAuthPresenter}
-		<div class="page">
-			{include content}
-		</div>
-	{else}
-		<div class="page">
-			<div class="flex-fill">
-				{include 'header.latte'}
-				<div class="my-3 my-md-5">
-					<div class="container">
-						{include 'flashes.latte'}
-						{include content}
-					</div>
-				</div>
-			</div>
-			{include 'footer.latte'}
-		</div>
-	{/if}
+{snippet flashes}
+{foreach $flashes as $flash}
+    <script>
+        {if $flash->type === 'success'}
+        toastr.success({$flash->message});
+        {elseif $flash->type === 'warning'}
+        toastr.warning({$flash->message});
+        {elseif $flash->type === 'error' || $flash->type === 'danger'}
+        toastr.error({$flash->message});
+        {elseif $flash->type === 'info'}
+        toastr.info({$flash->message});
+        {/if}
+        $('.modal').modal('hide');
+    </script>
+{/foreach}
+{/snippet}
 
-	{block scripts}
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/popper.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
-		<script src="/js/netteajax.js"></script>
-		<script src="/js/datagrid.js"></script>
-		<script src="/js/tabler.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-		<script>
-            $(function () {
-                $.nette.init();
-				
-				$('.summernote').summernote({
-					lang: 'sk-SK',
-					height: 250,
-					callbacks: {
-						onImageUpload: function(files) {
-							var $this = $(this);
-							uploadFile(files[0], function(url) {
-								$this.summernote("insertImage", url);
-							});
-						}
-					}
-				});
-
-				function uploadFile(file, callback) {
-					const data = new FormData();
-					data.append("file", file);
-					$.ajax({
-						data: data,
-						type: "POST",
-						url: {link Image:upload},
-						cache: false,
-						contentType: false,
-						processData: false,
-						success: function(url) {
-							callback(url);
-						}
-					});
-				}
-            });
-		</script>
-	{/block}
+{/block}
 </body>
 </html>

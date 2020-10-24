@@ -1,40 +1,33 @@
 {block content}
-<div class="page-single">
-	<div class="container">
-		<div class="row">
-			<div class="col col-login mx-auto">
-				<div class="text-center mb-6">
-					<img src="./demo/brand/tabler.svg" class="h-6" alt="">
-				</div>
-				<form n:name="loginForm" class="ajax card">
-					<div class="card-body p-6">
-						{include '../@Layout/flashes.latte'}
-						<div class="card-title">🔐 Restricted access</div>
-						<div class="form-group">
-							<label class="form-label">Email address</label>
-							<input autocomplete="off" n:name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<label class="form-label">
-								Password
-							</label>
-							<input autocomplete="off" n:name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-						</div>
-						<div class="form-group">
-							<label class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input">
-								<span class="custom-control-label">Remember me</span>
-							</label>
-						</div>
-						<div class="form-footer">
-							<button type="submit" class="ajax btn btn-primary btn-block">Sign in</button>
-						</div>
-					</div>
-				</form>
-				<div class="text-center text-muted">
-					Minecord system created by <a target="_blank" href="https://rixafy.pro">Rick Strafy</a>
-				</div>
+<div class="container">
+	<div class="row align-items-center">
+		<div class="col-12 col-md-6 offset-xl-2 offset-md-1 order-md-2 mb-5 mb-md-0">
+			<div class="text-center">
+				<img src="/assets/admin/img/illustrations/happiness.svg" alt="Happiness illustration" class="img-fluid">
 			</div>
+		</div>
+		<div class="col-12 col-md-5 col-xl-4 order-md-1 my-5">
+			<h1 class="display-4 text-center mb-3">Vitajte v administrácii</h1>
+			<p class="text-muted text-center mb-5">Prihláste sa ako administrátor</p>
+			<form n:name="loginForm">
+				<div class="form-group">
+					{label email}
+					{input email class => form-control}
+				</div>
+
+				<div class="form-group">
+					{label password}
+					{input password class => form-control}
+				</div>
+				<button class="btn btn-lg btn-block btn-primary mb-3">
+					Prihlásiť sa
+				</button>
+				<div class="text-center">
+					<small class="text-muted text-center">
+						Minecord system created by <a target="_blank" href="https://rixafy.pro">Rick Strafy</a>
+					</small>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
