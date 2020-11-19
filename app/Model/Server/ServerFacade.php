@@ -37,10 +37,10 @@ class ServerFacade
 			$server->displayName = $row->display_name;
 			$server->gameType = $row->game_type;
 			$server->address = $row->address;
-			$server->host = explode(':', $row->address)[0];
-			$server->port = (int) explode(':', $row->address)[1];
+			$server->host = $row->host;
+			$server->port = (int) $row->port;
 			if (!in_array($server->name, ['build', 'test', 'event'])) {
-				$server->rconPort = $server->port - 1;
+				$server->rconPort = $server->port + 1;
 			}
 			$servers[] = $server;
 		}
