@@ -54,8 +54,8 @@ class RconSubscriber implements EventSubscriberInterface
 			}
 		}
 		
-		if ($product->isUnban()) {
+		/*if ($product->isUnban()) {
 			$this->rconFacade->sendCommandsToProxy([sprintf('unban %s', $nickname)]);
-		}
+		}*/
 	}
 }
