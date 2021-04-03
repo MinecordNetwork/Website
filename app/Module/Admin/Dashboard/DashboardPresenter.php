@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Dashboard;
+namespace App\Module\Admin\Dashboard;
 
-use Minecord\Module\Admin\BaseAdminPresenter;
+use App\Module\Admin\BaseAdminPresenter;
 
 /**
  * @property DashboardTemplate $template
  */
 class DashboardPresenter extends BaseAdminPresenter
 {
-	public function actionDefault(): void
-	{
-		//exit('test');
-	}
+    public function actionDefault(): void
+    {
+
+    }
 }

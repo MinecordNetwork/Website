@@ -1,0 +1,26 @@
+#!/usr/bin/php8.0
+<?php
+
+declare(strict_types=1);
+
+use Nette\Neon\Neon;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$devCredentials = Neon::decode(file_get_contents(__DIR__ . '/../config/parameters_dev.neon'));
+$prodCredentials = Neon::decode(file_get_contents(__DIR__ . '/../config/parameters_prod.neon'));
+
+$devDatabase = $devCredentials['parameters']['doctrine'];
+$prodDatabase = $prodCredentials['parameters']['doctrine'];
+
+shell_exec(sprintf('mysql -u %s -p%s -e "DROP DATABASE %s"', $devDatabase['user'], $devDatabase['password'], $devDatabase['dbname']));
+shell_exec(sprintf('mysql -u %s -p%s -e "CREATE DATABASE %s"', $devDatabase['user'], $devDatabase['password'], $devDatabase['dbname']));
+
+chdir(__DIR__);
+
+shell_exec(sprintf('mysqldump -u %s -p%s %s > temp.sql', $prodDatabase['user'], $prodDatabase['password'], $prodDatabase['dbname']));
+shell_exec(sprintf('mysql -u %s -p%s %s < temp.sql', $devDatabase['user'], $devDatabase['password'], $devDatabase['dbname']));
+
+unlink('temp.sql');
+
+echo 'Development database synced successfully!' . PHP_EOL;

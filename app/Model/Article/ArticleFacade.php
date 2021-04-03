@@ -2,87 +2,87 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Article;
+namespace App\Model\Article;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Minecord\Model\Article\Exception\ArticleNotFoundException;
-use Minecord\Model\Discord\DiscordMessenger;
-use Minecord\Model\Image\Image;
+use App\Model\Article\Exception\ArticleNotFoundException;
+use App\Model\Discord\DiscordMessenger;
+use App\Model\Image\Image;
 use Ramsey\Uuid\UuidInterface;
 
 final class ArticleFacade extends ArticleRepository
 {
-	private ArticleFactory $articleFactory;
-	private EntityManagerInterface $entityManager;
-	private DiscordMessenger $discordMessenger;
+    private ArticleFactory $articleFactory;
+    private EntityManagerInterface $entityManager;
+    private DiscordMessenger $discordMessenger;
 
-	public function __construct(
-		ArticleFactory $articleFactory,
-		EntityManagerInterface $entityManager, 
-		DiscordMessenger $discordMessenger
-	) {
-		parent::__construct($entityManager);
-		$this->articleFactory = $articleFactory;
-		$this->entityManager = $entityManager;
-		$this->discordMessenger = $discordMessenger;
-	}
+    public function __construct(
+        ArticleFactory $articleFactory,
+        EntityManagerInterface $entityManager, 
+        DiscordMessenger $discordMessenger
+    ) {
+        parent::__construct($entityManager);
+        $this->articleFactory = $articleFactory;
+        $this->entityManager = $entityManager;
+        $this->discordMessenger = $discordMessenger;
+    }
 
-	public function create(ArticleData $data): Article
-	{
-		$article = $this->articleFactory->create($data);
+    public function create(ArticleData $data): Article
+    {
+        $article = $this->articleFactory->create($data);
 
-		$this->entityManager->persist($article);
-		$this->entityManager->flush();
+        $this->entityManager->persist($article);
+        $this->entityManager->flush();
 
-		return $article;
-	}
+        return $article;
+    }
 
-	/**
-	 * @throws ArticleNotFoundException
-	 */
-	public function edit(UuidInterface $id, ArticleData $data): Article
-	{
-		$article = $this->get($id);
+    /**
+     * @throws ArticleNotFoundException
+     */
+    public function edit(UuidInterface $id, ArticleData $data): Article
+    {
+        $article = $this->get($id);
 
-		$article->edit($data);
-		$this->entityManager->flush();
+        $article->edit($data);
+        $this->entityManager->flush();
 
-		return $article;
-	}
+        return $article;
+    }
 
-	/**
-	 * @throws ArticleNotFoundException
-	 */
-	public function changeThumbnail(UuidInterface $id, Image $image): Article
-	{
-		$article = $this->get($id);
+    /**
+     * @throws ArticleNotFoundException
+     */
+    public function changeThumbnail(UuidInterface $id, Image $image): Article
+    {
+        $article = $this->get($id);
 
-		$article->changeThumbnail($image);
-		$this->entityManager->flush();
+        $article->changeThumbnail($image);
+        $this->entityManager->flush();
 
-		return $article;
-	}
+        return $article;
+    }
 
-	public function notifyDiscord(): void
-	{
-		$articles = $this->getAllByNotifiedDiscord(false);
-		
-		foreach ($articles as $article) {
-			$this->discordMessenger->notifyArticle($article);
-			$article->onDiscordNotify();
-		}
+    public function notifyDiscord(): void
+    {
+        $articles = $this->getAllByNotifiedDiscord(false);
+        
+        foreach ($articles as $article) {
+            $this->discordMessenger->notifyArticle($article);
+            $article->onDiscordNotify();
+        }
 
-		$this->entityManager->flush();
-	}
+        $this->entityManager->flush();
+    }
 
-	/**
-	 * @throws ArticleNotFoundException
-	 */
-	public function delete(UuidInterface $id): void
-	{
-		$article = $this->get($id);
+    /**
+     * @throws ArticleNotFoundException
+     */
+    public function delete(UuidInterface $id): void
+    {
+        $article = $this->get($id);
 
-		$this->entityManager->remove($article);
-		$this->entityManager->flush();
-	}
+        $this->entityManager->remove($article);
+        $this->entityManager->flush();
+    }
 }

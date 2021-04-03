@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Player;
+namespace App\Model\Player;
 
 class Player
 {
-	public int $id;
-	public string $nickname;
+    public int $id;
+    public string $nickname;
 }

@@ -2,28 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Page;
+namespace App\Module\Front\Page;
 
-use Minecord\Model\Page\PageFacade;
-use Minecord\Module\Front\BaseFrontPresenter;
+use App\Model\Page\PageFacade;
+use App\Module\Front\BaseFrontPresenter;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @property-read PageTemplate $template
+ * @property PageTemplate $template
  */
 class PagePresenter extends BaseFrontPresenter
 {
-	private PageFacade $pageFacade;
+    public function __construct(
+        private PageFacade $pageFacade
+    ) {
+        parent::__construct();
+    }
 
-	public function __construct(
-		PageFacade $pageFacade
-	) {
-		parent::__construct();
-		$this->pageFacade = $pageFacade;
-	}
-
-	public function actionDefault(string $id): void
-	{
-		$this->template->page = $this->pageFacade->get(Uuid::fromString($id));
-	}
+    public function actionDefault(string $id): void
+    {
+        $this->template->page = $this->pageFacade->get(Uuid::fromString($id));
+    }
 }

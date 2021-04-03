@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Server;
-
-use DateTime;
+namespace App\Model\Server;
 
 class Server
 {
-	public int $id;
-	public string $name;
-	public string $displayName;
-	public string $gameType;
-	public string $address;
-	public string $host;
-	public int $port;
-	public ?int $rconPort = null;
+    public int $id;
+    public string $name;
+    public string $displayName;
+    public string $gameType;
+    public string $address;
+    public string $host;
+    public int $port;
+    public ?int $rconPort = null;
 }

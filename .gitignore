@@ -3,8 +3,8 @@
 /composer.lock
 /temp
 /log
-/config/credentials_dev.neon
-/config/credentials_prod.neon
+/config/parameters_dev.neon
+/config/parameters_prod.neon
 /public/fontawesome
 /public/css/bootstrap
 /public/css/*.css

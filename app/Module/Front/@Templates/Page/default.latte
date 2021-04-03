@@ -1,4 +1,4 @@
-{templateType Minecord\Module\Front\Page\PageTemplate}
+{templateType App\Module\Front\Page\PageTemplate}
 {block image}{if $page->getThumbnail() !== null}{$page->getThumbnail()->getPublicPath()}{else}/img/logo.png{/if}{/block}
 {block content}
 <div class="container flex-shrink-0 mt-4 mb-2">

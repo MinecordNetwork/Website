@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\UI\Form\Control;
+namespace App\UI\Form\Control;
 
 class DateTimeInput extends DateInput
 {

@@ -1,45 +1,45 @@
 extensions:
-	doctrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
-	doctrine.dbal: Nettrine\DBAL\DI\DbalExtension
-	doctrine.dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
-	doctrine.orm: Nettrine\ORM\DI\OrmExtension
-	doctrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
-	doctrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
-	doctrine.cache: Nettrine\Cache\DI\CacheExtension
-	doctrine.migrations: Nettrine\Migrations\DI\MigrationsExtension
+    doctrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
+    doctrine.dbal: Nettrine\DBAL\DI\DbalExtension
+    doctrine.dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+    doctrine.orm: Nettrine\ORM\DI\OrmExtension
+    doctrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+    doctrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+    doctrine.cache: Nettrine\Cache\DI\CacheExtension
+    doctrine.migrations: Nettrine\Migrations\DI\MigrationsExtension
 
 
 doctrine.orm.annotations:
     mapping:
-        Minecord\Model: %appDir%/Model
+        App\Model: %appDir%/Model
 
 
 doctrine.dbal:
-	debug:
-		panel: %debugMode%
-	connection:
-		driver: pdo_mysql
-		types:
-			uuid_binary:
-				class: Ramsey\Uuid\Doctrine\UuidBinaryType
-				commented: false
-		host: %doctrine.host%
-		user: %doctrine.user%
-		password: %doctrine.password%
-		dbname: %doctrine.dbname%
+    debug:
+        panel: %debugMode%
+    connection:
+        driver: pdo_mysql
+        types:
+            uuid_binary:
+                class: Ramsey\Uuid\Doctrine\UuidBinaryType
+                commented: false
+        host: %doctrine.host%
+        user: %doctrine.user%
+        password: %doctrine.password%
+        dbname: %doctrine.dbname%
 
 
 doctrine.orm:
-	configuration:
-		customDatetimeFunctions:
-			dayOfWeek: DoctrineExtensions\Query\Mysql\DayOfWeek
-			year: DoctrineExtensions\Query\Mysql\Year
-			month: DoctrineExtensions\Query\Mysql\Month
-			date: DoctrineExtensions\Query\Mysql\Date
+    configuration:
+        customDatetimeFunctions:
+            dayOfWeek: DoctrineExtensions\Query\Mysql\DayOfWeek
+            year: DoctrineExtensions\Query\Mysql\Year
+            month: DoctrineExtensions\Query\Mysql\Month
+            date: DoctrineExtensions\Query\Mysql\Date
 
 
 doctrine.migrations:
-	table: doctrine_migrations
-	column: version
-	directory: %appDir%/../migrations
-	namespace: Migrations
+    table: doctrine_migrations
+    column: version
+    directory: %appDir%/Migration
+    namespace: App\Migration

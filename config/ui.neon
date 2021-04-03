@@ -1,6 +1,6 @@
 search:
-	ui:
-		in: %appDir%/UI
-		classes:
-			- *Factory
-			- *Sorter
+    ui:
+        in: %appDir%/UI
+        classes:
+            - *Factory
+            - *Sorter

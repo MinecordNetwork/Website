@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Payment\PayPal\Exception;
+namespace App\Model\Payment\PayPal\Exception;
 
 use Exception;
 

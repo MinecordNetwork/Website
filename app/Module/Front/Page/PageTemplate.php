@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Page;
+namespace App\Module\Front\Page;
 
-use Minecord\Model\Page\Page;
-use Minecord\Module\Front\BaseFrontTemplate;
+use App\Model\Page\Page;
+use App\Module\Front\BaseFrontTemplate;
 
 class PageTemplate extends BaseFrontTemplate
 {
-	public Page $page;
+    public Page $page;
 }

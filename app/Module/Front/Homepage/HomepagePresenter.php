@@ -2,27 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Homepage;
+namespace App\Module\Front\Homepage;
 
-use Minecord\Model\Article\ArticleFacade;
-use Minecord\Module\Front\BaseFrontPresenter;
+use App\Model\Article\ArticleFacade;
+use App\Module\Front\BaseFrontPresenter;
 
 /** 
  * @property-read HomepageTemplate $template
  */
 class HomepagePresenter extends BaseFrontPresenter
 {
-	private ArticleFacade $articleFacade;
+    public function __construct(
+        private ArticleFacade $articleFacade
+    ) {
+        parent::__construct();
+    }
 
-	public function __construct(
-		ArticleFacade $articleFacade
-	) {
-		parent::__construct();
-		$this->articleFacade = $articleFacade;
-	}
-
-	public function actionDefault(): void
-	{
-		$this->template->articles = $this->articleFacade->getAllOrderedByCreatedAt(20, 0);
-	}
+    public function actionDefault(): void
+    {
+        $this->template->articles = $this->articleFacade->getAllOrderedByCreatedAt();
+    }
 }

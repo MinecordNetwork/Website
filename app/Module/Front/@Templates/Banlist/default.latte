@@ -1,4 +1,4 @@
-{templateType Minecord\Module\Front\Banlist\BanlistTemplate}
+{templateType App\Module\Front\Banlist\BanlistTemplate}
 {block scripts}
     <script src="https://www.paypal.com/sdk/js?client-id={$payPalClientId}&currency=EUR"></script>
 {/block}
@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {varType Minecord\Model\Banlist\Ban $ban}
+                    {varType App\Model\Banlist\Ban $ban}
                     <tr n:foreach="$bans as $ban">
                         <td class="d-flex">
                             <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$ban->targetName}/25.png" alt="{$ban->targetName}"/>

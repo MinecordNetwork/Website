@@ -1,6 +1,6 @@
 search:
-	front:
-		in: %appDir%/Module/Front
-		classes:
-			- *Factory
-			- *Component
+    front:
+        in: %appDir%/Module/Front
+        classes:
+            - *Factory
+            - *Component

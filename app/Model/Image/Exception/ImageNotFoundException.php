@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Image\Exception;
+namespace App\Model\Image\Exception;
 
 use Exception;
 

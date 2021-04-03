@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Shop\Exception;
+namespace App\Model\Shop\Exception;
 
 use Exception;
 

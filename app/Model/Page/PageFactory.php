@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Page;
+namespace App\Model\Page;
 
 use Ramsey\Uuid\Uuid;
 
 final class PageFactory
 {
-	public function create(PageData $data): Page
-	{
-		return new Page(Uuid::uuid4(), $data);
-	}
+    public function create(PageData $data): Page
+    {
+        return new Page(Uuid::uuid4(), $data);
+    }
 }

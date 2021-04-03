@@ -1,5 +1,5 @@
 search:
-	api:
-		in: %appDir%/Module/Api
-		classes:
-			- *Presenter
+    api:
+        in: %appDir%/Module/Api
+        classes:
+            - *Presenter

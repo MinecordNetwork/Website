@@ -1,21 +1,21 @@
 search:
-	model:
-		in: %appDir%/Model
-		classes:
-			- *Facade
-			- *Factory
-			- *Finder
-			- *Generator
-			- *Repository
-			- *Authenticator
-			- *Subscriber
-			- *Provider
-			- *Sorter
-			- *Manager
-			- *Config
+    model:
+        in: %appDir%/Model
+        classes:
+            - *Facade
+            - *Factory
+            - *Finder
+            - *Generator
+            - *Repository
+            - *Authenticator
+            - *Subscriber
+            - *Provider
+            - *Sorter
+            - *Manager
+            - *Config
 
 services:
-    discordWebhook: Minecord\Model\Discord\DiscordWebhook(%discord.webhookUrl%)
-    discordMessenger: Minecord\Model\Discord\DiscordMessenger(%discord.englishAnnoucements%, %discord.czechAnnoucements%)
-    rconCredentials: Minecord\Model\Rcon\RconCredentials(%server.rconPassword%, %server.rconProxyHost%, %server.rconProxyPort%)
-    paypalCredentials: Minecord\Model\Payment\PayPal\PayPalCredentials(%paypal.clientId%, %paypal.clientSecret%)
+    discordWebhook: App\Model\Discord\DiscordWebhook(%discord.webhookUrl%)
+    discordMessenger: App\Model\Discord\DiscordMessenger(%discord.englishAnnoucements%, %discord.czechAnnoucements%)
+    rconCredentials: App\Model\Rcon\RconCredentials(%server.rconPassword%, %server.rconProxyHost%, %server.rconProxyPort%)
+    paypalCredentials: App\Model\Payment\PayPal\PayPalCredentials(%paypal.clientId%, %paypal.clientSecret%)

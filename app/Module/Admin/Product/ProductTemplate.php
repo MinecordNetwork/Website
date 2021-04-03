@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Product;
+namespace App\Module\Admin\Product;
 
-use Minecord\Model\Product\Product;
-use Minecord\Module\Admin\BaseAdminTemplate;
+use App\Model\Product\Product;
+use App\Module\Admin\BaseAdminTemplate;
 
 class ProductTemplate extends BaseAdminTemplate
 {
-	public ?Product $product;
+    public ?Product $product;
 }

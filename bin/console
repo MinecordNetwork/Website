@@ -1,11 +1,11 @@
-#!/usr/bin/php7.4
+#!/usr/bin/php8.0
 <?php
 
 declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-exit(Minecord\Kernel::boot()
+exit(App\Bootstrap::boot()
     ->createContainer()
     ->getByType(Contributte\Console\Application::class)
     ->run());

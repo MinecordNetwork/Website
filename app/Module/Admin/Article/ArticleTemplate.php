@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Article;
+namespace App\Module\Admin\Article;
 
-use Minecord\Model\Article\Article;
-use Minecord\Module\Admin\BaseAdminTemplate;
+use App\Model\Article\Article;
+use App\Module\Admin\BaseAdminTemplate;
 
 class ArticleTemplate extends BaseAdminTemplate
 {
-	public ?Article $article;
+    public ?Article $article;
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Dashboard;
+namespace App\Module\Admin\Dashboard;
 
-use Minecord\Module\Admin\BaseAdminTemplate;
+use App\Module\Admin\BaseAdminTemplate;
 
 class DashboardTemplate extends BaseAdminTemplate
 {

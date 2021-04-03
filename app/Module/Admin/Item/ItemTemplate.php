@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Item;
+namespace App\Module\Admin\Item;
 
-use Minecord\Model\Product\Product;
-use Minecord\Module\Admin\BaseAdminTemplate;
+use App\Model\Product\Product;
+use App\Module\Admin\BaseAdminTemplate;
 
 class ItemTemplate extends BaseAdminTemplate
 {

@@ -2,28 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Article;
+namespace App\Module\Front\Article;
 
-use Minecord\Model\Article\ArticleFacade;
-use Minecord\Module\Front\BaseFrontPresenter;
+use App\Model\Article\ArticleFacade;
+use App\Model\Article\Exception\ArticleNotFoundException;
+use App\Module\Front\BaseFrontPresenter;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @property-read ArticleTemplate $template
+ * @property ArticleTemplate $template
  */
 class ArticlePresenter extends BaseFrontPresenter
 {
-	private ArticleFacade $articleFacade;
+    public function __construct(
+        private ArticleFacade $articleFacade
+    ) {
+        parent::__construct();
+    }
 
-	public function __construct(
-		ArticleFacade $articleFacade
-	) {
-		parent::__construct();
-		$this->articleFacade = $articleFacade;
-	}
-
-	public function actionDefault(string $id): void
-	{
-		$this->template->article = $this->articleFacade->get(Uuid::fromString($id));
-	}
+    /**
+     * @throws ArticleNotFoundException
+     */
+    public function actionDefault(string $id): void
+    {
+        $this->template->article = $this->articleFacade->get(Uuid::fromString($id));
+    }
 }

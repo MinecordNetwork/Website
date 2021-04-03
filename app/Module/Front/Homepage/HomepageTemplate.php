@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Homepage;
+namespace App\Module\Front\Homepage;
 
-use Minecord\Model\Article\Article;
-use Minecord\Module\Front\BaseFrontTemplate;
+use App\Model\Article\Article;
+use App\Module\Front\BaseFrontTemplate;
 
 class HomepageTemplate extends BaseFrontTemplate
 {
-	/** @var Article[] */
-	public array $articles;
+    /** @var Article[] */
+    public array $articles;
 }

@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Article;
+namespace App\Module\Admin\Article;
 
-use Minecord\Model\Article\Article;
-use Minecord\Model\Article\ArticleDataFactory;
-use Minecord\Model\Article\ArticleFacade;
-use Minecord\Model\Image\Image;
-use Minecord\Model\Image\ImageDataFactory;
-use Minecord\Model\Image\ImageFacade;
-use Minecord\Model\Route\RouteProvider;
-use Minecord\Module\Admin\Article\Form\ArticleFormFactory;
-use Minecord\Module\Admin\Article\Form\ArticleThumbnailFormFactory;
-use Minecord\Module\Admin\Article\Grid\ArticleGridFactory;
-use Minecord\Module\Admin\BaseAdminPresenter;
+use App\Model\Article\Article;
+use App\Model\Article\ArticleDataFactory;
+use App\Model\Image\Image;
+use App\Model\Image\ImageDataFactory;
+use App\Model\Image\ImageFacade;
+use App\Model\Route\RouteProvider;
+use App\Module\Admin\Article\Form\ArticleFormFactory;
+use App\Module\Admin\Article\Form\ArticleThumbnailFormFactory;
+use App\Module\Admin\Article\Grid\ArticleGridFactory;
+use App\Module\Admin\BaseAdminPresenter;
 use Nette\Application\UI\Form;
 use Nette\ComponentModel\IComponent;
 use Nette\Http\FileUpload;
@@ -25,94 +24,79 @@ use Ramsey\Uuid\Uuid;
  */
 class ArticlePresenter extends BaseAdminPresenter
 {
-	private ImageFacade $imageFacade;
-	private ImageDataFactory $imageDataFactory;
-	private ArticleFormFactory $articleFormFactory;
-	private ArticleThumbnailFormFactory $articleThumbnailFormFactory;
-	private ArticleGridFactory $articleGridFactory;
-	private ArticleDataFactory $articleDataFactory;
-	private RouteProvider $routeProvider;
-	private ?Article $article = null;
+    private ?Article $article = null;
 
-	public function __construct(
-		ImageFacade $imageFacade,
-		ImageDataFactory $imageDataFactory,
-		ArticleFormFactory $articleFormFactory,
-		ArticleThumbnailFormFactory $articleThumbnailFormFactory,
-		ArticleGridFactory $articleGridFactory,
-		ArticleDataFactory $articleDataFactory,
-		RouteProvider $routeProvider
-	) {
-		parent::__construct();
-		$this->imageFacade = $imageFacade;
-		$this->imageDataFactory = $imageDataFactory;
-		$this->articleFormFactory = $articleFormFactory;
-		$this->articleThumbnailFormFactory = $articleThumbnailFormFactory;
-		$this->articleGridFactory = $articleGridFactory;
-		$this->articleDataFactory = $articleDataFactory;
-		$this->routeProvider = $routeProvider;
-	}
+    public function __construct(
+        private ImageFacade $imageFacade,
+        private ImageDataFactory $imageDataFactory,
+        private ArticleFormFactory $articleFormFactory,
+        private ArticleThumbnailFormFactory $articleThumbnailFormFactory,
+        private ArticleGridFactory $articleGridFactory,
+        private ArticleDataFactory $articleDataFactory,
+        private RouteProvider $routeProvider
+    ) {
+        parent::__construct();
+    }
+    
+    public function actionEdit(string $id): void
+    {
+        $this->article = $this->articleFacade->get(Uuid::fromString($id));
+        $this->template->article = $this->article;
+    }
 
+    public function createComponentForm(): ?IComponent
+    {
+        $form = $this->articleFormFactory->create($this->article);
 
-	public function actionEdit(string $id): void
-	{
-		$this->article = $this->articleFacade->get(Uuid::fromString($id));
-		$this->template->article = $this->article;
-	}
+        $form->onSuccess[] = function(Form $form, array $data): void {
+            if ($this->article === null) {
+                $this->articleFacade->create($this->articleDataFactory->createFromFormData($data));
+                $this->flashMessage('Príspevok bol úspešne vytvorený!', 'success');
+                $this->redirect('this');
+            } else {
+                $this->articleFacade->edit($this->article->getId(), $this->articleDataFactory->createFromFormData($data));
+                $this->flashMessage('Príspevok bol úspešne upravený!', 'success');
+                $this->redrawControl('flashes');
+            }
+            $this->routeProvider->createRoutes('en');
+            $this->routeProvider->createRoutes('cs');
+        };
 
-	public function createComponentForm(): ?IComponent
-	{
-		$form = $this->articleFormFactory->create($this->article);
+        return $form;
+    }
 
-		$form->onSuccess[] = function(Form $form, array $data): void {
-			if ($this->article === null) {
-				$this->articleFacade->create($this->articleDataFactory->createFromFormData($data));
-				$this->flashMessage('Príspevok bol úspešne vytvorený!', 'success');
-				$this->redirect('this');
-			} else {
-				$this->articleFacade->edit($this->article->getId(), $this->articleDataFactory->createFromFormData($data));
-				$this->flashMessage('Príspevok bol úspešne upravený!', 'success');
-				$this->redrawControl('flashes');
-			}
-			$this->routeProvider->createRoutes('en');
-			$this->routeProvider->createRoutes('cs');
-		};
+    public function createComponentThumbnailForm(): Form
+    {
+        $form = $this->articleThumbnailFormFactory->create();
 
-		return $form;
-	}
+        $form->onSuccess[] = function (Form $form, array $formData) {
+            /** @var FileUpload $netteImage */
+            $netteImage = $formData['image'];
 
-	public function createComponentThumbnailForm(): Form
-	{
-		$form = $this->articleThumbnailFormFactory->create();
+            if ($netteImage->getError() === 0) {
+                $imageData = $this->imageDataFactory->createFromFormData($formData, Image::TYPE_ARTICLE);
+                $image = $this->imageFacade->create($imageData, function (string $saveDir) use ($netteImage) {
+                    $netteImage->move($saveDir);
+                });
 
-		$form->onSuccess[] = function (Form $form, array $formData) {
-			/** @var FileUpload $netteImage */
-			$netteImage = $formData['image'];
+                $prevImage = $this->article->getThumbnail();
+                $this->articleFacade->changeThumbnail($this->article->getId(), $image);
+                $prevImage !== null ? $this->imageFacade->remove($prevImage->getId()) : null;
 
-			if ($netteImage->getError() === 0) {
-				$imageData = $this->imageDataFactory->createFromFormData($formData, Image::TYPE_ARTICLE);
-				$image = $this->imageFacade->create($imageData, function (string $saveDir) use ($netteImage) {
-					$netteImage->move($saveDir);
-				});
+                $this->flashMessage('Thumbnail was uploaded.', 'success');
+                $this->redirect('this');
 
-				$prevImage = $this->article->getThumbnail();
-				$this->articleFacade->changeThumbnail($this->article->getId(), $image);
-				$prevImage !== null ? $this->imageFacade->remove($prevImage->getId()) : null;
+            } else {
+                $this->flashMessage('There was error during thumbnail upload.', 'error');
+                $this->redirect('this');
+            }
+        };
 
-				$this->flashMessage('Thumbnail was uploaded.', 'success');
-				$this->redirect('this');
+        return $form;
+    }
 
-			} else {
-				$this->flashMessage('There was error during thumbnail upload.', 'error');
-				$this->redirect('this');
-			}
-		};
-
-		return $form;
-	}
-
-	public function createComponentGrid(): ?IComponent
-	{
-		return $this->articleGridFactory->create();
-	}
+    public function createComponentGrid(): ?IComponent
+    {
+        return $this->articleGridFactory->create();
+    }
 }

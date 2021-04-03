@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\Article;
+namespace App\Module\Front\Article;
 
-use Minecord\Model\Article\Article;
-use Minecord\Module\Front\BaseFrontTemplate;
+use App\Model\Article\Article;
+use App\Module\Front\BaseFrontTemplate;
 
 class ArticleTemplate extends BaseFrontTemplate
 {
-	public Article $article;
+    public Article $article;
 }

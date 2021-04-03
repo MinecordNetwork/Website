@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Sms\Record\Exception;
+namespace App\Model\Sms\Record\Exception;
 
 use Exception;
 

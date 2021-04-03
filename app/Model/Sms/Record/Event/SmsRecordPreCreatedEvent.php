@@ -2,21 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Model\Sms\Record\Event;
+namespace App\Model\Sms\Record\Event;
 
-use Minecord\Model\Sms\Record\SmsRecord;
+use App\Model\Sms\Record\SmsRecord;
 
 class SmsRecordPreCreatedEvent
 {
-	private SmsRecord $smsRecord;
+    public function __construct(
+        private SmsRecord $smsRecord
+    ) {}
 
-	public function __construct(SmsRecord $smsRecord)
-	{
-		$this->smsRecord = $smsRecord;
-	}
-
-	public function getSmsRecord(): SmsRecord
-	{
-		return $this->smsRecord;
-	}
+    public function getSmsRecord(): SmsRecord
+    {
+        return $this->smsRecord;
+    }
 }

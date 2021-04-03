@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Admin\Item\Form;
+namespace App\Module\Admin\Item\Form;
 
 class ItemFormFactory
 {

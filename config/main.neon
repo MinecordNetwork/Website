@@ -1,57 +1,57 @@
 extensions:
-	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
-	archette.country: Archette\Country\CountryExtension
-	archette.ipAddress: Archette\IpAddress\IpAddressExtension
-	archette.currency: Archette\Currency\CurrencyExtension
-	archette.language: Archette\Language\LanguageExtension
-	translation: Contributte\Translation\DI\TranslationExtension
-	events: Contributte\EventDispatcher\DI\EventDispatcherExtension
-	thumbnail: Minecord\Bridge\Nette\Thumbnail\ThumbnailExtension
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+    archette.country: Archette\Country\CountryExtension
+    archette.ipAddress: Archette\IpAddress\IpAddressExtension
+    archette.currency: Archette\Currency\CurrencyExtension
+    archette.language: Archette\Language\LanguageExtension
+    translation: Contributte\Translation\DI\TranslationExtension
+    events: Contributte\EventDispatcher\DI\EventDispatcherExtension
+    thumbnail: App\Bridge\Nette\Thumbnail\ThumbnailExtension
 
 
 archette.currency:
-	apiKey: %currency.apiKey%
+    apiKey: %currency.apiKey%
 
 
 http:
-	headers:
-		X-Powered-By: Minecord System
+    headers:
+        X-Powered-By: PHP 6 + 2
 
 
 translation:
-	locales:
-		whitelist: [en, cs, sk]
-		default: en
-	dirs:
-		- %appDir%/../translations
+    locales:
+        whitelist: [en, cs]
+        default: en
+    dirs:
+        - %appDir%/../translations
 
 
 console:
-	lazy: false
+    lazy: false
 
 
 application:
-	errorPresenter: Front:Error
-	mapping:
-		*: ['Minecord\Module', '*', '*\*Presenter']
+    errorPresenter: Front:Error
+    mapping:
+        *: ['App\Module', '*', '*\*Presenter']
 
 
 session:
-	expiration: 14 days
+    expiration: 14 days
 
 
 services:
-	routerFactory: Minecord\Router\RouterFactory
-	router: @routerFactory::create
-	latte.templateFactory:
-		arguments:
-			user: null
+    routerFactory: App\Router\RouterFactory
+    router: @routerFactory::create
+    latte.templateFactory:
+        arguments:
+            user: null
 
 
 database:
-	dsn: 'mysql:host=%database.host%;dbname=%database.dbname%'
-	user: %database.user%
-	password: %database.password%
+    dsn: 'mysql:host=%database.host%;dbname=%database.dbname%'
+    user: %database.user%
+    password: %database.password%
 
 
 includes:

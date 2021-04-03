@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Front\OnlineMap;
+namespace App\Module\Front\OnlineMap;
 
-use Minecord\Module\Front\BaseFrontTemplate;
+use App\Module\Front\BaseFrontTemplate;
 
 class OnlineMapTemplate extends BaseFrontTemplate
 {

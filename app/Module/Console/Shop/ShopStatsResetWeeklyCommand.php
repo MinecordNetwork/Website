@@ -2,31 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Minecord\Module\Console\Shop;
+namespace App\Module\Console\Shop;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Minecord\Model\Shop\ShopFacade;
+use App\Model\Shop\ShopFacade;
 
 final class ShopStatsResetWeeklyCommand extends Command
 {
-	/** @var string */
-	public static $defaultName = 'shop-reset:weekly';
+    /** @var string */
+    public static $defaultName = 'shop-reset:weekly';
+    
+    public function __construct(
+        private ShopFacade $shopFacade
+    ) {
+        parent::__construct();
+    }
 
-	private ShopFacade $shopFacade;
+    public function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $this->shopFacade->resetWeeklyStats();
 
-	public function __construct(
-		ShopFacade $shopFacade
-	) {
-		parent::__construct();
-		$this->shopFacade = $shopFacade;
-	}
-
-	public function execute(InputInterface $input, OutputInterface $output): int
-	{
-		$this->shopFacade->resetWeeklyStats();
-
-		return 1;
-	}
+        return 0;
+    }
 }
