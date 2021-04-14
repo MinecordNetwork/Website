@@ -15,6 +15,7 @@ use App\Module\Front\Vip\Form\VipProductFormFactory;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
 use Rixafy\Currency\CurrencyFacade;
+use Rixafy\Currency\Exception\CurrencyNotFoundException;
 
 /**
  * @property BanlistTemplate $template
@@ -58,6 +59,9 @@ class BanlistPresenter extends BaseFrontPresenter
         }
     }
 
+    /**
+     * @throws CurrencyNotFoundException
+     */
     public function renderDefault(): void
     {
         $this->template->payPalClientId = $this->payPalCredentials->getClientId();

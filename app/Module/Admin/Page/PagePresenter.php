@@ -83,15 +83,15 @@ class PagePresenter extends BaseAdminPresenter
 
                 $prevImage = $this->page->getThumbnail();
                 $this->pageFacade->changeThumbnail($this->page->getId(), $image);
-                $prevImage !== null ? $this->imageFacade->remove($prevImage->getId()) : null;
+                $prevImage === null ?? $this->imageFacade->remove($prevImage->getId());
 
                 $this->flashMessage('Thumbnail was uploaded.', 'success');
-                $this->redirect('this');
 
             } else {
                 $this->flashMessage('There was error during thumbnail upload.', 'error');
-                $this->redirect('this');
             }
+            
+            $this->redirect('this');
         };
 
         return $form;

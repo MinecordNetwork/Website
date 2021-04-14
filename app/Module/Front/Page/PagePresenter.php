@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Module\Front\Page;
 
+use App\Model\Page\Exception\PageNotFoundException;
 use App\Model\Page\PageFacade;
 use App\Module\Front\BaseFrontPresenter;
 use Ramsey\Uuid\Uuid;
@@ -19,6 +20,9 @@ class PagePresenter extends BaseFrontPresenter
         parent::__construct();
     }
 
+    /**
+     * @throws PageNotFoundException
+     */
     public function actionDefault(string $id): void
     {
         $this->template->page = $this->pageFacade->get(Uuid::fromString($id));

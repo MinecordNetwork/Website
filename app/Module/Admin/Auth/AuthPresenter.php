@@ -9,7 +9,6 @@ use App\Model\User\Exception\UserNotFoundException;
 use App\Module\Admin\Auth\Form\LoginFormFactory;
 use App\Module\Admin\BaseAdminPresenter;
 use Nette\Application\UI\Form;
-use Nette\ComponentModel\IComponent;
 
 class AuthPresenter extends BaseAdminPresenter
 {
@@ -19,7 +18,7 @@ class AuthPresenter extends BaseAdminPresenter
         parent::__construct();
     }
 
-    public function createComponentLoginForm(): ?IComponent
+    public function createComponentLoginForm(): Form
     {
         $form = $this->loginFormFactory->create();
         $form->getElementPrototype()->setAttribute('class', 'ajax');

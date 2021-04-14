@@ -9,6 +9,7 @@ use App\Model\Session\SessionProvider;
 use App\Model\User\Auth\UserAuthenticator;
 use App\Model\User\User;
 use App\Model\User\UserProvider;
+use Nette\Application\AbortException;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
 use Rixafy\Language\LanguageProvider;
@@ -71,6 +72,9 @@ abstract class BaseAdminPresenter extends Presenter
         }
     }
 
+    /**
+     * @throws AbortException
+     */
     public function handleLogout(): void
     {
         $this->adminAuthenticator->logOut();

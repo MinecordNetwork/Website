@@ -81,15 +81,15 @@ class ArticlePresenter extends BaseAdminPresenter
 
                 $prevImage = $this->article->getThumbnail();
                 $this->articleFacade->changeThumbnail($this->article->getId(), $image);
-                $prevImage !== null ? $this->imageFacade->remove($prevImage->getId()) : null;
+                $prevImage === null ?? $this->imageFacade->remove($prevImage->getId());
 
                 $this->flashMessage('Thumbnail was uploaded.', 'success');
-                $this->redirect('this');
 
             } else {
                 $this->flashMessage('There was error during thumbnail upload.', 'error');
-                $this->redirect('this');
             }
+            
+            $this->redirect('this');
         };
 
         return $form;

@@ -16,6 +16,9 @@ use Nette\Application\Helpers;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
 use Rixafy\Currency\CurrencyProvider;
+use Rixafy\Currency\Exception\CurrencyNotProvidedException;
+use Rixafy\Language\Exception\LanguageNotFoundException;
+use Rixafy\Language\Exception\LanguageNotProvidedException;
 use Rixafy\Language\Language;
 use Rixafy\Language\LanguageProvider;
 use Tracy\Debugger;
@@ -37,6 +40,11 @@ abstract class BaseFrontPresenter extends Presenter
     protected Language $language;
     protected ?User $user;
 
+    /**
+     * @throws LanguageNotProvidedException
+     * @throws LanguageNotFoundException
+     * @throws AbortException
+     */
     public function startup()
     {
         parent::startup();
@@ -59,6 +67,9 @@ abstract class BaseFrontPresenter extends Presenter
         }
     }
 
+    /**
+     * @throws CurrencyNotProvidedException
+     */
     public function beforeRender(): void
     {
         $this->setLayout(__DIR__ . '/@Templates/@Layout/layout.latte');
