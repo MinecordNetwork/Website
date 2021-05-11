@@ -20,9 +20,9 @@ class ShopFacade
     {
         $data = $this->database->fetch('SELECT id, name FROM minecraft_shop WHERE id = ?', $id);
         if ($data !== null) {
-            $player = new Shop();
-            $player->id = $data['id'];
-            return $player;
+            $shop = new Shop();
+            $shop->id = $data['id'];
+            return $shop;
         }
 
         throw new ShopNotFoundException(sprintf('Shop with id "%s" not found', $id));
