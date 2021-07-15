@@ -25,13 +25,13 @@ class Session
      */
     private UuidInterface $id;
 
-    /** @ORM\Column(type="string", length=26, unique=true) */
+    /** @ORM\Column(length=26, unique=true) */
     private string $hash;
 
-    /** @ORM\Column(type="boolean") */
+    /** @ORM\Column */
     private bool $isCrawler;
 
-    /** @ORM\Column(type="string", length=63, nullable=true) */
+    /** @ORM\Column(length=63, nullable=true) */
     private ?string $crawlerName;
 
     /** @ORM\ManyToOne(targetEntity="\Rixafy\IpAddress\IpAddress", inversedBy="session", cascade={"persist"}) */

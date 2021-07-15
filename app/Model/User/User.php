@@ -24,28 +24,28 @@ class User
      */
     private UuidInterface $id;
 
-    /** @ORM\Column(type="string", length=127) */
+    /** @ORM\Column(length=127) */
     private string $displayName;
 
-    /** @ORM\Column(type="string", length=127) */
+    /** @ORM\Column(length=127) */
     private string $email;
 
-    /** @ORM\Column(type="string", length=255) */
+    /** @ORM\Column(length=255) */
     private string $password;
 
-    /** @ORM\Column(type="string", length=127, nullable=true) */
+    /** @ORM\Column(length=127, nullable=true) */
     private ?string $googleId = null;
 
-    /** @ORM\Column(type="string", length=127, nullable=true) */
+    /** @ORM\Column(length=127, nullable=true) */
     private ?string $facebookId = null;
 
-    /** @ORM\Column(type="string", length=127, nullable=true) */
+    /** @ORM\Column(length=127, nullable=true) */
     private ?string $twitterId = null;
 
-    /** @ORM\Column(type="datetime", nullable=true) */
+    /** @ORM\Column(nullable=true) */
     private ?DateTime $lastLoginAt = null;
 
-    /** @ORM\Column(type="datetime", nullable=true) */
+    /** @ORM\Column(nullable=true) */
     private ?DateTime $firstLoginAt = null;
 
     use RemovableTrait;

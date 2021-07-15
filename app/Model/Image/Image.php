@@ -35,25 +35,25 @@ class Image
      */
     protected UuidInterface $id;
 
-    /** @ORM\Column(type="string", length=63) */
+    /** @ORM\Column(length=63) */
     private string $originalName;
 
-    /** @ORM\Column(type="string", length=5) */
+    /** @ORM\Column(length=5) */
     private string $extension;
 
     /** @ORM\Column(type="smallint") */
     private int $type;
 
-    /** @ORM\Column(type="string", unique=true, length=255) */
+    /** @ORM\Column(unique=true, length=255) */
     private string $path;
 
-    /** @ORM\Column(type="string", unique=true, length=255) */
+    /** @ORM\Column(unique=true, length=255) */
     private string $publicPath;
 
-    /** @ORM\Column(type="string", length=127, nullable=true) */
+    /** @ORM\Column(length=127, nullable=true) */
     private ?string $caption;
 
-    /** @ORM\Column(type="string", length=127, nullable=true) */
+    /** @ORM\Column(length=127, nullable=true) */
     private ?string $alternativeText;
 
     use DateTimeTrait;

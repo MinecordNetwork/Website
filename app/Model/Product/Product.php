@@ -26,10 +26,10 @@ class Product
      */
     private UuidInterface $id;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $nameEnglish;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $nameCzech;
 
     /** @ORM\Column(type="text") */
@@ -38,37 +38,37 @@ class Product
     /** @ORM\Column(type="text") */
     private string $descriptionCzech;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $smsCode;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column */
     private float $price = 0;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column */
     private float $priceCzechSms = 0;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column */
     private float $priceSlovakSms = 0;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column */
     private float $discountedPrice = 0;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column */
     private float $discountedPriceCzechSms = 0;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column */
     private float $discountedPriceSlovakSms = 0;
 
-    /** @ORM\Column(type="datetime", nullable=true) */
+    /** @ORM\Column(nullable=true) */
     private ?DateTime $discountActiveTo = null;
 
-    /** @ORM\Column(type="integer") */
+    /** @ORM\Column */
     private int $discountPercent = 0;
 
-    /** @ORM\Column(type="boolean") */
+    /** @ORM\Column */
     private bool $isRank = false;
 
-    /** @ORM\Column(type="integer") */
+    /** @ORM\Column */
     private int $duration;
 
     /** @ORM\ManyToOne(targetEntity="\App\Model\Image\Image") */

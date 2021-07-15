@@ -21,19 +21,19 @@ class System
      */
     private UuidInterface $id;
 
-    /** @ORM\Column(type="integer") */
+    /** @ORM\Column */
     private int $onlinePlayerCount = 0;
 
     /** @ORM\Column(type="text") */
     private string $onlinePlayerList;
 
-    /** @ORM\Column(type="integer") */
+    /** @ORM\Column */
     private int $discordEnglishMemberCount = 0;
 
     /** @ORM\Column(type="text", options={"collation":"utf8mb4_unicode_ci"}) */
     private string $discordEnglishMemberList;
 
-    /** @ORM\Column(type="integer") */
+    /** @ORM\Column */
     private int $discordCzechMemberCount = 0;
 
     /** @ORM\Column(type="text", options={"collation":"utf8mb4_unicode_ci"}) */

@@ -26,16 +26,16 @@ class Article
      */
     private UuidInterface $id;
 
-    /** @ORM\Column(type="string", unique=true) */
+    /** @ORM\Column(unique=true) */
     private string $routeCzech;
 
-    /** @ORM\Column(type="string", unique=true) */
+    /** @ORM\Column(unique=true) */
     private string $routeEnglish;
 
-    /** @ORM\Column(type="string", options={"collation":"utf8mb4_unicode_ci"}) */
+    /** @ORM\Column(options={"collation":"utf8mb4_unicode_ci"}) */
     private string $titleEnglish;
 
-    /** @ORM\Column(type="string", options={"collation":"utf8mb4_unicode_ci"}) */
+    /** @ORM\Column(options={"collation":"utf8mb4_unicode_ci"}) */
     private string $titleCzech;
 
     /** @ORM\Column(type="text", options={"collation":"utf8mb4_unicode_ci"}) */
@@ -56,16 +56,16 @@ class Article
     /** @ORM\ManyToOne(targetEntity="\App\Model\Image\Image") */
     private ?Image $thumbnail = null;
 
-    /** @ORM\Column(type="integer") */
+    /** @ORM\Column */
     private int $views = 0;
 
-    /** @ORM\Column(type="boolean") */
+    /** @ORM\Column */
     private bool $notifiedDiscord = false;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column */
     private DateTime $createdAt;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column */
     private DateTime $editedAt;
 
     public function __construct(UuidInterface $id, ArticleData $data)

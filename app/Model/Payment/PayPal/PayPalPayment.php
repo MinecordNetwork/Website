@@ -24,13 +24,13 @@ class PayPalPayment
      */
     private UuidInterface $id;
 
-    /** @ORM\Column(type="string", nullable=true) */
+    /** @ORM\Column(nullable=true) */
     private ?string $email = null;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $nickname;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column */
     private float $price;
 
     /** @ORM\ManyToOne(targetEntity="\Rixafy\Currency\Currency") */
@@ -39,10 +39,10 @@ class PayPalPayment
     /** @ORM\ManyToOne(targetEntity="\App\Model\Product\Product") */
     private Product $product;
 
-    /** @ORM\Column(type="boolean") */
+    /** @ORM\Column */
     private bool $accepted = false;
 
-    /** @ORM\Column(type="datetime", nullable=true) */
+    /** @ORM\Column(nullable=true) */
     private ?DateTime $acceptedAt = null;
 
     use DateTimeTrait;

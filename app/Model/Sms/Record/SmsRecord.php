@@ -21,40 +21,40 @@ class SmsRecord
      */
     private UuidInterface $id;
 
-    /** @ORM\Column(type="string", unique=true) */
+    /** @ORM\Column(unique=true) */
     private string $externalId;
     
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $text;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $operator;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $shortcode;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $phone;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column */
     private string $country;
 
-    /** @ORM\Column(type="string", nullable=true) */
+    /** @ORM\Column(nullable=true) */
     private ?string $answer;
 
-    /** @ORM\Column(type="boolean") */
+    /** @ORM\Column */
     private bool $requireConfirmation;
 
-    /** @ORM\Column(type="integer") */
+    /** @ORM\Column */
     private int $attempt;
 
-    /** @ORM\Column(type="datetime", nullable=true) */
+    /** @ORM\Column(nullable=true) */
     private ?DateTime $confirmedAt = null;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column */
     private DateTime $sentAt;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column */
     private DateTime $createdAt;
 
     public function __construct(UuidInterface $id, SmsRecordData $data)
