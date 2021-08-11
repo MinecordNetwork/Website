@@ -37,7 +37,7 @@
         "archette/language": "^1.0",
         "archette/form-utils": "^1.0",
         "contributte/recaptcha": "^3.4",
-        "contributte/translation": "^0.8",
+        "contributte/translation": "^0.9",
         "contributte/event-dispatcher": "^0.8",
         "jaybizzle/crawler-detect": "^1.2",
         "php-minecraft/minecraft-query": "^1.0",
@@ -45,7 +45,8 @@
         "guzzlehttp/guzzle": "^7.0",
         "thedudeguy/rcon": "dev-master",
         "paypal/paypal-checkout-sdk": "dev-master",
-        "ramsey/uuid-doctrine": "^1.6"
+        "ramsey/uuid-doctrine": "^1.6",
+        "dg/composer-cleaner": "^2.2"
     },
     "autoload": {
         "psr-4": {
