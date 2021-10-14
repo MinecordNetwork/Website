@@ -26,16 +26,16 @@ abstract class PageRepository
      */
     public function get(UuidInterface $id): Page
     {
-        /** @var Page $Page */
-        $Page = $this->getRepository()->findOneBy([
+        /** @var Page $page */
+        $page = $this->getRepository()->findOneBy([
             'id' => $id
         ]);
 
-        if ($Page === null) {
+        if ($page === null) {
             throw new PageNotFoundException(sprintf('Page with id "%s" not found.', $id));
         }
 
-        return $Page;
+        return $page;
     }
 
     /**
