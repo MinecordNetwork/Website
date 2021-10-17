@@ -32,7 +32,6 @@ class ShopFacade
     {
         $this->database->query('UPDATE minecraft_shop SET daily_score = 0');
         $this->database->query('UPDATE minecraft_shop SET daily_earnings = 0');
-
     }
 
     public function resetWeeklyStats(): void
