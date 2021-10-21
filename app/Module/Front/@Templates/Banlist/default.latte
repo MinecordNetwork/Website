@@ -25,7 +25,7 @@
                             <span class="d-table-row">{$ban->targetName}</span>
                         </td>
                         <td>
-                            <img data-placement="left" title="{$ban->adminName}" data-toggle="tooltip" style="image-rendering: pixelated" src="https://minotar.net/helm/{$ban->adminName}/25.png" alt="{$ban->adminName}"/>
+                            <img data-placement="left" title="{$ban->adminName}" data-toggle="tooltip" style="image-rendering: pixelated" src="https://minotar.net/helm/{str_replace('-', '', $ban->adminUuid)}/25.png" alt="{$ban->adminName}"/>
                         </td>
                         <td>{$ban->reason}</td>
                         <td>{$ban->createdAt->format($dateTimeFormat)}</td>

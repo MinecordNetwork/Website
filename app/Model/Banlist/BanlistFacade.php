@@ -26,6 +26,7 @@ class BanlistFacade
         $query = sprintf('
                 SELECT minecraft_ban.*, 
                 admin.name AS admin_name, 
+                admin.uuid AS admin_uuid, 
                 target.name AS target_name
                 FROM minecraft_ban
                 JOIN minecraft_player admin
@@ -42,6 +43,7 @@ class BanlistFacade
             $ban = new Ban();
             $ban->id = $row->id;
             $ban->adminName = $row->admin_name;
+            $ban->adminUuid = $row->admin_uuid;
             $ban->targetName = $row->target_name;
             $ban->reason = $row->reason;
             $ban->createdAt = DateTime::from($row->created_at);
