@@ -6,7 +6,7 @@ namespace App\Model\Article;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use App\Model\Article\Exception\ArticleNotFoundException;
 use Ramsey\Uuid\UuidInterface;
 
@@ -16,7 +16,7 @@ abstract class ArticleRepository
         private EntityManagerInterface $entityManager
     ) {}
 
-    private function getRepository(): ObjectRepository
+    private function getRepository(): EntityRepository
     {
         return $this->entityManager->getRepository(Article::class);
     }

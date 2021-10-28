@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Session;
 
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 use App\Model\Session\Exception\SessionNotFoundException;
@@ -15,7 +15,7 @@ abstract class SessionRepository
         private EntityManagerInterface $entityManager
     ) {}
 
-    private function getRepository(): ObjectRepository
+    private function getRepository(): EntityRepository
     {
         return $this->entityManager->getRepository(Session::class);
     }

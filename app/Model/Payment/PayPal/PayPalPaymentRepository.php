@@ -6,7 +6,7 @@ namespace App\Model\Payment\PayPal;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use App\Model\Payment\PayPal\Exception\PayPalPaymentNotFoundException;
 use Ramsey\Uuid\UuidInterface;
 
@@ -16,7 +16,7 @@ abstract class PayPalPaymentRepository
         private EntityManagerInterface $entityManager
     ) {}
 
-    private function getRepository(): ObjectRepository
+    private function getRepository(): EntityRepository
     {
         return $this->entityManager->getRepository(PayPalPayment::class);
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Image;
 
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Ramsey\Uuid\UuidInterface;
@@ -16,7 +16,7 @@ abstract class ImageRepository
         private EntityManagerInterface $entityManager
     ) {}
 
-    protected function getRepository(): ObjectRepository
+    protected function getRepository(): EntityRepository
     {
         return $this->entityManager->getRepository(Image::class);
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model\System;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use App\Model\System\Exception\SystemNotFoundException;
 
 abstract class SystemRepository
@@ -14,7 +14,7 @@ abstract class SystemRepository
         private EntityManagerInterface $entityManager
     ) {}
 
-    private function getRepository(): ObjectRepository
+    private function getRepository(): EntityRepository
     {
         return $this->entityManager->getRepository(System::class);
     }

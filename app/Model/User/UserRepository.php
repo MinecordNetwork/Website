@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\User;
 
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use App\Model\User\Exception\UserNotFoundException;
@@ -16,7 +16,7 @@ abstract class UserRepository
         private EntityManagerInterface $entityManager
     ) {}
     
-    private function getRepository(): ObjectRepository
+    private function getRepository(): EntityRepository
     {
         return $this->entityManager->getRepository(User::class);
     }
