@@ -48,7 +48,7 @@ class ArticlePresenter extends BaseAdminPresenter
     {
         $form = $this->articleFormFactory->create($this->article);
 
-        $form->onSuccess[] = function(Form $form, array $data): void {
+        $form->onSuccess[] = function(array $data): void {
             if ($this->article === null) {
                 $this->articleFacade->create($this->articleDataFactory->createFromFormData($data));
                 $this->flashMessage('Príspevok bol úspešne vytvorený!', 'success');
@@ -81,7 +81,7 @@ class ArticlePresenter extends BaseAdminPresenter
 
                 $prevImage = $this->article->getThumbnail();
                 $this->articleFacade->changeThumbnail($this->article->getId(), $image);
-                $prevImage === null ?? $this->imageFacade->remove($prevImage->getId());
+                $prevImage === null ?: $this->imageFacade->remove($prevImage->getId());
 
                 $this->flashMessage('Thumbnail was uploaded.', 'success');
 

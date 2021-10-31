@@ -50,7 +50,7 @@ class ProductPresenter extends BaseAdminPresenter
     {
         $form = $this->productFormFactory->create($this->product);
 
-        $form->onSuccess[] = function(Form $form, array $data): void {
+        $form->onSuccess[] = function(array $data): void {
             if ($this->product === null) {
                 $this->productFacade->create($this->productDataFactory->createFromFormData($data));
                 $this->flashMessage('Nový produkt bol vytvorený!', 'success');
@@ -83,7 +83,7 @@ class ProductPresenter extends BaseAdminPresenter
 
                 $prevImage = $this->product->getThumbnail();
                 $this->productFacade->changeThumbnail($this->product->getId(), $image);
-                $prevImage !== null ? $this->imageFacade->remove($prevImage->getId()) : null;
+                $prevImage === null ?: $this->imageFacade->remove($prevImage->getId());
 
                 $this->flashMessage('Thumbnail was uploaded.', 'success');
                 $this->redirect('this');

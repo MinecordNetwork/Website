@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\UI\Form\Renderer;
 
-use DateInput;
+use App\UI\Form\Control\DateInput;
+use Nette\ComponentModel\Component;
+use Nette\Forms\Control;
 use Nette\Forms\Controls\BaseControl;
 use Nette\Forms\Controls\Checkbox;
 use Nette\Forms\Controls\CheckboxList;
 use Nette\Forms\Controls\RadioList;
 use Nette\Forms\Controls\UploadControl;
-use Nette\Forms\IControl;
 use Nette\Forms\Rendering\DefaultFormRenderer;
 use Nette\Forms\Controls;
 use Nette\Utils\Html;
@@ -56,7 +57,7 @@ class BootstrapRenderer extends DefaultFormRenderer
         return parent::renderControls($parent);
     }
 
-    public function renderPair(IControl $control): string
+    public function renderPair(Control $control): string
     {
         $this->controlsInit();
 
@@ -78,12 +79,14 @@ class BootstrapRenderer extends DefaultFormRenderer
             $pair->addHtml($this->renderControl($control));
         }
 
-        $pair->setAttribute('id', $control->getName() . '-container');
-        $pair->class($this->getValue($control->isRequired() ? 'pair .required' : 'pair .optional'), true);
-        $pair->class($control->hasErrors() ? $this->getValue('pair .error') : null, true);
-        $pair->class($control->getOption('class'), true);
-        if (++$this->counter % 2) {
-            $pair->class($this->getValue('pair .odd'), true);
+        if ($control instanceof BaseControl) {
+            $pair->setAttribute('id', $control->getName() . '-container');
+            $pair->class($this->getValue($control->isRequired() ? 'pair .required' : 'pair .optional'), true);
+            $pair->class($control->hasErrors() ? $this->getValue('pair .error') : null, true);
+            $pair->class($control->getOption('class'), true);
+            if (++$this->counter % 2) {
+                $pair->class($this->getValue('pair .odd'), true);
+            }
         }
 
         return $pair->render(0);
@@ -155,13 +158,13 @@ class BootstrapRenderer extends DefaultFormRenderer
         return parent::renderPairMulti($controls);
     }
 
-    public function renderLabel(IControl $control): Html
+    public function renderLabel(Control $control): Html
     {
         $this->controlsInit();
         return parent::renderLabel($control);
     }
 
-    public function renderControl(IControl $control): Html
+    public function renderControl(Control $control): Html
     {
         $this->controlsInit();
         return parent::renderControl($control);
@@ -188,12 +191,12 @@ class BootstrapRenderer extends DefaultFormRenderer
                 $class = empty($usedPrimary) ? 'btn btn-primary btn-block' : 'btn btn-default btn-block';
                 $control->getControlPrototype()->setAttribute('class', $class);
                 $usedPrimary = true;
+                
+            } elseif ($control instanceof DateInput) {
+                $control->getControlPrototype()->appendAttribute('class', 'form-control form-control-date');
 
             } elseif ($control instanceof Controls\TextBase) {
                 $control->getControlPrototype()->appendAttribute('class', 'form-control');
-
-            } elseif ($control instanceof DateInput) {
-                $control->getControlPrototype()->appendAttribute('class', 'form-control form-control-date');
 
             } elseif ($control instanceof Controls\Checkbox) {
                 $control->getControlPrototype()->appendAttribute('class', 'switch');

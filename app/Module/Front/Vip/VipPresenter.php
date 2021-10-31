@@ -61,7 +61,7 @@ class VipPresenter extends BaseFrontPresenter
         return new Multiplier(function (string $id) {
             $form = $this->vipProductFormFactory->create(Uuid::fromString($id));
             
-            $form->onSuccess[] = function (Form $form, array $data) use ($id) {
+            $form->onSuccess[] = function (Form $form, array $data) {
                 $this->template->payPalPayment = $this->payPalPaymentFacade->create($this->payPalPaymentDataFactory->createFromFormData($data));
                 $this->redrawControl('productSnippetContainer');
             };

@@ -25,7 +25,7 @@ class ImagePresenter extends BaseAdminPresenter
                 $data->type = Image::TYPE_HTML_EDITOR;
                 $data->originalName = $_FILES['file']['name'];
 
-                $image = $this->imageFacade->create($data, function (string $destination) use ($data) {
+                $image = $this->imageFacade->create($data, function (string $destination) {
                     move_uploaded_file($_FILES['file']['tmp_name'], $destination);
                 });
                 

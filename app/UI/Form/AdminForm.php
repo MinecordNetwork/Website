@@ -109,7 +109,7 @@ class AdminForm extends Form
         return $this[$name] = new AjaxSubmitButton($caption);
     }
 
-    public function addGroup(string $caption = null, bool $setAsCurrent = true, string $htmlId = null): ControlGroup
+    public function addGroup($caption = null, bool $setAsCurrent = true, string $htmlId = null): ControlGroup
     {
         $group = parent::addGroup($caption, $setAsCurrent);
         

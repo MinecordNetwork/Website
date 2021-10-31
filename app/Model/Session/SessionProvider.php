@@ -17,34 +17,25 @@ class SessionProvider
 {
     const SESSION_KEY = 'sessionHolder';
 
-    private SessionFacade $sessionFacade;
-    private IpAddressFacade $ipAddressFacade;
-    private IpAddressFactory $ipAddressFactory;
-    private NetteSession $netteSession;
     private Session $session;
 
     public function __construct(
-        SessionFacade $sessionFacade,
-        NetteSession $netteSession,
-        IpAddressFacade $ipAddressFacade,
-        IpAddressFactory $ipAddressFactory
-    ) {
-        $this->sessionFacade = $sessionFacade;
-        $this->netteSession = $netteSession;
-        $this->ipAddressFacade = $ipAddressFacade;
-        $this->ipAddressFactory = $ipAddressFactory;
-    }
+        private SessionFacade $sessionFacade,
+        private NetteSession $netteSession,
+        private IpAddressFacade $ipAddressFacade,
+        private IpAddressFactory $ipAddressFactory
+    ) {}
 
     public function setup(): void
     {
         $section = $this->netteSession->getSection(self::SESSION_KEY);
 
-        if (($uuidString = $section->{self::SESSION_KEY}) !== null) {
+        if (($uuidString = $section->get(self::SESSION_KEY)) !== null) {
             try {
                 $this->session = $this->sessionFacade->get(Uuid::fromString($uuidString));
 
-            } catch (SessionNotFoundException $e) {
-                unset($section->{self::SESSION_KEY});
+            } catch (SessionNotFoundException) {
+                $section->remove(self::SESSION_KEY);
                 $this->setup();
             }
 
@@ -56,9 +47,11 @@ class SessionProvider
             $sessionData->isCrawler = $crawlerDetect->isCrawler();
 
             if ($sessionData->isCrawler) {
-                session_destroy();
+                if (session_status() === PHP_SESSION_ACTIVE) {
+                    $this->netteSession->destroy();
+                }
                 session_id($newHash = substr(md5(Strings::webalize($crawlerDetect->getMatches())), 0, 26));
-                session_start();
+                $this->netteSession->start();
                 $sessionData->hash = $newHash;
                 $sessionData->crawlerName = $crawlerDetect->getMatches();
             }
@@ -66,7 +59,7 @@ class SessionProvider
             try {
                 $sessionData->ipAddress = $this->ipAddressFacade->getByAddress($_SERVER['REMOTE_ADDR']);
 
-            } catch (IpAddressNotFoundException $e) {
+            } catch (IpAddressNotFoundException) {
                 $sessionData->ipAddress = $this->ipAddressFactory->create($_SERVER['REMOTE_ADDR']);
             }
             
@@ -74,14 +67,14 @@ class SessionProvider
                 try {
                     $this->session = $this->sessionFacade->getByHash($sessionData->hash);
 
-                } catch (SessionNotFoundException $e) {
+                } catch (SessionNotFoundException) {
                     $this->session = $this->sessionFacade->create($sessionData);
                 }
             } else {
                 $this->session = $this->sessionFacade->create($sessionData);
             }
             
-            $section->{self::SESSION_KEY} = (string) $this->session->getId();
+            $section->set(self::SESSION_KEY, (string) $this->session->getId());
         }
     }
 

@@ -50,7 +50,7 @@ class PagePresenter extends BaseAdminPresenter
     {
         $form = $this->pageFormFactory->create($this->page);
 
-        $form->onSuccess[] = function(Form $form, array $data): void {
+        $form->onSuccess[] = function(array $data): void {
             if ($this->page === null) {
                 $this->pageFacade->create($this->pageDataFactory->createFromFormData($data));
                 $this->flashMessage('Stránka úspešne vytvorená!', 'success');
@@ -83,7 +83,7 @@ class PagePresenter extends BaseAdminPresenter
 
                 $prevImage = $this->page->getThumbnail();
                 $this->pageFacade->changeThumbnail($this->page->getId(), $image);
-                $prevImage === null ?? $this->imageFacade->remove($prevImage->getId());
+                $prevImage === null ?: $this->imageFacade->remove($prevImage->getId());
 
                 $this->flashMessage('Thumbnail was uploaded.', 'success');
 
