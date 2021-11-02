@@ -43,7 +43,6 @@ class SessionProvider
             $crawlerDetect = new CrawlerDetect();
 
             $sessionData = new SessionData();
-            $sessionData->hash = $this->netteSession->getId();
             $sessionData->isCrawler = $crawlerDetect->isCrawler();
 
             if ($sessionData->isCrawler) {
@@ -54,6 +53,9 @@ class SessionProvider
                 $this->netteSession->start();
                 $sessionData->hash = $newHash;
                 $sessionData->crawlerName = $crawlerDetect->getMatches();
+            } else {
+                $this->netteSession->start();
+                $sessionData->hash = $this->netteSession->getId();
             }
 
             try {
