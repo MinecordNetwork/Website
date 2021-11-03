@@ -12,7 +12,7 @@ class Bootstrap
     {
         $configurator = new Configurator;
         
-        $debugMode = substr(dirname(__FILE__), -7) !== 'www/app';
+        $debugMode = !str_ends_with(dirname(__FILE__), 'www/app');
 
         $configurator->setDebugMode($debugMode)
             ->setTimeZone('Europe/Prague')
