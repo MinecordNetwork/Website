@@ -78,7 +78,7 @@ class BanlistPresenter extends BaseFrontPresenter
     {
         $form = $this->vipProductFormFactory->create($this->template->unBan->getId());
 
-        $form->onSuccess[] = function (Form $form, array $data) {
+        $form->onSuccess[] = function (array $data): void {
             $this->template->payPalPayment = $this->payPalPaymentFacade->create($this->payPalPaymentDataFactory->createFromFormData($data));
             $this->redrawControl('productSnippet');
         };

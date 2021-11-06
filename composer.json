@@ -55,5 +55,8 @@
     },
     "config": {
         "discard-changes": true
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.1"
     }
 }

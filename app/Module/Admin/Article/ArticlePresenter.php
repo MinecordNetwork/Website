@@ -69,12 +69,12 @@ class ArticlePresenter extends BaseAdminPresenter
     {
         $form = $this->articleThumbnailFormFactory->create();
 
-        $form->onSuccess[] = function (Form $form, array $formData) {
+        $form->onSuccess[] = function (array $data): void {
             /** @var FileUpload $netteImage */
-            $netteImage = $formData['image'];
+            $netteImage = $data['image'];
 
             if ($netteImage->getError() === 0) {
-                $imageData = $this->imageDataFactory->createFromFormData($formData, Image::TYPE_ARTICLE);
+                $imageData = $this->imageDataFactory->createFromFormData($data, Image::TYPE_ARTICLE);
                 $image = $this->imageFacade->create($imageData, function (string $saveDir) use ($netteImage) {
                     $netteImage->move($saveDir);
                 });

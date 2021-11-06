@@ -1,0 +1,8 @@
+parameters:
+	level: 2
+	phpVersion: 80000
+	tmpDir: %currentWorkingDirectory%/temp/phpstan
+	fileExtensions:
+		- php
+	paths:
+		- app
