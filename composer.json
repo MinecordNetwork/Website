@@ -57,6 +57,7 @@
         "discard-changes": true
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.1"
+        "phpstan/phpstan": "^1.1",
+        "phpstan/phpstan-nette": "^1.0"
     }
 }

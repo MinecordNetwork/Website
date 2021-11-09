@@ -1,8 +1,12 @@
+includes:
+    - vendor/phpstan/phpstan-nette/extension.neon
+    - vendor/phpstan/phpstan-nette/rules.neon
+
 parameters:
-	level: 2
-	phpVersion: 80000
-	tmpDir: %currentWorkingDirectory%/temp/phpstan
-	fileExtensions:
-		- php
-	paths:
-		- app
+    level: 2
+    phpVersion: 80000
+    tmpDir: %currentWorkingDirectory%/temp/phpstan
+    fileExtensions:
+        - php
+    paths:
+        - app
