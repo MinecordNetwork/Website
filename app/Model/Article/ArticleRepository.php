@@ -38,6 +38,14 @@ abstract class ArticleRepository
         return $article;
     }
 
+    public function getCount(): int
+    {
+        return (int) $this->getQueryBuilderForAll()
+            ->select('COUNT(DISTINCT e.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     /**
      * @return Article[]
      */

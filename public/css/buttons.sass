@@ -1,3 +1,5 @@
+$base-btn-background: #2f67a5
+
 .btn
   &:focus, &:active, &:hover
     box-shadow: none
@@ -19,6 +21,13 @@
   color: #fff
 
 .btn.btn-primary
-  background: #2f67a5
-  border-color: #2f67a5
+  background: $base-btn-background
+  border-color: $base-btn-background
   color: #fff
+
+.page-item.active .page-link
+  background-color: $base-btn-background
+  border-color: $base-btn-background
+
+.page-link
+  color: $base-btn-background

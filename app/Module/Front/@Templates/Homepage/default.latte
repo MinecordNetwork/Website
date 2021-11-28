@@ -28,6 +28,31 @@
                     </a>
                 </div>
             </article>
+
+            <div n:if="$paginator->pageCount > 1">
+                <ul class="pagination justify-content-center">
+
+                    {if $paginator->firstPage < $paginator->page - 2}
+                        <li class="page-item">
+                            <a n:href="this page => $paginator->firstPage" class="page-link">{$paginator->firstPage}</a>
+                        </li>
+                        <li class="text-muted" n:if="$paginator->page - 3 > $paginator->firstPage">...</li>
+                    {/if}
+
+                    {for $page = $paginator->page - 2; $page <= $paginator->page + 2; $page++}
+                        <li n:if="$page >= 1 && $page <= $paginator->pageCount" class="page-item {if $page == $paginator->page}active{/if}">
+                            <a n:href="this page => $page" class="page-link">{$page}</a>
+                        </li>
+                    {/for}
+
+                    {if $paginator->lastPage > $paginator->page + 2}
+                        <li class="text-muted" n:if="$paginator->page + 3 < $paginator->lastPage">...</li>
+                        <li class="page-item">
+                            <a n:href="this page => $paginator->lastPage" class="page-link">{$paginator->lastPage}</a>
+                        </li>
+                    {/if}
+                </ul>
+            </div>
         </main>
         <aside class="col-12 col-md-4">
             {include '../@Layout/sidebar.latte'}

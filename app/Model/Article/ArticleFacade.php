@@ -12,19 +12,12 @@ use Ramsey\Uuid\UuidInterface;
 
 final class ArticleFacade extends ArticleRepository
 {
-    private ArticleFactory $articleFactory;
-    private EntityManagerInterface $entityManager;
-    private DiscordMessenger $discordMessenger;
-
     public function __construct(
-        ArticleFactory $articleFactory,
-        EntityManagerInterface $entityManager, 
-        DiscordMessenger $discordMessenger
+        private ArticleFactory $articleFactory,
+        private EntityManagerInterface $entityManager,
+        private DiscordMessenger $discordMessenger
     ) {
         parent::__construct($entityManager);
-        $this->articleFactory = $articleFactory;
-        $this->entityManager = $entityManager;
-        $this->discordMessenger = $discordMessenger;
     }
 
     public function create(ArticleData $data): Article
