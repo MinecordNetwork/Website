@@ -24,6 +24,6 @@ final class ShopStatsResetWeeklyCommand extends Command
     {
         $this->shopFacade->resetWeeklyStats();
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

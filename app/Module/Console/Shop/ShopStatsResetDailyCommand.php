@@ -24,6 +24,6 @@ final class ShopStatsResetDailyCommand extends Command
     {
         $this->shopFacade->resetDailyStats();
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

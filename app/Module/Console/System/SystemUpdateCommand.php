@@ -6,7 +6,7 @@ namespace App\Module\Console\System;
 
 use App\Model\System\SystemData;
 use App\Model\System\SystemFacade;
-use App\Model\System\SystemProvider;
+use PHPMinecraft\MinecraftQuery\Exception\MinecraftQueryException;
 use PHPMinecraft\MinecraftQuery\MinecraftQueryResolver;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,12 +18,11 @@ final class SystemUpdateCommand extends Command
     public static $defaultName = 'system:update';
 
     public function __construct(
-        private SystemProvider $systemProvider,
         private SystemFacade $systemFacade
     ) {
         parent::__construct();
     }
-
+    
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $data = new SystemData();
@@ -46,14 +45,16 @@ final class SystemUpdateCommand extends Command
         }
         $data->discordEnglishMemberList = utf8_encode(substr($data->discordEnglishMemberList, 0, -2));
 
-        $queryResult = MinecraftQueryResolver::fromAddress('mc.minecord.net')->getResult();
-        $data->onlinePlayerCount = $queryResult->getOnlinePlayers();
-        $data->onlinePlayerList = implode(', ', $queryResult->getPlayersSample());
+        try {
+            $queryResult = MinecraftQueryResolver::fromAddress('mc.minecord.net')->getResult();
+            $data->onlinePlayerCount = $queryResult->getOnlinePlayers();
+            $data->onlinePlayerList = implode(', ', $queryResult->getPlayersSample());
+        } catch (MinecraftQueryException) {}
         
         $this->systemFacade->edit($data);
 
         $output->writeln('<info>System data updated!</info>');
 
-        return 1;
+        return Command::SUCCESS;
     }
 }

@@ -24,6 +24,6 @@ final class PlayerDataResetMonthlyCommand extends Command
     {
         $this->playerDataFacade->resetMonthlyStats();
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

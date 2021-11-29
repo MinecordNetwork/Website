@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Model\System;
 
 use Doctrine\ORM\EntityManagerInterface;
-use App\Model\System\Exception\SystemNotFoundException;
 
 final class SystemFacade extends SystemRepository
 {
@@ -26,9 +25,6 @@ final class SystemFacade extends SystemRepository
         return $system;
     }
 
-    /**
-     * @throws SystemNotFoundException
-     */
     public function edit(SystemData $data): System
     {
         $system = $this->get();

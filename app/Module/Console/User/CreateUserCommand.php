@@ -35,8 +35,8 @@ final class CreateUserCommand extends Command
 
         $user = $this->userFacade->create($userData);
 
-        $output->writeln('<info>New useristrator "' . $user->getDisplayName() . '" was created!</info>');
-        
-        return 1;
+        $output->writeln('<info>New user "' . $user->getDisplayName() . '" was created!</info>');
+
+        return Command::SUCCESS;
     }
 }

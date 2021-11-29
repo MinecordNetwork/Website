@@ -6,7 +6,6 @@ namespace App\Model\System;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use App\Model\System\Exception\SystemNotFoundException;
 
 abstract class SystemRepository
 {
@@ -19,18 +18,8 @@ abstract class SystemRepository
         return $this->entityManager->getRepository(System::class);
     }
 
-    /**
-     * @throws SystemNotFoundException
-     */
     public function get(): System
     {
-        /** @var System $system */
-        $system = $this->getRepository()->findOneBy([]);
-
-        if ($system === null) {
-            throw new SystemNotFoundException();
-        }
-
-        return $system;
+        return $this->getRepository()->findOneBy([]);
     }
 }
