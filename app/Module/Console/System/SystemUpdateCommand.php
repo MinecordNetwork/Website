@@ -29,21 +29,27 @@ final class SystemUpdateCommand extends Command
         
         $data->discordCzechMemberCount = 0;
         $data->discordCzechMemberList = '';
-        $discordJson = json_decode(file_get_contents('https://discordapp.com/api/guilds/451685556343275521/widget.json'));
-        foreach ($discordJson->members as $member) {
-            $data->discordCzechMemberList .= $member->username . ', ';
-            $data->discordCzechMemberCount++;
+        $discordData = @file_get_contents('https://discordapp.com/api/guilds/451685556343275521/widget.json');
+        if ($discordData !== false) {
+            $discordJson = json_decode($discordData);
+            foreach ($discordJson->members as $member) {
+                $data->discordCzechMemberList .= $member->username . ', ';
+                $data->discordCzechMemberCount++;
+            }
+            $data->discordCzechMemberList = substr($data->discordCzechMemberList, 0, -2);
         }
-        $data->discordCzechMemberList = substr($data->discordCzechMemberList, 0, -2);
         
         $data->discordEnglishMemberCount = 0;
         $data->discordEnglishMemberList = '';
-        $discordJson = json_decode(file_get_contents('https://discordapp.com/api/guilds/631481339735965696/widget.json'));
-        foreach ($discordJson->members as $member) {
-            $data->discordEnglishMemberList .= $member->username . ', ';
-            $data->discordEnglishMemberCount++;
+        $discordData = @file_get_contents('https://discordapp.com/api/guilds/631481339735965696/widget.json');
+        if ($discordData !== false) {
+            $discordJson = json_decode($discordData);
+            foreach ($discordJson->members as $member) {
+                $data->discordEnglishMemberList .= $member->username . ', ';
+                $data->discordEnglishMemberCount++;
+            }
+            $data->discordEnglishMemberList = utf8_encode(substr($data->discordEnglishMemberList, 0, -2));
         }
-        $data->discordEnglishMemberList = utf8_encode(substr($data->discordEnglishMemberList, 0, -2));
 
         try {
             $queryResult = MinecraftQueryResolver::fromAddress('mc.minecord.net')->getResult();
