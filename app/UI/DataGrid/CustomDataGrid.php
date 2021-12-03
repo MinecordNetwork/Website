@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\UI\DataGrid;
 
-use Nette\Bridges\ApplicationLatte\ILatteFactory;
+use Nette\Bridges\ApplicationLatte\LatteFactory;
 use Nette\ComponentModel\IContainer;
 use App\UI\DataGrid\Column\Link\CustomColumnLink;
 use App\UI\DataGrid\Column\Text\CustomColumnText;
-use Ublaboo\DataGrid\Column\ColumnLink;
 use Ublaboo\DataGrid\DataGrid;
 use App\UI\DataGrid\Column\Image\CustomColumnImage;
 use App\UI\DataGrid\Column\Status\CustomColumnStatus;
@@ -17,12 +16,9 @@ use Ublaboo\DataGrid\DataSource\NetteDatabaseTableDataSource;
 
 class CustomDataGrid extends DataGrid
 {
-    private ILatteFactory $latteFactory;
-    
-    public function __construct(ILatteFactory $latteFactory, ?IContainer $parent = null, ?string $name = null)
+    public function __construct(private LatteFactory $latteFactory, ?IContainer $parent = null, ?string $name = null)
     {
         parent::__construct($parent, $name);
-        $this->latteFactory = $latteFactory;
     }
 
     public function addColumnText(string $key, string $name, ?string $column = null): CustomColumnText
