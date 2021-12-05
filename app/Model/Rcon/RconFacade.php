@@ -17,6 +17,10 @@ class RconFacade
     {
         $rcon = new Rcon($host, $port, $this->rconCredentials->getPassword(), 3);
         
+        if (!@fsockopen($host, $port, $errno, $error, 2)) {
+            return;
+        }
+        
         if ($rcon->connect()) {
             foreach ($commands as $command) {
                 $rcon->sendCommand($command);
