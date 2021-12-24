@@ -41,7 +41,6 @@
         "contributte/event-dispatcher": "^0.8",
         "jaybizzle/crawler-detect": "^1.2",
         "php-minecraft/minecraft-query": "^1.0",
-        "doctrine/inflector": "1.4",
         "guzzlehttp/guzzle": "^7.0",
         "thedudeguy/rcon": "dev-master",
         "paypal/paypal-checkout-sdk": "dev-master",
