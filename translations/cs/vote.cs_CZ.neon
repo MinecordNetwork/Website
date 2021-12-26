@@ -9,3 +9,5 @@ modal:
     title: "Hlasuj za náš server na "
     sendVote: "Přejít na hlasování"
     info: "Zde můžeš hlasovat <strong>jednou denně</strong>, za hlas získaš <strong>Vote Klíč</strong>."
+craftlistInfo: "Na serverlistu Craftlist.org můžeš hlasovat každé 2 hodiny, na ostatních 1x denně"
+mcslInfo: "Hlasy z 3. serverlistu (MC-SL) sa do štatistík nezapočítavajú, ten nefunguje warez hráčom"

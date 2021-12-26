@@ -13,9 +13,17 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                {_'vote.craftlistInfo'}
+                            </div>
+                            <div class="alert alert-warning">
+                                {_'vote.mcslInfo'}
+                            </div>
+                        </div>
                         {varType App\Module\Front\Vote\Site\VoteSite $voteSite}
-                        <div class="col-6 col-md-3" n:foreach="$voteSites as $voteSite">
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-vote-{$voteSite->getId()}" class="btn btn-block btn-primary">{$voteSite->getName()}</a>
+                        <div class="col-6 col-lg-3" n:foreach="$voteSites as $voteSite">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-vote-{$voteSite->getId()}" class="btn btn-block btn-primary m-1">{$voteSite->getName()}</a>
                             <form target="_blank" action="{$voteSite->getBaseUrl()}">
                                 <div class="modal fade" id="modal-vote-{$voteSite->getId()}" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
