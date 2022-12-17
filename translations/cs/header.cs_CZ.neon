@@ -5,6 +5,7 @@ welcome: "Minihry, Survival, Skyblock, Creative a mnoho dalšího!"
 title: "Minecord"
 description: "Minecraft server"
 joinToServer: "Připojit se k <span>%playerCount%</span> dalším hráčům"
+joinToEmptyServer: "Připojit se na server"
 discord: "Discord server"
 play: "Začít hrát"
 menu:

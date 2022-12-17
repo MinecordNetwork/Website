@@ -32,6 +32,24 @@ class PlayerFacade
     }
 
     /**
+     * @return Player[]
+     */
+    public function getOnlinePlayers(): array
+    {
+        $players = [];
+        
+        $data = $this->database->fetchAll('SELECT id, name FROM minecraft_player WHERE is_online = ?', 1);
+        foreach ($data as $row) {
+            $player = new Player();
+            $player->id = $row['id'];
+            $player->nickname = $row['name'];
+            $players[] = $player;
+        }
+        
+        return $players;
+    }
+
+    /**
      * @return PlayerVipActivation[]
      */
     public function getLatestVipActivations(int $limit = 5): array

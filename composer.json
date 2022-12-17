@@ -53,7 +53,10 @@
         }
     },
     "config": {
-        "discard-changes": true
+        "discard-changes": true,
+        "allow-plugins": {
+            "dg/composer-cleaner": true
+        }
     },
     "require-dev": {
         "phpstan/phpstan": "^1.1",

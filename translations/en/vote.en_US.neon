@@ -9,5 +9,6 @@ modal:
     title: "Fore for our server at "
     sendVote: "Continue to vote"
     info: "Here you can vote <strong>once caily</strong>, you'll receive <strong>Vote Key</strong> for every vote."
+    craftlistInfo: "Here you can vote <strong>every 2 hours</strong>, you'll receive <strong>Vote Key</strong> for every vote."
 craftlistInfo: "You can vote every 2 hours at the Craftlist.org, on other serverlists it's 1x per day"
 mcslInfo: "Votes from 3. serverlist (MC-SL) are not in the stats, because it's not working for some players"

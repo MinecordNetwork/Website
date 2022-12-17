@@ -5,6 +5,7 @@ welcome: "Minigames, Survival, Skyblock, Creative and more!"
 title: "Minecord"
 description: "Minecraft server"
 joinToServer: "Join to <span>%playerCount%</span> online players"
+joinToEmptyServer: "Start playing today!"
 discord: "Discord server"
 play: "Join Game"
 menu:

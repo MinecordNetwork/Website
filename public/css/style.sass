@@ -1,31 +1,35 @@
-@import "bootstrap/functions"
-@import "bootstrap/variables"
-@import "bootstrap/mixins"
-@import "bootstrap/root"
-@import "bootstrap/reboot"
-@import "bootstrap/type"
+@import "../../node_modules/bootstrap/scss/functions"
+@import "../../node_modules/bootstrap/scss/variables"
+@import "../../node_modules/bootstrap/scss/mixins"
+@import "../../node_modules/bootstrap/scss/root"
+@import "../../node_modules/bootstrap/scss/reboot"
+@import "../../node_modules/bootstrap/scss/type"
+@import "../../node_modules/bootstrap/scss/images"
+@import "../../node_modules/bootstrap/scss/containers"
 
-@import 'bootstrap/grid'
-@import 'bootstrap/tables'
-@import 'bootstrap/buttons'
-@import 'bootstrap/card'
-@import 'bootstrap/badge'
+@import '../../node_modules/bootstrap/scss/grid'
+@import '../../node_modules/bootstrap/scss/tables'
+@import '../../node_modules/bootstrap/scss/buttons'
+@import '../../node_modules/bootstrap/scss/card'
+@import '../../node_modules/bootstrap/scss/badge'
 
-@import "bootstrap/utilities/spacing"
-@import "bootstrap/utilities/flex"
-@import "bootstrap/utilities/display"
-@import "bootstrap/utilities/text"
+@import '../../node_modules/bootstrap/scss/utilities'
+@import '../../node_modules/bootstrap/scss/utilities/api'
 
-@import 'bootstrap/navbar'
-@import 'bootstrap/forms'
-@import 'bootstrap/input-group'
-@import 'bootstrap/modal'
-@import 'bootstrap/nav'
-@import 'bootstrap/alert'
-@import 'bootstrap/close'
-@import 'bootstrap/pagination'
-@import 'bootstrap/transitions'
-@import 'bootstrap/dropdown'
+@import '../../node_modules/bootstrap/scss/navbar'
+@import '../../node_modules/bootstrap/scss/forms'
+@import '../../node_modules/bootstrap/scss/button-group'
+@import '../../node_modules/bootstrap/scss/modal'
+@import '../../node_modules/bootstrap/scss/nav'
+@import '../../node_modules/bootstrap/scss/alert'
+@import '../../node_modules/bootstrap/scss/close'
+@import '../../node_modules/bootstrap/scss/pagination'
+@import '../../node_modules/bootstrap/scss/transitions'
+@import '../../node_modules/bootstrap/scss/dropdown'
+
+@media (min-width: 1400px)
+  .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl
+    max-width: 1140px
 
 body, html
   height: 100%
@@ -33,7 +37,7 @@ body, html
   font-family: Dosis, sans-serif
   background: #F0F3F5
   font-size: 1.06em
-
+  
 h1, h2
   color: #333
   font-family: "PowerStation", impact, sans-serif
@@ -67,11 +71,19 @@ main
 
 a
   color: #2f67a5
+  text-decoration: none
   &:hover, &:focus, &:active
     text-decoration: none
   &:hover
     color: #333
 
+.form-group
+  margin-bottom: 1rem
+  label
+    font-weight: bold
+    text-transform: uppercase
+    color: #666
+    
 .card
   margin-bottom: 1em
   border-radius: 0
@@ -165,9 +177,9 @@ a
   text-shadow: none
   font-weight: normal
 
-@import "header"
-@import "footer"
-@import "sidebar"
-@import "buttons"
-@import "fonts"
-@import "ajax-spinner"
+@import "header.sass"
+@import "footer.sass"
+@import "sidebar.sass"
+@import "buttons.sass"
+@import "fonts.sass"
+@import "ajax-spinner.sass"

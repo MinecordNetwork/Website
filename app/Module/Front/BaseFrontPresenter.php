@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Module\Front;
 
+use App\Model\Player\PlayerFacade;
 use App\Model\Session\Session;
 use App\Model\Session\SessionProvider;
 use App\Model\System\System;
@@ -34,6 +35,7 @@ abstract class BaseFrontPresenter extends Presenter
     #[Inject] public LanguageProvider $languageProvider;
     #[Inject] public CurrencyProvider $currencyProvider;
     #[Inject] public SystemProvider $systemProvider;
+    #[Inject] public PlayerFacade $playerFacade;
 
     protected System $system;
     protected Session $session;
@@ -79,6 +81,7 @@ abstract class BaseFrontPresenter extends Presenter
         $this->template->locale = $this->language->getIso();
         $this->template->country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? 'CZ';
         $this->template->currency = $this->currencyProvider->provide();
+        $this->template->onlinePlayers = $this->playerFacade->getOnlinePlayers();
         $this->template->cssBundleVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
         $this->template->jsBundleVersion = filemtime(__DIR__ . '/../../../public/js/build/bundle.js');
         

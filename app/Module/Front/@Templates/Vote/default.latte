@@ -30,9 +30,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLongTitle">{_'vote.modal.title'} {$voteSite->getName()}</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group row justify-content-center">
@@ -43,8 +41,12 @@
                                                         <input value="{$nickname}" class="form-control text" type="text" name="{$voteSite->getNickFieldName()}" pattern="^(?=.*[A-Za-z0-9_-])[$!@{}[\]A-Za-z0-9_-]{syntax off}{1,16}{/syntax}$" id="frm-voteForm-nickName" required="" {syntax off}data-nette-rules="[{&quot;op&quot;:&quot;:filled&quot;,&quot;msg&quot;:&quot;Toto pole je povinné&quot;},{&quot;op&quot;:&quot;:pattern&quot;,&quot;msg&quot;:&quot;Nick je v nesprávnom formáte&quot;,&quot;arg&quot;:&quot;^(?=.*[A-Za-z0-9_-])[$!@{}[\\]A-Za-z0-9_-]{1,16}$&quot;}]"{/syntax}>
                                                     </div>
                                                 </div>
-                                                <p class="text-center">
-                                                    {_'vote.modal.info'|noescape}
+                                                <p class="text-center mt-3">
+                                                    {if $voteSite->getName() === 'Craftlist.org'}
+                                                        <span class="text-success">{_'vote.modal.infoCraftlist'|noescape}</span>
+                                                    {else}
+                                                        {_'vote.modal.info'|noescape}
+                                                    {/if}
                                                 </p>
                                             </div>
                                             <div class="modal-footer">

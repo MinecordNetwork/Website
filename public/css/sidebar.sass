@@ -3,6 +3,23 @@ aside
     .card-header
       text-align: center
       text-transform: uppercase
+    &.minecraft
+      .card-header
+        color: #fff
+        background: #b65a4d
+      .card-body
+        p
+          max-height: 12em
+          overflow: scroll
+          overflow-x: hidden
+          &::-webkit-scrollbar
+            width: .8em
+          &::-webkit-scrollbar-track
+            background: #b65a4d
+            border-radius: .7em
+          &::-webkit-scrollbar-thumb
+            border-radius: .7em
+            background: #b65a4d
     &.discord
       text-align: center
       .card-header

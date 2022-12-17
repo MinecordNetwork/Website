@@ -7,12 +7,10 @@ namespace App\Module\Front\Vip;
 use App\Model\Payment\PayPal\PayPalCredentials;
 use App\Model\Payment\PayPal\PayPalPaymentDataFactory;
 use App\Model\Payment\PayPal\PayPalPaymentFacade;
-use App\Model\Player\PlayerFacade;
 use App\Model\Product\Product;
 use App\Model\Product\ProductFacade;
 use App\Module\Front\BaseFrontPresenter;
 use App\Module\Front\Vip\Form\VipProductFormFactory;
-use Nette\Application\UI\Form;
 use Nette\Application\UI\Multiplier;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Rixafy\Currency\CurrencyFacade;
@@ -27,7 +25,6 @@ class VipPresenter extends BaseFrontPresenter
 
     public function __construct(
         private ProductFacade $productFacade,
-        private PlayerFacade $playerFacade,
         private VipProductFormFactory $vipProductFormFactory,
         private PayPalPaymentDataFactory $payPalPaymentDataFactory,
         private PayPalPaymentFacade $payPalPaymentFacade,

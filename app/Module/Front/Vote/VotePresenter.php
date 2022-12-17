@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Module\Front\Vote;
 
 use App\Model\Player\Exception\PlayerNotFoundException;
-use App\Model\Player\PlayerFacade;
 use App\Model\Vote\Site\VoteSite;
 use App\Model\Vote\VoteFacade;
 use App\Module\Front\BaseFrontPresenter;
@@ -17,7 +16,6 @@ class VotePresenter extends BaseFrontPresenter
 {
     public function __construct(
         private VoteFacade $voteFacade,
-        private PlayerFacade $playerFacade
     ) {
         parent::__construct();
     }
