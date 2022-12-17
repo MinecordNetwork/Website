@@ -104,4 +104,12 @@ abstract class BaseFrontPresenter extends Presenter
         $this->userAuthenticator->logOut();
         $this->redirect('Homepage:default');
     }
+    
+    public function handleUpdateOnlinePlayers(): void
+    {
+        $this->redrawControl('header');
+        $this->redrawControl('joinButton');
+        $this->redrawControl('sidebar');
+        $this->redrawControl('onlinePlayers');
+    }
 }

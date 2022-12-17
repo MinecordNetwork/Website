@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-4 text-right">
                     <div class="buttons">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#joinHelp" class="btn btn-play">{if count($onlinePlayers) === 0}{_'header.joinToEmptyServer'}{else}{_'header.joinToServer', ['playerCount' => count($onlinePlayers)]|noescape}{/if}</a>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#joinHelp" class="btn btn-play"><span style="color: #fff" n:snippet="joinButton">{if count($onlinePlayers) === 0}{_'header.joinToEmptyServer'}{else}{_'header.joinToServer', ['playerCount' => count($onlinePlayers)]|noescape}{/if}</span></a>
                     </div>
                 </div>
             </div>

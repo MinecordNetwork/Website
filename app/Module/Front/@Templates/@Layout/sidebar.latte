@@ -1,12 +1,14 @@
 {templateType App\Module\Front\BaseFrontTemplate}
 
+{snippet onlinePlayers}
 <div n:if="!empty($onlinePlayers)" class="card minecraft">
     <div class="card-header">{_'sidebar.onlinePlayers'}</div>
     <div class="card-body">
         <p>{implode(', ', array_map(fn (App\Model\Player\Player $player) => $player->nickname, $onlinePlayers))}</p>
-        <a href="javascript:void(0)" data-toggle="modal" data-target="#joinHelp" class="btn btn-minecraft btn-block text-uppercase font-weight-bold" href="{_'sidebar.discordInvite'}">{_'sidebar.minecraftJoin'}</a>
+        <a href="javascript:void(0)" onclick="document.querySelector('.btn-play').click()" class="btn btn-minecraft btn-block text-uppercase font-weight-bold" href="{_'sidebar.discordInvite'}">{_'sidebar.minecraftJoin'}</a>
     </div>
 </div>
+{/snippet}
 
 <div class="card discord">
     <div class="card-header">Discord Server</div>

@@ -2,14 +2,7 @@ import 'bootstrap.native'
 import naja from 'naja'
 import netteForms from 'nette-forms';
 import cookieBar from './cookies.js';
-
-naja.addEventListener('start', () => {
-    document.getElementById('ajax-spinner').style.visibility = 'visible';
-});
-
-naja.addEventListener('complete', () => {
-    document.getElementById('ajax-spinner').style.visibility = 'hidden';
-});
+import './spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     cookieBar.checkCookies();

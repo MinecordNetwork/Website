@@ -44,6 +44,12 @@
 <script n:if="$locale === 'cs'" data-ad-client="ca-pub-6534471684239231" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script n:if="$locale === 'en'" data-ad-client="ca-pub-6534471684239231" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script src="/js/build/bundle.js?deploy={$jsBundleVersion}"></script>
+<script>
+setInterval(function() {
+    naja.ignoreNextSpinnerAnimation = true;
+    naja.makeRequest('GET', {link updateOnlinePlayers!});
+}, 3000);
+</script>
 {block scripts}{/block}
 </body>
 </html>
