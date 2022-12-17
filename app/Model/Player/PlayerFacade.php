@@ -38,7 +38,7 @@ class PlayerFacade
     {
         $players = [];
         
-        $data = $this->database->fetchAll('SELECT id, name FROM minecraft_player WHERE is_online = ?', 1);
+        $data = $this->database->fetchAll('SELECT id, name FROM minecraft_player WHERE is_online = ? AND is_logged = ?', 1, 1);
         foreach ($data as $row) {
             $player = new Player();
             $player->id = $row['id'];
