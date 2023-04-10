@@ -8,13 +8,18 @@
     <div class="row">
         <main class="col-12 col-md-8 store">
             <div n:snippet="productSnippetContainer" class="row ranks">
+                {if $country === 'CZ' || $country === 'SK'}
+                <div class="col-12">
+                    <div class="alert alert-info">Přes SMS už VIP zakoupit nelze, děkujeme za pochopení.</div>
+                </div>
+                {/if}
                 {varType App\Model\Product\Product $rank}
                 <div n:foreach="$ranks as $rank" class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-header text-center font-weight-bold"><span class="h2">{$rank->getName()}</span></div>
                         <img src="{$rank->getThumbnail()->getPublicPath()}" alt=""/>
                         <div class="card-body">
-                            {if $country === 'CZ' || $country === 'SK'}
+                            {if false && ($country === 'CZ' || $country === 'SK')}
                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-{$rank->getId()->getInteger()}" class="btn btn-sms btn-block">SMS - <strong>{if $country === 'CZ'}{$rank->getPriceCzechSms()|currency: 'CZK'}{else}{$rank->getPriceSlovakSms()|currency: 'EUR'}{/if}</strong></a>
                             {/if}
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-paypal-{$rank->getId()->getInteger()}" class="btn btn-paypal btn-block">PayPal/{_'vip.card'} - <strong>{if $country === 'CZ'}{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}{else}{$rank->getPrice()|currency: 'EUR'}{/if}</strong>{if $country === 'CZXX'}<br/><small>Přibližně <strong>{$czkCurrency->convertFrom($currency, $rank->getPrice())|currency: 'CZK'}</strong></small>{/if}</a>
