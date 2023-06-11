@@ -47,10 +47,10 @@
                         <li class="nav-item">
                             <a class="nav-link {isLinkCurrent('Vote:*') ? 'active'}" n:href="Vote:default">{_'header.menu.vote'}</a>
                         </li>
-                        <li class="nav-item">
+                        {*<li class="nav-item">
                             <a class="nav-link vip {isLinkCurrent('Vip:*') ? 'active'}" n:href="Vip:default">{_'header.menu.vip'}</a>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li>*}
+                        {*<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {if isLinkCurrent('OnlineMap:*')}active{/if}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {_'header.menu.onlineMaps'}
                             </a>
@@ -58,10 +58,10 @@
                                 <a class="dropdown-item" target="_blank" n:href="OnlineMap:survival">{_'header.menu.survivalOnlineMap'}</a>
                                 <a class="dropdown-item" n:href="OnlineMap:creative">{_'header.menu.creativeOnlineMap'}</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
+                        </li>*}
+                        {*<li class="nav-item">
                             <a class="nav-link {if isLinkCurrent('Banlist:*')}active{/if}" n:href="Banlist:default">Banlist</a>
-                        </li>
+                        </li>*}
                         <li class="nav-item">
                             <a class="nav-link {if isLinkCurrent('Page:default', '03fa1017-a62f-4b79-b205-b977da049a46')}active{/if}" n:href="Page:default '03fa1017-a62f-4b79-b205-b977da049a46'">{_'header.menu.rules'}</a>
                         </li>
@@ -96,3 +96,9 @@
         </div>
     </div>
 </header>
+
+<div class="container">
+    <div class="alert alert-danger mt-3">
+        {_'header.stop'}
+    </div>
+</div>

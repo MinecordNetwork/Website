@@ -81,7 +81,7 @@ abstract class BaseFrontPresenter extends Presenter
         $this->template->locale = $this->language->getIso();
         $this->template->country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? 'CZ';
         $this->template->currency = $this->currencyProvider->provide();
-        $this->template->onlinePlayers = $this->playerFacade->getOnlinePlayers();
+        $this->template->onlinePlayers = [];//$this->playerFacade->getOnlinePlayers();
         $this->template->cssBundleVersion = filemtime(__DIR__ . '/../../../public/css/style.css');
         $this->template->jsBundleVersion = filemtime(__DIR__ . '/../../../public/js/build/bundle.js');
         

@@ -1,0 +1,10 @@
+appDir: app
+model:
+	entity:
+		idType: uuid_binary
+		idComment: null
+		createSetters: false
+		defaultTraits:
+			removable: null
+			timestampable: null
+	symfonyEvents: true
