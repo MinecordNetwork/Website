@@ -42,6 +42,7 @@ class RconSubscriber implements EventSubscriberInterface
                         }
                         
                     } else {
+                        bdump('sending commands ' . $server->host . ':' . $server->rconPort);
                         $this->rconFacade->sendCommands([sprintf('msg %s Development mode', $nickname)], $server->host, $server->rconPort);
                     }
                 }

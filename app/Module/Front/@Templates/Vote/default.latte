@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         {varType App\Module\Front\Vote\Site\VoteSite $voteSite}
-                        <div class="col-6 col-lg-3" n:foreach="$voteSites as $voteSite">
+                        <div class="col" n:foreach="$voteSites as $voteSite">
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-vote-{$voteSite->getId()}" class="btn btn-block btn-primary m-1">{$voteSite->getName()}</a>
                             <form target="_blank" action="{$voteSite->getBaseUrl()}">
                                 <div class="modal fade" id="modal-vote-{$voteSite->getId()}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -33,6 +33,9 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
+                                                {if str_contains($voteSite->getName(), 'Minecraftservery')}
+                                                    <input type="hidden" name="id" value="1494">
+                                                {/if}
                                                 <div class="form-group row justify-content-center">
                                                     <div class="col-sm-8 control-label">
                                                         <label for="frm-voteForm-nickName">Nickname</label>

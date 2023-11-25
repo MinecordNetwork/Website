@@ -32,10 +32,9 @@ class ServerFacade
             $server->name = $row->name;
             $server->displayName = $row->display_name;
             $server->gameType = $row->game_type;
-            $server->address = $row->address;
             $server->host = $row->host;
             $server->port = (int) $row->port;
-            if (!in_array($server->name, ['build', 'test', 'event'])) {
+            if (!in_array($server->name, ['build', 'test', 'event', 'murder', 'offline'])) {
                 $server->rconPort = $server->port + 1;
             }
             $servers[] = $server;

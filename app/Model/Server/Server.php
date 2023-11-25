@@ -10,7 +10,6 @@ class Server
     public string $name;
     public string $displayName;
     public string $gameType;
-    public string $address;
     public string $host;
     public int $port;
     public ?int $rconPort = null;
