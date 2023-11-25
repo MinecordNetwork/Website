@@ -22,17 +22,17 @@ class VotePresenter extends BaseFrontPresenter
 
     public function actionDefault(int $pid = null): void
     {
-        $this->template->voteStats = [];//$this->voteFacade->getVoteStats((int) date('Y'), (int) date('m'), 100);
+        $this->template->voteStats = $this->voteFacade->getVoteStats((int) date('Y'), (int) date('m'), 100);
 
         $lastMonth = date_create(date('Y-m-d') . 'first day of last month');
-        $this->template->voteStatsLastMonth = [];//$this->voteFacade->getVoteStats((int) $lastMonth->format('Y'), (int) $lastMonth->format('m'), 10);
+        $this->template->voteStatsLastMonth = $this->voteFacade->getVoteStats((int) $lastMonth->format('Y'), (int) $lastMonth->format('m'), 10);
         
         $this->template->voteSites = VoteSite::getAll();
         
-        /*if ($pid !== null) {
+        if ($pid !== null) {
             try {
                 $this->template->nickname = $this->playerFacade->get($pid)->nickname;
             } catch (PlayerNotFoundException) {}
-        }*/
+        }
     }
 }

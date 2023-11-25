@@ -8,7 +8,6 @@ joinToServer: "Join to <span>%playerCount%</span> online players"
 joinToEmptyServer: "Start playing today!"
 discord: "Discord server"
 play: "Join Game"
-stop: "Server was turned off because of technical reasons."
 menu:
     blog: "News"
     vip: "VIP"

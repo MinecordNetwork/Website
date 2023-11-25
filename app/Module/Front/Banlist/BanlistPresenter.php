@@ -13,7 +13,6 @@ use App\Model\Product\ProductFacade;
 use App\Module\Front\BaseFrontPresenter;
 use App\Module\Front\Vip\Form\VipProductFormFactory;
 use Nette\Application\AbortException;
-use Nette\Application\BadRequestException;
 use Nette\Application\UI\Form;
 use Rixafy\Currency\CurrencyFacade;
 use Rixafy\Currency\Exception\CurrencyNotFoundException;
@@ -37,11 +36,9 @@ class BanlistPresenter extends BaseFrontPresenter
 
     /**
      * @throws AbortException
-     * @throws BadRequestException
      */
     public function actionDefault(int $page = 1): void
     {
-        throw new BadRequestException();
         $itemsPerPage = 15;
         $count = $this->banlistFacade->getCount();
         

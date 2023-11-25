@@ -11,7 +11,6 @@ use App\Model\Product\Product;
 use App\Model\Product\ProductFacade;
 use App\Module\Front\BaseFrontPresenter;
 use App\Module\Front\Vip\Form\VipProductFormFactory;
-use Nette\Application\BadRequestException;
 use Nette\Application\UI\Multiplier;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Rixafy\Currency\CurrencyFacade;
@@ -35,13 +34,9 @@ class VipPresenter extends BaseFrontPresenter
         parent::__construct();
     }
 
-    /**
-     * @throws BadRequestException
-     */
     public function actionDefault(): void
     {
         $this->ranks = $this->productFacade->getAllRanks();
-        throw new BadRequestException();
     }
     
     public function renderDefault(): void

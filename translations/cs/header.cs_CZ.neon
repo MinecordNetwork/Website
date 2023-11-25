@@ -8,7 +8,6 @@ joinToServer: "Připojit se k <span>%playerCount%</span> dalším hráčům"
 joinToEmptyServer: "Připojit se na server"
 discord: "Discord server"
 play: "Začít hrát"
-stop: "Server byl z technických důvodů a nedostatku času vypnut na neurčito."
 menu:
     blog: "Novinky"
     vip: "VIP"
