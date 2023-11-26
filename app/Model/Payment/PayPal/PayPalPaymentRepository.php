@@ -37,6 +37,19 @@ abstract class PayPalPaymentRepository
 
         return $payment;
     }
+    
+    /**
+     * @return PayPalPayment[]
+     */
+    public function getLatestSuccessfulPayments(int $limit = 5): array
+    {
+        return $this->getQueryBuilderForAll()
+            ->where('e.acceptedAt IS NOT NULL')
+            ->orderBy('e.createdAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->execute();
+    }
 
     public function getQueryBuilderForAll(): QueryBuilder
     {

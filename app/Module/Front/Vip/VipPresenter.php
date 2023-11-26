@@ -42,7 +42,7 @@ class VipPresenter extends BaseFrontPresenter
     public function renderDefault(): void
     {
         $this->template->ranks = $this->ranks;
-        $this->template->latestVipActivations = $this->playerFacade->getLatestVipActivations(5);
+        $this->template->latestVipActivations = $this->payPalPaymentFacade->getLatestSuccessfulPayments();
         $this->template->payPalClientId = $this->payPalCredentials->getClientId();
         $this->template->czkCurrency = $this->currencyFacade->getByCode('CZK');
     }

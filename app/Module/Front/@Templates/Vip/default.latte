@@ -180,13 +180,12 @@
                 <div class="card-header">{_'vip.latestActivations'}</div>
                 <table class="table custom">
                     <tbody>
-                    {varType App\Model\Player\Vip\PlayerVipActivation $activation}
                     <tr n:foreach="$latestVipActivations as $activation">
                         <td class="d-flex">
-                            <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$activation->nickname}/25.png" alt="{$activation->nickname}"/>
-                            <span class="d-table-row">{$activation->nickname}</span>
+                            <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$activation->getNickname()}/25.png" alt="{$activation->getNickname()}"/>
+                            <span class="d-table-row">{$activation->getNickname()}</span>
                         </td>
-                        <td>{$activation->activatedAt->format($dateTimeFormat)}</td>
+                        <td>{$activation->getCreatedAt()->format($dateTimeFormat)}</td>
                     </tr>
                     </tbody>
                 </table>
