@@ -12,15 +12,12 @@ use App\UI\Form\Control\AjaxSubmitButton;
 use App\UI\Form\Control\CodebaseCheckbox;
 use App\UI\Form\Control\CodebaseRadioList;
 use App\UI\Form\Control\ColorpickerInput;
-use App\UI\Form\Control\DateInput;
-use App\UI\Form\Control\DateTimeInput;
 use App\UI\Form\Control\DateRangeInput;
 use App\UI\Form\Control\DateTimeRangeInput;
 use App\UI\Form\Control\MarkdownEditorInput;
 use App\UI\Form\Control\PriceInput;
 use App\UI\Form\Control\SwitchCheckbox;
 use App\UI\Form\Control\TextEditorInput;
-use App\UI\Form\Control\TimeInput;
 use App\UI\Form\Renderer\DashkitRenderer;
 
 class AdminForm extends Form
@@ -50,18 +47,6 @@ class AdminForm extends Form
         return $this[$name] = new SwitchCheckbox($caption);
     }
 
-    public function addDate(string $name, $label = null, int $cols = null): DateInput
-    {
-        return $this[$name] = (new DateInput($label))
-            ->setHtmlAttribute('size', $cols);
-    }
-
-    public function addDateTime(string $name, $label = null, int $cols = null): DateTimeInput
-    {
-        return $this[$name] = (new DateTimeInput($label))
-            ->setHtmlAttribute('size', $cols);
-    }
-
     public function addDateRange(string $name, $label = null, int $cols = null): DateRangeInput
     {
         return $this[$name] = (new DateRangeInput($label))
@@ -71,12 +56,6 @@ class AdminForm extends Form
     public function addDateTimeRange(string $name, $label = null, int $cols = null): DateTimeRangeInput
     {
         return $this[$name] = (new DateTimeRangeInput($label))
-            ->setHtmlAttribute('size', $cols);
-    }
-
-    public function addTime(string $name, $label = null, int $cols = null, int $maxLength = null): TimeInput
-    {
-        return $this[$name] = (new TimeInput($label, $maxLength))
             ->setHtmlAttribute('size', $cols);
     }
 
