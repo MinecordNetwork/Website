@@ -11,7 +11,10 @@ use App\Module\Front\BaseFrontTemplate;
 class VoteTemplate extends BaseFrontTemplate
 {
     /** @var VoteSite[] */
-    public array $voteSites;
+    public array $localVoteSites;
+    
+    /** @var VoteSite[] */
+    public array $bonusVoteSites;
     
     /** @var VoteStats[] */
     public array $voteStats;

@@ -27,7 +27,8 @@ class VotePresenter extends BaseFrontPresenter
         $lastMonth = date_create(date('Y-m-d') . 'first day of last month');
         $this->template->voteStatsLastMonth = $this->voteFacade->getVoteStats((int) $lastMonth->format('Y'), (int) $lastMonth->format('m'), 10);
         
-        $this->template->voteSites = VoteSite::getAll();
+        $this->template->localVoteSites = VoteSite::getLocal();
+        $this->template->bonusVoteSites = VoteSite::getBonus();
         
         if ($pid !== null) {
             try {

@@ -36,15 +36,26 @@ class VoteSite
     /**
      * @return VoteSite[]
      */
-    public static function getAll(): array
+    public static function getLocal(): array
     {
         $sites = [];
         
         $sites[] = new VoteSite(1, 'Craftlist.org', 'https://craftlist.org/minecord', 'nickname');
-        $sites[] = new VoteSite(2, 'Minecraftservery.eu', 'https://minecraftservery.eu/server', 'nick');
-        $sites[] = new VoteSite(3, 'Planet Minecraft', 'https://www.planetminecraft.com/server/minecord-net-survival-skyblock-vanilla-creative-amp-minigames/vote/', 'username');
-        $sites[] = new VoteSite(4, 'MC Server List', 'https://minecraft-server-list.com/server/400992/vote/', 'nickname');
-        //$sites[] = new VoteSite(5, 'Minecraft-MP', 'https://minecraft-mp.com/server/212135/vote/', 'username');
+        $sites[] = new VoteSite(2, 'Minecraft-List.cz', 'https://www.minecraft-list.cz/server/minecord/vote', 'name');
+        $sites[] = new VoteSite(3, 'Minecraftservery.eu', 'https://minecraftservery.eu/server', 'nick');
+        
+        return $sites;
+    }
+
+    /**
+     * @return VoteSite[]
+     */
+    public static function getBonus(): array
+    {
+        $sites = [];
+        $sites[] = new VoteSite(4, 'Planet Minecraft', 'https://www.planetminecraft.com/server/minecord-net-survival-skyblock-vanilla-creative-amp-minigames/vote/', 'username');
+        $sites[] = new VoteSite(5, 'MC Server List', 'https://minecraft-server-list.com/server/400992/vote/', 'nickname');
+        //$sites[] = new VoteSite(6, 'Minecraft-MP', 'https://minecraft-mp.com/server/212135/vote/', 'username');
         
         return $sites;
     }

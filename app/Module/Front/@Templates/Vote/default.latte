@@ -15,14 +15,10 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="alert alert-info">
-                                {_'vote.craftlistInfo'}
-                            </div>
-                            <div class="alert alert-warning">
-                                {_'vote.mcslInfo'}
+                                Na těchto serverlistech můžeš hlasovat každé 2 hodiny, na ostatních 1-3x denně
                             </div>
                         </div>
-                        {varType App\Module\Front\Vote\Site\VoteSite $voteSite}
-                        <div class="col" n:foreach="$voteSites as $voteSite">
+                        <div class="col" n:foreach="$localVoteSites as $voteSite">
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-vote-{$voteSite->getId()}" class="btn btn-block btn-primary m-1">{$voteSite->getName()}</a>
                             <form target="_blank" action="{$voteSite->getBaseUrl()}">
                                 <div class="modal fade" id="modal-vote-{$voteSite->getId()}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -45,11 +41,48 @@
                                                     </div>
                                                 </div>
                                                 <p class="text-center mt-3">
-                                                    {if $voteSite->getName() === 'Craftlist.org'}
-                                                        <span class="text-success">{_'vote.modal.infoCraftlist'|noescape}</span>
-                                                    {else}
-                                                        {_'vote.modal.info'|noescape}
-                                                    {/if}
+                                                    <span class="text-success">{_'vote.modal.infoCraftlist'|noescape}</span>
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button onclick="this.form.submit()" data-dismiss="modal" type="submit" class="btn btn-primary" name="_submit">{_'vote.modal.sendVote'}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2>Bonusové zahraniční serverlisty</h2></div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col" n:foreach="$bonusVoteSites as $voteSite">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-vote-{$voteSite->getId()}" class="btn btn-block btn-secondary m-1">{$voteSite->getName()}</a>
+                            <form target="_blank" action="{$voteSite->getBaseUrl()}">
+                                <div class="modal fade" id="modal-vote-{$voteSite->getId()}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">{_'vote.modal.title'} {$voteSite->getName()}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {if str_contains($voteSite->getName(), 'Minecraftservery')}
+                                                    <input type="hidden" name="id" value="1494">
+                                                {/if}
+                                                <div class="form-group row justify-content-center">
+                                                    <div class="col-sm-8 control-label">
+                                                        <label for="frm-voteForm-nickName">Nickname</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input value="{$nickname}" class="form-control text" type="text" name="{$voteSite->getNickFieldName()}" pattern="^(?=.*[A-Za-z0-9_-])[$!@{}[\]A-Za-z0-9_-]{syntax off}{1,16}{/syntax}$" id="frm-voteForm-nickName" required="" {syntax off}data-nette-rules="[{&quot;op&quot;:&quot;:filled&quot;,&quot;msg&quot;:&quot;Toto pole je povinné&quot;},{&quot;op&quot;:&quot;:pattern&quot;,&quot;msg&quot;:&quot;Nick je v nesprávnom formáte&quot;,&quot;arg&quot;:&quot;^(?=.*[A-Za-z0-9_-])[$!@{}[\\]A-Za-z0-9_-]{1,16}$&quot;}]"{/syntax}>
+                                                    </div>
+                                                </div>
+                                                <p class="text-center mt-3">
+                                                    {_'vote.modal.info'|noescape}
                                                 </p>
                                             </div>
                                             <div class="modal-footer">

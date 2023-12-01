@@ -25,7 +25,7 @@ class VoteFacade
     {
         $voteStats = [];
 
-        $result = $this->database->query('SELECT COUNT(minecraft_vote.id) as vote_count, minecraft_player.name as player_name, MAX(minecraft_vote.created_at) as last_vote FROM minecraft_vote JOIN minecraft_player ON minecraft_vote.player_id = minecraft_player.id WHERE YEAR(minecraft_vote.created_at) = ? AND MONTH(minecraft_vote.created_at) = ? AND minecraft_vote.serverlist != ? GROUP BY minecraft_vote.player_id ORDER BY vote_count DESC LIMIT ?', $year, $month, 'MCSL', $limit);
+        $result = $this->database->query('SELECT COUNT(minecraft_vote.id) as vote_count, minecraft_player.name as player_name, MAX(minecraft_vote.created_at) as last_vote FROM minecraft_vote JOIN minecraft_player ON minecraft_vote.player_id = minecraft_player.id WHERE YEAR(minecraft_vote.created_at) = ? AND MONTH(minecraft_vote.created_at) = ? AND minecraft_vote.serverlist_id != ? GROUP BY minecraft_vote.player_id ORDER BY vote_count DESC LIMIT ?', $year, $month, 0, $limit);
 
         $rank = 1;
         foreach ($result as $row) {
