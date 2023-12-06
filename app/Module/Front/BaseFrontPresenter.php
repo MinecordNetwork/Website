@@ -50,7 +50,7 @@ abstract class BaseFrontPresenter extends Presenter
     public function startup()
     {
         parent::startup();
-
+        
         $this->sessionProvider->setup();
         $this->languageProvider->setup(isset($_SERVER['SERVER_NAME']) && substr($_SERVER['SERVER_NAME'], -3) === 'net' ? 'en' : 'cs');
         $this->currencyProvider->setup('EUR');

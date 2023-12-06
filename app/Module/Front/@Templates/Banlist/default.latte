@@ -11,7 +11,6 @@
                     <thead>
                         <tr>
                             <th><h1 n:block="title">Banlist</h1></th>
-                            <th>Admin</th>
                             <th>{_'banlist.reason'}</th>
                             <th>{_'banlist.createdAt'}</th>
                             <th>{_'banlist.expireAt'}</th>
@@ -23,9 +22,6 @@
                         <td class="d-flex">
                             <img class="d-table-row" style="image-rendering: pixelated; margin-right: 1em" src="https://minotar.net/helm/{$ban->targetName}/25.png" alt="{$ban->targetName}"/>
                             <span class="d-table-row">{$ban->targetName}</span>
-                        </td>
-                        <td>
-                            <img data-placement="left" title="{$ban->adminName}" data-toggle="tooltip" style="image-rendering: pixelated" src="https://minotar.net/helm/{str_replace('-', '', $ban->adminUuid)}/25.png" alt="{$ban->adminName}"/>
                         </td>
                         <td>{$ban->reason}</td>
                         <td>{$ban->createdAt->format($dateTimeFormat)}</td>
