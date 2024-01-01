@@ -40,7 +40,7 @@ class DiscordMessenger
      */
     public function notifyTopVoters(array $voters, array $rewardTexts): void
     {
-        $message = "Top 5 hráčů s nejvíce hlasy za server za minulý měsíc a jejich odměny: \n\n";
+        $message = "Top 5 hráčů s nejvíce hlasy za server za minulý měsíc a jejich odměny @here\n\n";
         
         foreach ($voters as $voter) {
             $message .= "**" . $voter->rank . ".** `" . $voter->nickname . "` - " . $voter->count . " hlasů \n";
