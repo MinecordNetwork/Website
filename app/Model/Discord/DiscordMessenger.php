@@ -48,7 +48,7 @@ class DiscordMessenger
         }
 
         $message .= "Odměny budou doručeny automaticky po připojení na server. \n";
-        $message .= "Ďekujeme všem za hlasy! Hlasovat můžete příkazem /vote, anebo na našem webu minecord.cz";
+        $message .= "Děkujeme všem za hlasy! Hlasovat můžete příkazem /vote, anebo na našem webu minecord.cz";
         
         $this->notify(
             $this->czechWebhook,
